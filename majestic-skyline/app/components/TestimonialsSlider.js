@@ -57,7 +57,7 @@ export default function TestimonialsSlider() {
      <h2 className="text-4xl md:text-5xl text-[#f9f7f4] font-bold mb-4 text-start font-serif">
   What Our Travelers Say
 </h2>
-<p className="text-xl text-[#8b7866] mx-auto mb-12">
+<p className="text-lg md:text-xl text-[#8b7866] mx-auto mb-12">
   Discover firsthand experiences from those who have traveled with us. Our travelers share their stories of unforgettable adventures and seamless journeys.
 </p>
 

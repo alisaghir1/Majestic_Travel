@@ -47,7 +47,7 @@ export default function ServicesOverview() {
     <section className="py-20 px-4 bg-[#1c355e]">
       <div className="container mx-auto px-5 text-start">
         <h2 className="text-4xl md:text-5xl font-bold text-[#8b7866] mb-6">Our Main Services</h2>
-        <p className="text-white mb-14  mx-auto text-lg">
+        <p className="text-white mb-14  mx-auto md:text-xl">
           Explore our core travel services crafted to make your journey effortless and memorable.
         </p>
 

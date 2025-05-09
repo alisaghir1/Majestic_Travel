@@ -70,7 +70,7 @@ export default function FeaturedDestinations() {
   return (
     <section className="w-full py-20 bg-[#f2f2f7] text-start relative">
       <div className="mx-auto px-5">
-        <h2 className="text-3xl md:text-4xl text-[#1c355e] font-bold mb-5 text-center">
+        <h2 className="text-4xl md:text-5xl text-[#1c355e] font-bold mb-5 text-center">
           Featured Destinations
         </h2>
         <p className="text-lg md:text-xl text-[#444] text-center mb-15 max-w-3xl mx-auto">
@@ -85,7 +85,7 @@ export default function FeaturedDestinations() {
                 key={index}
                 className="keen-slider__slide bg-white rounded-2xl  overflow-hidden"
               >
-                <div className="w-full h-[45rem] relative hover:opacity-90 hover:shadow-2xl transition-all duration-300 ease-in-out">
+                <div className="w-full xl:h-[45rem] h-[30rem] relative hover:opacity-90 hover:shadow-2xl transition-all duration-300 ease-in-out">
                   <Image
                     src={image}
                     alt={name}
