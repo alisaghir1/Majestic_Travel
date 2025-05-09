@@ -16,20 +16,20 @@ export default function Hero() {
       </div>
 
       {/* Overlay */}
-       <div className="absolute inset-0 bg-black/60 z-10" />
+       <div className="absolute inset-0 bg-black/70 z-10" />
 
       {/* Content */}
       <div className="relative z-20 flex items-center justify-center h-full text-center text-white px-4">
         <div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          <h1 className="text-4xl text-[#8b7866] md:text-6xl font-bold mb-4">
             Explore the World with Majestic Skyline
           </h1>
           <p className="text-lg md:text-2xl mb-6">
             Unforgettable journeys, curated just for you.
           </p>
           <Link
-            href="/Destinations"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-5 rounded-xl text-lg transition duration-200"
+            href="/destinations"
+            className="bg-[#1c355e]  hover:bg-[#8b7866] text-white px-6 py-5 rounded-xl text-lg transition duration-200"
           >
             Destinations
           </Link>

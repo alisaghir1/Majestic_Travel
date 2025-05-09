@@ -37,29 +37,38 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/90 shadow-md py-5" : "bg-white  py-10"
+        scrolled ? "bg-[#f2f2f7] shadow-md py-5" : "bg-[#f2f2f7] shadow-md to-[#e9e3dd]  py-10"
       }`}
     >
-      <div className="xl:max-w-3/4 mx-auto flex items-center justify-between px-4 transition-all duration-300">
+      <div className="container mx-auto flex items-center justify-between px-5 transition-all duration-300">
         {/* Logo */}
-        <Link
-          href="/"
-          className="text-2xl"
-        >
-          <Image src='logo.svg' width={200} height={200} alt="logo image" />
+        <Link href="/" className="text-2xl">
+          <Image src="logo.svg" width={200} height={200} alt="logo image" />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className={`hidden lg:flex space-x-6   font-medium relative `}>
-          <Link className="hover:text-blue-700 transition duration-300" href="/">Home</Link>
-          <Link className="hover:text-blue-700 transition duration-300" href="/about">About</Link>
+        <nav
+          className={`hidden lg:flex space-x-6 text-[#8b7866]   font-medium relative `}
+        >
+          <Link
+            className="hover:text-[#1c355e] transition duration-300"
+            href="/"
+          >
+            Home
+          </Link>
+          <Link
+            className="hover:text-[#1c355e] transition duration-300"
+            href="/about"
+          >
+            About
+          </Link>
 
           {/* Services Dropdown */}
           <div
             className="relative"
             onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
           >
-            <button className="hover:text-blue-700 cursor-pointer flex items-center gap-1  transition-all duration-300">
+            <button className="hover:text-[#1c355e] cursor-pointer flex items-center gap-1  transition-all duration-300">
               Services <ChevronDown size={16} />
             </button>
             {servicesDropdownOpen && (
@@ -68,7 +77,7 @@ export default function Navbar() {
                   <Link
                     key={href}
                     href={href}
-                    className="block text-blue-800 transition-all duration-300"
+                    className="block text-[#8b7866] hover:text-[#1c355e] transition-all duration-300"
                   >
                     {label}
                   </Link>
@@ -77,10 +86,30 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link className="hover:text-blue-700 transition-all duration-300" href="/destinations">Destinations</Link>
-          <Link className="hover:text-blue-700 transition-all duration-300" href="/blog">Blog</Link>
-          <Link className="hover:text-blue-700 transition-all duration-300" href="/testimonials">Testimonials</Link>
-          <Link className="hover:text-blue-700 transition-all duration-300" href="/contact">Contact</Link>
+          <Link
+            className="hover:text-[#1c355e] transition-all duration-300"
+            href="/destinations"
+          >
+            Destinations
+          </Link>
+          <Link
+            className="hover:text-[#1c355e] transition-all duration-300"
+            href="/blog"
+          >
+            Blog
+          </Link>
+          <Link
+            className="hover:text-[#1c355e] transition-all duration-300"
+            href="/testimonials"
+          >
+            Testimonials
+          </Link>
+          <Link
+            className="hover:text-[#1c355e] transition-all duration-300"
+            href="/contact"
+          >
+            Contact
+          </Link>
         </nav>
 
         {/* Mobile Toggle */}
@@ -100,10 +129,18 @@ export default function Navbar() {
         }`}
       >
         <nav className="flex  flex-col px-4 py-2 space-y-3 mt-10  font-medium">
-          <Link className="hover:text-blue-700 transition-all duration-300" href="/" onClick={() => setMenuOpen(false)}>
+          <Link
+            className="hover:text-[#1c355e] transition-all duration-300"
+            href="/"
+            onClick={() => setMenuOpen(false)}
+          >
             Home
           </Link>
-          <Link className="hover:text-blue-700 transition-all duration-300" href="/about" onClick={() => setMenuOpen(false)}>
+          <Link
+            className="hover:text-[#1c355e] transition-all duration-300"
+            href="/about"
+            onClick={() => setMenuOpen(false)}
+          >
             About
           </Link>
 
@@ -111,12 +148,12 @@ export default function Navbar() {
           <div className="flex flex-col">
             <button
               onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-              className="flex items-center hover:text-blue-700   w-full cursor-pointer transition-all duration-300 ease-in-out"
+              className="flex items-center hover:text-[#1c355e]  w-full cursor-pointer transition-all duration-300 ease-in-out"
             >
               <span>Services</span>
               <ChevronDown
                 size={18}
-                className={`hover:text-blue-700 transition-all duration-300 cursor-pointer ${
+                className={`hover:text-[#1c355e] transition-all duration-300 cursor-pointer ${
                   servicesDropdownOpen ? "rotate-180" : ""
                 }`}
               />
@@ -132,7 +169,7 @@ export default function Navbar() {
                       setMenuOpen(false);
                       setServicesDropdownOpen(false);
                     }}
-                    className="block text-sm  hover:text-blue-700  transition-all duration-300 "
+                    className="block text-sm text-[#8b7866] hover:text-[#1c355e] transition-all duration-300 "
                   >
                     {label}
                   </Link>
@@ -141,16 +178,32 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link className="hover:text-blue-700 transition-all duration-300" href="/destinations" onClick={() => setMenuOpen(false)}>
+          <Link
+            className="hover:text-[#1c355e] transition-all duration-300"
+            href="/destinations"
+            onClick={() => setMenuOpen(false)}
+          >
             Destinations
           </Link>
-          <Link className="hover:text-blue-700 transition-all duration-300" href="/blog" onClick={() => setMenuOpen(false)}>
+          <Link
+            className="hover:text-[#1c355e] transition-all duration-300"
+            href="/blog"
+            onClick={() => setMenuOpen(false)}
+          >
             Blog
           </Link>
-          <Link className="hover:text-blue-700 transition-all duration-300" href="/testimonials" onClick={() => setMenuOpen(false)}>
+          <Link
+            className="hover:text-[#1c355e] transition-all duration-300"
+            href="/testimonials"
+            onClick={() => setMenuOpen(false)}
+          >
             Testimonials
           </Link>
-          <Link className="hover:text-blue-700 transition-all duration-300" href="/contact" onClick={() => setMenuOpen(false)}>
+          <Link
+            className="hover:text-[#1c355e] transition-all duration-300"
+            href="/contact"
+            onClick={() => setMenuOpen(false)}
+          >
             Contact
           </Link>
         </nav>
