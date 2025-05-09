@@ -1,4 +1,3 @@
-"use client";
 
 import { Plane, Hotel, Map, Briefcase, Heart, ShieldCheck } from "lucide-react";
 import Link from "next/link";

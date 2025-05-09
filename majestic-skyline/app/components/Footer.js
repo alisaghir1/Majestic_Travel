@@ -60,7 +60,7 @@ export default function Footer() {
 
           {/* Contact Information */}
           <div>
-            <h3 className="text-2xl font-semibold mb-4 text-[#8b7866]">
+            <h3 className="text-2xl font-semibold mb-4 text-[#1c355e]">
               Contact Us
             </h3>
 
