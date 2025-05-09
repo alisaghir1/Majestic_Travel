@@ -1,6 +1,7 @@
 import Hero from "./components/Hero";
 import IntroSection from "./components/IntroSection";
 import ServicesOverview from "./components/ServicesOverview";
+import FeaturedDestinations from "./components/FeaturedDestinations";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
     <Hero />
     <IntroSection />
     <ServicesOverview />
+    <FeaturedDestinations />
     </div>
   );
 }
