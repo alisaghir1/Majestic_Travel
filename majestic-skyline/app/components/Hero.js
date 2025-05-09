@@ -7,7 +7,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/main.jpg"
+          src="/hero.webp"
           alt="Hero Background"
           className="object-cover"
           fill
@@ -16,7 +16,7 @@ export default function Hero() {
       </div>
 
       {/* Overlay */}
-       <div className="absolute inset-0 bg-black/40 z-10" />
+       <div className="absolute inset-0 bg-black/60 z-10" />
 
       {/* Content */}
       <div className="relative z-20 flex items-center justify-center h-full text-center text-white px-4">
@@ -28,10 +28,10 @@ export default function Hero() {
             Unforgettable journeys, curated just for you.
           </p>
           <Link
-            href="/services"
+            href="/Destinations"
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-5 rounded-xl text-lg transition duration-200"
           >
-            Start Planning
+            Destinations
           </Link>
         </div>
       </div>
