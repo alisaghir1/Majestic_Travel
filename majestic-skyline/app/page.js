@@ -2,6 +2,7 @@ import Hero from "./components/Hero";
 import IntroSection from "./components/IntroSection";
 import ServicesOverview from "./components/ServicesOverview";
 import FeaturedDestinations from "./components/FeaturedDestinations";
+import TestimonialsSlider from "./components/TestimonialsSlider";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
     <IntroSection />
     <ServicesOverview />
     <FeaturedDestinations />
+    <TestimonialsSlider />
     </div>
   );
 }

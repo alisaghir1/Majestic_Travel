@@ -70,9 +70,12 @@ export default function FeaturedDestinations() {
   return (
     <section className="w-full py-20 bg-[#f2f2f7] text-start relative">
       <div className="mx-auto px-5">
-        <h2 className="text-3xl md:text-4xl text-[#1c355e] font-bold mb-20 text-center">
+        <h2 className="text-3xl md:text-4xl text-[#1c355e] font-bold mb-5 text-center">
           Featured Destinations
         </h2>
+        <p className="text-lg md:text-xl text-[#444] text-center mb-15 max-w-3xl mx-auto">
+  Discover some of the most beautiful and unique travel destinations that will make your next getaway unforgettable. Whether you're looking for adventure, relaxation, or cultural experiences, our featured destinations offer something special for every type of traveler. Let us help you plan your dream vacation today!
+</p>
 
         {/* Carousel */}
         <div className="relative">
