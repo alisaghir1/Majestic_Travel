@@ -85,7 +85,7 @@ export default function FeaturedDestinations() {
                 key={index}
                 className="keen-slider__slide bg-white rounded-2xl  overflow-hidden"
               >
-                <div className="w-full h-[45rem] relative">
+                <div className="w-full h-[45rem] relative hover:opacity-90 hover:shadow-2xl transition-all duration-300 ease-in-out">
                   <Image
                     src={image}
                     alt={name}
