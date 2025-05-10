@@ -16,7 +16,7 @@ import Link from "next/link";
 
 export default function FlightsAndAccommodation() {
   return (
-    <div className="pt-60 pb-24 mx-auto text-gray-800">
+    <div className="pt-60 pb-24 bg-[#f2f2f7] mx-auto text-gray-800">
       {/* Hero */}
       <div className="relative h-[40rem] mb-16">
         <Image
@@ -97,7 +97,7 @@ export default function FlightsAndAccommodation() {
         <h4 className="text-2xl font-bold text-[#1c355e] mb-4">
           Book Your Flights and Hotels with Confidence
         </h4>
-        <p className="mb-6 text-gray-700">
+        <p className="mb-6 text-[#8b7866]">
           Let us handle the details so you can focus on enjoying your journey.
         </p>
         <Link

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function TravelPlanning() {
   return (
-    <div className="pt-60 pb-24 mx-auto text-gray-800">
+    <div className="pt-60 bg-[#f2f2f7] pb-24 mx-auto text-gray-800">
       {/* Hero */}
       <div className="relative h-[40rem] mb-16">
         <Image
@@ -93,7 +93,7 @@ export default function TravelPlanning() {
               <h4 className="text-xl font-semibold text-[#1c355e] mb-2">
                 {feature.title}
               </h4>
-              <p className="text-gray-700">{feature.text}</p>
+              <p className="text-[#8b7866]">{feature.text}</p>
             </div>
           ))}
         </div>
@@ -104,7 +104,7 @@ export default function TravelPlanning() {
         <h3 className="text-2xl font-semibold mb-6 text-[#1c355e]">
           How It Works
         </h3>
-        <ol className="list-decimal list-inside space-y-4 text-gray-700">
+        <ol className="list-decimal list-inside space-y-4 text-[#8b7866]">
           <li>
             <strong>Consultation:</strong> We start with a chat about your
             travel goals, budget, and preferences.
@@ -163,7 +163,7 @@ export default function TravelPlanning() {
               <summary className="cursor-pointer font-medium text-[#1c355e] text-lg group-open:mb-2 transition-all duration-300">
                 {faq.q}
               </summary>
-              <p className="text-gray-700 opacity-0 group-open:opacity-100 transition-opacity duration-500">
+              <p className="text-[#8b7866] opacity-0 group-open:opacity-100 transition-opacity duration-500">
                 {faq.a}
               </p>
             </details>
@@ -176,7 +176,7 @@ export default function TravelPlanning() {
         <h4 className="text-2xl font-bold text-[#1c355e] mb-4">
           Start Planning Today
         </h4>
-        <p className="mb-6 text-gray-700">
+        <p className="mb-6 text-[#8b7866]">
           Let us create your dream trip with care, clarity, and confidence.
         </p>
         <Link
