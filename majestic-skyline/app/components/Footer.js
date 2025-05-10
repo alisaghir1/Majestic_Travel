@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-white text-[#1c355e] py-12">
+    <footer className="w-full bg-white text-[#1c355e] py-12 border-t-3 border-[#1c355e]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-12 text-center md:text-left">
           {/* Newsletter */}
@@ -21,7 +21,7 @@ export default function Footer() {
                 placeholder="Enter your email"
                 className="w-full max-w-md px-6 py-4 text-lg rounded-full bg-white border border-[#1c355e] focus:outline-none focus:ring-2 focus:ring-[#1c355e] transition-all"
               />
-              <button className="px-6 py-4 bg-[#1c355e] text-white text-lg rounded-full hover:bg-[#8b7866] transition-all">
+              <button className="px-6 py-4 bg-[#1c355e] text-white text-lg rounded-full hover:bg-[#8b7866] transition-all cursor-pointer">
                 Subscribe
               </button>
             </div>
@@ -97,7 +97,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom copyright */}
-        <div className="mt-12 text-center text-sm text-[#8b7866]">
+        <div className="mt-12 text-center text-sm text-[#8b7866] ">
           <p>
             &copy; {new Date().getFullYear()} Majestic Skyline. All rights
             reserved.

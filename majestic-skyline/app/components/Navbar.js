@@ -37,13 +37,15 @@ export default function Navbar() {
   return (
     <header
       className={`fixed text-xl top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#f2f2f7] shadow-md py-2" : "bg-white shadow-md to-[#e9e3dd]  py-10"
+        scrolled
+          ? "bg-[#f2f2f7] shadow-md py-2"
+          : "bg-white shadow-md to-[#e9e3dd]  py-10"
       }`}
     >
       <div className="mx-auto xl:px-20 px-5 flex items-center justify-between  transition-all duration-300">
         {/* Logo */}
         <Link href="/" className="text-2xl">
-          <Image src="logo.svg" width={250} height={250} alt="logo image" />
+          <Image src="/logo.svg" width={250} height={250} alt="logo image" />
         </Link>
 
         {/* Desktop Nav */}
