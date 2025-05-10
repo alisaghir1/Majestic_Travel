@@ -143,7 +143,7 @@ export default function HoneymoonsAndRomanticGetaways() {
               <summary className="cursor-pointer font-medium text-[#1c355e] text-lg group-open:mb-2 transition-all duration-300">
                 {faq.q}
               </summary>
-              <p className="text-gray-700 opacity-0 group-open:opacity-100 transition-opacity duration-500">
+              <p className="text-[#8b7866] opacity-0 group-open:opacity-100 transition-opacity duration-500">
                 {faq.a}
               </p>
             </details>
@@ -156,14 +156,14 @@ export default function HoneymoonsAndRomanticGetaways() {
         <h4 className="text-2xl font-bold text-[#1c355e] mb-4">
           Celebrate Love with Thoughtful Planning
         </h4>
-        <p className="mb-6 text-gray-700">
+        <p className="mb-6 text-[#8b7866]">
           Majestic Skyline turns romantic travel into something special. Whether you're newly married or just planning a quiet trip for two, our Dubai-based team is here to listen, plan, and deliver a beautiful experience made just for you.
         </p>
         <Link
           href="/contact"
-          className="inline-block bg-[#1c355e] text-white py-3 px-6 rounded-lg text-lg font-semibold"
+          className="inline-block bg-[#1c355e] hover:bg-[#8b7866] text-white py-3 px-6 rounded-full text-lg font-semibold transition-colors duration-300 ease-in-out"
         >
-          Contact us today to start planning your honeymoon or romantic getaway.
+          Start Planning Your Honeymoon.
         </Link>
       </div>
     </div>
