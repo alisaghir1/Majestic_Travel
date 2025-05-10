@@ -9,7 +9,7 @@ export default function TravelPlanning() {
       {/* Hero */}
       <div className="relative h-[40rem] mb-16">
         <Image
-          src="/custom-travel.jpg"
+          src="/services/custom-travel.jpg"
           alt="Custom Travel Planning"
           fill
           className="object-cover rounded-xl"

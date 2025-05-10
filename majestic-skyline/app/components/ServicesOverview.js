@@ -13,7 +13,7 @@ const services = [
     icon: <Hotel size={40} className="text-[#8b7866]" />,
     title: "Flights & Hotels",
     description: "Book the best flights and top-rated accommodations at great prices.",
-    href: "/services/flights-hotels",
+    href: "/services/flights-and-accommodations",
   },
   {
     icon: <Map size={40} className="text-[#8b7866]" />,

@@ -13,7 +13,7 @@ export default function Navbar() {
 
   const serviceLinks = [
     { label: "Custom Travel Planning", href: "/services/custom-travel" },
-    { label: "Flights & Hotels", href: "/services/flights-hotels" },
+    { label: "Flights & Accommodations", href: "/services/flights-and-accommodations" },
     { label: "Guided Tours", href: "/services/guided-tours" },
     { label: "Business Travel", href: "/services/business-travel" },
     { label: "Romantic Escapes", href: "/services/romantic-escapes" },
