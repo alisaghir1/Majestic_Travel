@@ -118,7 +118,7 @@ const [sliderRef, slider] = useKeenSlider({
       content:
         "hat’s where travel insurance comes in. Whether flying from Dubai for business or leisure, having protection in place is a smart move. At Majestic Skyline, we see many travelers overlook this step. This guide explains why travel insurance is essential, what it covers, and how to choose the right plan for every journey.",
       date: "january 24, 2025",
-      slug: "travelinsurance-101-why-it-matters-for-every-trip",
+      slug: "travel-insurance-101-why-it-matters-for-every-trip",
     },
     
   ];
