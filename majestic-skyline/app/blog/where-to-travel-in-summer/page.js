@@ -10,7 +10,7 @@ const WhereToTravel = () => {
       {/* Hero Image */}
       <div className="relative w-full h-[60vh] mb-16">
         <Image
-          src="/destinations/dubai.jpg"
+          src="/blogs/summer.jpg"
           alt="Summer Escape from Dubai"
           layout="fill"
           objectFit="cover"

@@ -10,7 +10,7 @@ const TopVisaFreeDestinations2025 = () => {
       {/* Hero Image */}
       <div className="relative w-full h-[60vh] mb-16">
         <Image
-          src="/blogs/summer.jpg"
+          src="/destinations/dubai.jpg"
           alt="Visa-Free Travel Destinations for UAE Residents"
           layout="fill"
           objectFit="cover"

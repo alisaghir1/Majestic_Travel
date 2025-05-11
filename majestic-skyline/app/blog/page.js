@@ -51,7 +51,7 @@ const [sliderRef, slider] = useKeenSlider({
     {
       title: "Top 10 Visa-Free Travel Destinations for UAE Residents in 2025",
       subtitle: "Traveling from the UAE has never been easier. In 2025, UAE passport holders and residents have access to several stunning destinations without the need for a visa in advance. ",
-      image: "/blogs/summer.jpg",
+      image: "/destinations/dubai.jpg",
       content:
         "Majestic Skyline, based in Dubai, helps travelers discover exciting places that don’t require complex visa applications. Below is a curated list of the top 10 visa-free travel destinations for UAE citizens and residents in 2025—complete with reasons to go, ideal travel seasons, and what to expect.",
       date: "January 9, 2025",
@@ -60,7 +60,7 @@ const [sliderRef, slider] = useKeenSlider({
         {
       title: "Where to Travel in Summer 2025 to Escape the Dubai Heat",
       subtitle: "Dubai summers can be intense. When temperatures rise, many residents start looking for cooler places to relax.",
-      image: "/destinations/dubai.jpg",
+      image: "/blogs/summer.jpg",
       content:
         "destinations offer fresh air, scenic views, and ideal weather. Majestic Skyline, a Dubai-based travel agency, recommends carefully selected spots that remain pleasant during the hottest months in the UAE. These destinations are known for cooler climates, natural landscapes, and great accessibility from Dubai.",
       date: "February 12, 2025",
