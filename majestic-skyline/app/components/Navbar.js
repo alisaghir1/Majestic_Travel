@@ -18,6 +18,8 @@ export default function Navbar() {
     { label: "Business Travel", href: "/services/business-travel" },
     { label: "Romantic Escapes", href: "/services/romantic-escapes" },
     { label: "Visa & Insurance Help", href: "/services/visa-insurance" },
+    { label: "Sustainable & Wellness Travel", href: "/services/sustainable-wellness" },
+
   ];
 
   // Handle scroll effect
