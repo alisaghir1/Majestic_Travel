@@ -138,7 +138,7 @@ export default function HoneymoonsAndRomanticGetaways() {
           ].map((faq, i) => (
             <details
               key={i}
-              className="group p-5 border border-black rounded-lg transition-all duration-300 "
+              className="group p-5 border border-gray-300 rounded-lg transition-all duration-300 "
             >
               <summary className="cursor-pointer font-medium text-[#1c355e] text-lg group-open:mb-2 transition-all duration-300">
                 {faq.q}

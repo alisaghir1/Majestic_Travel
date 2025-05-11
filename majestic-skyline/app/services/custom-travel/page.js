@@ -87,7 +87,7 @@ export default function TravelPlanning() {
           ].map((feature, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-100"
+              className=" rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-300"
             >
               <div className="mb-4">{feature.icon}</div>
               <h4 className="text-xl font-semibold text-[#1c355e] mb-2">
@@ -158,7 +158,7 @@ export default function TravelPlanning() {
           ].map((faq, i) => (
             <details
               key={i}
-              className="group p-5 border border-gray-200 rounded-lg transition-all duration-300 bg-white"
+              className="group p-5 border border-gray-300 rounded-lg transition-all duration-300 "
             >
               <summary className="cursor-pointer font-medium text-[#1c355e] text-lg group-open:mb-2 transition-all duration-300">
                 {faq.q}
