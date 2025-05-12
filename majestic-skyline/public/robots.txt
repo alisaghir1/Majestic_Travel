@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://majestic-travel-ruby.vercel.app
+
+# Sitemaps
+Sitemap: https://majestic-travel-ruby.vercel.app/sitemap.xml

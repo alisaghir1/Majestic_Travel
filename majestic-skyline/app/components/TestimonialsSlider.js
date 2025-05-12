@@ -21,7 +21,7 @@ export default function TestimonialsSlider() {
   const testimonials = [
     {
       name: 'Emily R.',
-      image: 'https://randomuser.me/api/portraits/women/44.jpg',
+      
       message:
         'We have traveled a lot, but this was the first time it felt completely stress-free. The whole trip was smooth and well-organized.',
       profession: 'Travel Blogger',
@@ -31,7 +31,7 @@ export default function TestimonialsSlider() {
     },
     {
       name: 'Daniel M.',
-      image: 'https://randomuser.me/api/portraits/men/32.jpg',
+     
       message:
         'The itinerary was thoughtful and perfectly paced. We actually felt like we were on vacation, not rushing between stops!',
       profession: 'Photographer',
@@ -41,7 +41,7 @@ export default function TestimonialsSlider() {
     },
     {
       name: 'Sofia G.',
-      image: 'https://randomuser.me/api/portraits/women/68.jpg',
+     
       message:
         'Quick responses, real local tips, and a team that really listened to what we wanted. Cannot wait for our next trip!',
       profession: 'Content Creator',
@@ -75,9 +75,6 @@ export default function TestimonialsSlider() {
                   </p>
 
                   <div className="flex items-center gap-4 mt-6 ">
-                    <div className="w-24 h-24 rounded-full overflow-hidden">
-                      <Image src={image} alt={name} width={100} height={100} />
-                    </div>
                     <div className="flex flex-col items-center">
                       <span className="text-2xl font-semibold">{name}</span>
                       <div className="flex items-center gap-1 mt-1">
