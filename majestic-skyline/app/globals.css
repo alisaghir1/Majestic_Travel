@@ -2,8 +2,8 @@
 @import 'keen-slider/keen-slider.min.css';
 
 @font-face {
-  font-family: 'Lobster';
-  src: url('/fonts/Lobster.ttf') format('truetype');
+  font-family: 'RECOLETA';
+  src: url('/fonts/RECOLETA.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -16,7 +16,7 @@
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Lobster', cursive;
+  font-family: 'RECOLETA', cursive;
 }
 
 body, p{
