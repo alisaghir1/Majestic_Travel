@@ -2,7 +2,7 @@
 @import 'keen-slider/keen-slider.min.css';
 
 @font-face {
-  font-family: 'Recoleta';
+  font-family: 'Recoleta DEMO';
   src: url('/fonts/Recoleta.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
@@ -16,7 +16,7 @@
 }
 
 h1, h2, h3, h4 {
-  font-family: 'RECOLETA', cursive;
+  font-family: 'Recoleta DEMO', cursive;
 }
 
 body, p{
