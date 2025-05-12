@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: 'Recoleta';
-  src: url('/fonts/Recoleta.otf') format('truetype');
+  src: url('/fonts/Recoleta.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
