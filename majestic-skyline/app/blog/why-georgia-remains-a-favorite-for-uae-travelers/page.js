@@ -12,7 +12,7 @@ const WhyGeorgiaRemainsAFavorite = () => {
         <Image
           src="/destinations/georgia.jpg"
           alt="Why Georgia is a Favorite for UAE Travelers"
-          layout="fill"
+          fill
           objectFit="cover"
           className="rounded-b-xl"
           priority

@@ -28,17 +28,17 @@ export default function HoneymoonsAndRomanticGetaways() {
           Personalized Honeymoon and Couples Travel Planning from Dubai
         </h2>
         <p>
-          Majestic Skyline offers custom honeymoon planning and romantic travel experiences for couples in Dubai looking to celebrate love, connection, and new beginnings. Whether you're newly married or simply taking time to reconnect, we design intimate trips that reflect your style, pace, and dreams. From tropical islands to scenic cities and private resorts, every itinerary is created with care.
+          Majestic Skyline offers custom honeymoon planning and romantic travel experiences for couples in Dubai looking to celebrate love, connection, and new beginnings. Whether you&#39;re newly married or simply taking time to reconnect, we design intimate trips that reflect your style, pace, and dreams. From tropical islands to scenic cities and private resorts, every itinerary is created with care.
         </p>
         <p>
-          Our Dubai-based travel agency specializes in organizing seamless and meaningful escapes for couples. Whether you’re planning your post-wedding getaway, anniversary trip, or a surprise vacation for two, we help you create memories that last a lifetime—without stress or hassle.
+          Our Dubai-based travel agency specializes in organizing seamless and meaningful escapes for couples. Whether you&#39;re planning your post-wedding getaway, anniversary trip, or a surprise vacation for two, we help you create memories that last a lifetime—without stress or hassle.
         </p>
 
         <h3 className="text-2xl font-semibold text-[#1c355e]">
           Why Couples in Dubai Choose Majestic Skyline
         </h3>
         <ul className="list-disc pl-6 space-y-3">
-          <li><strong>Custom romantic packages tailored to each couple’s style and budget</strong></li>
+          <li><strong>Custom romantic packages tailored to each couple&#39;s style and budget</strong></li>
           <li><strong>Dedicated travel planner to handle all bookings and requests</strong></li>
           <li><strong>Wide selection of destinations with private and scenic stays</strong></li>
           <li><strong>Visa and travel support for honeymoon destinations</strong></li>
@@ -79,7 +79,7 @@ export default function HoneymoonsAndRomanticGetaways() {
         <ul className="list-disc pl-6 space-y-3">
           <li><strong>Secluded Stays:</strong> Romantic accommodations selected for privacy and atmosphere.</li>
           <li><strong>Sunset Cruises and Scenic Tours:</strong> Private boat rides, hot air balloons, and scenic drives.</li>
-          <li><strong>Couples Spa and Wellness Packages:</strong> Wellness activities like couple’s massages and spa treatments.</li>
+          <li><strong>Couples Spa and Wellness Packages:</strong> Wellness activities like couple&#39;s massages and spa treatments.</li>
           <li><strong>Custom Celebrations:</strong> Personalized room decor, gifts, and surprise celebrations.</li>
         </ul>
 
@@ -98,7 +98,7 @@ export default function HoneymoonsAndRomanticGetaways() {
         <ul className="list-disc pl-6 space-y-3">
           <li><strong>Couples Visa Assistance:</strong> Help with visa applications, documents, and embassy requirements.</li>
           <li><strong>Travel Insurance Options:</strong> Travel insurance to cover medical, baggage, and trip delays.</li>
-          <li><strong>Flight and Seating Arrangements:</strong> Special arrangements for couples’ seating and upgrades.</li>
+          <li><strong>Flight and Seating Arrangements:</strong> Special arrangements for couple&#39;s seating and upgrades.</li>
         </ul>
 
         <h3 className="text-2xl font-semibold text-[#1c355e]">
@@ -129,7 +129,7 @@ export default function HoneymoonsAndRomanticGetaways() {
             },
             {
               q: "Can you plan surprise honeymoons or proposal trips?",
-              a: "Absolutely. We’ve helped many clients organize surprise trips, proposals abroad, and secret romantic getaways.",
+              a: "Absolutely. We have helped many clients organize surprise trips, proposals abroad, and secret romantic getaways.",
             },
             {
               q: "Do you offer trips inside the UAE for couples?",
@@ -157,7 +157,7 @@ export default function HoneymoonsAndRomanticGetaways() {
           Celebrate Love with Thoughtful Planning
         </h4>
         <p className="mb-6 text-[#8b7866]">
-          Majestic Skyline turns romantic travel into something special. Whether you're newly married or just planning a quiet trip for two, our Dubai-based team is here to listen, plan, and deliver a beautiful experience made just for you.
+          Majestic Skyline turns romantic travel into something special. Whether you&#39;re newly married or just planning a quiet trip for two, our Dubai-based team is here to listen, plan, and deliver a beautiful experience made just for you.
         </p>
         <Link
           href="/contact"

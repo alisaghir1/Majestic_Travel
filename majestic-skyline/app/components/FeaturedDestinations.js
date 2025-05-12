@@ -73,7 +73,7 @@ export default function FeaturedDestinations() {
           Featured Destinations
         </h2>
         <p className="text-lg md:text-xl text-[#444] text-center mb-15 max-w-3xl mx-auto">
-  Discover some of the most beautiful and unique travel destinations that will make your next getaway unforgettable. Whether you're looking for adventure, relaxation, or cultural experiences, our featured destinations offer something special for every type of traveler. Let us help you plan your dream vacation today!
+  Discover some of the most beautiful and unique travel destinations that will make your next getaway unforgettable. Whether you&#39;re looking for adventure, relaxation, or cultural experiences, our featured destinations offer something special for every type of traveler. Let us help you plan your dream vacation today!
 </p>
 
         {/* Carousel */}

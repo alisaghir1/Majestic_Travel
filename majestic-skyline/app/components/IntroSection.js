@@ -16,7 +16,7 @@ export default function IntroSection() {
 
         {/* Description */}
         <p className="text-lg md:text-xl text-[#333] leading-relaxed max-w-3xl">
-          Based in the heart of Dubai, Majestic Skyline is more than just a travel agency — we're your personal guide to unforgettable experiences. Whether you're chasing adventure, relaxation, or discovery, we craft tailor-made trips that match your personality and pace. Say goodbye to cookie-cutter itineraries, and hello to travel that feels like you.
+          Based in the heart of Dubai, Majestic Skyline is more than just a travel agency — we&#39;re your personal guide to unforgettable experiences. Whether you&#39;re chasing adventure, relaxation, or discovery, we craft tailor-made trips that match your personality and pace. Say goodbye to cookie-cutter itineraries, and hello to travel that feels like you.
         </p>
       </div>
     </section>

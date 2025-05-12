@@ -21,7 +21,7 @@ const DestinationsPage = () => {
             Middle East & North Africa
           </h3>
           <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
-            Dubai’s location gives travelers easy access to cultural cities,
+            Dubai&#39;s location gives travelers easy access to cultural cities,
             desert landscapes, and ancient wonders across the MENA region.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -258,19 +258,19 @@ const DestinationsPage = () => {
             </h3>
             <ul className="list-disc xl:text-xl text-lg list-inside text-[#8b7866]">
               <li>
-                Austria – Ski resorts, Christmas markets, and scenic alpine
+                Austria : Ski resorts, Christmas markets, and scenic alpine
                 villages
               </li>
               <li>
-                Japan – Snow festivals, hot springs, and traditional winter
+                Japan : Snow festivals, hot springs, and traditional winter
                 meals
               </li>
               <li>
-                Maldives – Dry season brings the clearest skies and smoothest
+                Maldives : Dry season brings the clearest skies and smoothest
                 sea
               </li>
               <li>
-                Georgia (Gudauri) – Snow activities, fireplaces, and mountain
+                Georgia (Gudauri) : Snow activities, fireplaces, and mountain
                 views
               </li>
             </ul>
@@ -283,17 +283,17 @@ const DestinationsPage = () => {
             </h3>
             <ul className="list-disc list-inside xl:text-xl text-lg text-[#8b7866]">
               <li>
-                Netherlands – Tulip fields, cycling paths, and canal views
+                Netherlands : Tulip fields, cycling paths, and canal views
               </li>
               <li>
-                South Korea – Cherry blossoms, ancient palaces, and light spring
+                South Korea : Cherry blossoms, ancient palaces, and light spring
                 rains
               </li>
               <li>
-                Portugal – Pleasant weather, fewer crowds, and coastal charm
+                Portugal : Pleasant weather, fewer crowds, and coastal charm
               </li>
               <li>
-                Nepal – Clear skies and ideal trekking conditions in the
+                Nepal : Clear skies and ideal trekking conditions in the
                 Himalayas
               </li>
             </ul>
@@ -306,16 +306,16 @@ const DestinationsPage = () => {
             </h3>
             <ul className="list-disc list-inside xl:text-xl text-lg text-[#8b7866]">
               <li>
-                Switzerland – Lakeside towns, hiking trails, and scenic drives
+                Switzerland : Lakeside towns, hiking trails, and scenic drives
               </li>
               <li>
-                Indonesia – Bali is dry, lush, and full of spiritual and natural
+                Indonesia : Bali is dry, lush, and full of spiritual and natural
                 spots
               </li>
               <li>
-                UK & Ireland – Mild weather, festivals, and historic castles
+                UK & Ireland : Mild weather, festivals, and historic castles
               </li>
-              <li>Kenya – Great migration season for safari lovers</li>
+              <li>Kenya : Great migration season for safari lovers</li>
             </ul>
           </div>
 
@@ -326,18 +326,18 @@ const DestinationsPage = () => {
             </h3>
             <ul className="list-disc list-inside xl:text-xl text-lg text-[#8b7866]">
               <li>
-                Turkey (Cappadocia) – Balloon rides, warm days, and crisp
+                Turkey (Cappadocia) : Balloon rides, warm days, and crisp
                 evenings
               </li>
               <li>
-                Italy – Harvest season, fewer tourists, and cultural events
+                Italy : Harvest season, fewer tourists, and cultural events
               </li>
               <li>
-                Jordan – Comfortable temperatures for exploring Petra and Wadi
+                Jordan : Comfortable temperatures for exploring Petra and Wadi
                 Rum
               </li>
               <li>
-                Vietnam – Best conditions for both northern mountains and
+                Vietnam : Best conditions for both northern mountains and
                 southern beaches
               </li>
             </ul>
@@ -351,7 +351,7 @@ const DestinationsPage = () => {
         <div className="space-y-4">
           {[
             {
-              q: "What’s the best time to visit Europe from Dubai?",
+              q: "What is the best time to visit Europe from Dubai?",
               a: "May to September offers long daylight hours and pleasant temperatures. For fewer crowds, April and October are good choices.",
             },
             {
@@ -389,7 +389,7 @@ const DestinationsPage = () => {
         </h4>
         <p className="mb-6 text-[#8b7866]">
           Majestic Skyline helps you discover the world from Dubai—whether
-          you're seeking nature, history, luxury, or something entirely new. Let
+          you&#39;re seeking nature, history, luxury, or something entirely new. Let
           us guide you to destinations that reflect your style and timing.
         </p>
         <Link

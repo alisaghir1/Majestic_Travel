@@ -28,7 +28,7 @@ export default function SustainableAndWellnessTravel() {
           Mindful Travel Experiences for a Healthier You and a Healthier Planet
         </h2>
         <p>
-          Majestic Skyline designs sustainable and wellness-focused travel experiences for conscious travelers based in Dubai. Whether you’re looking for an eco-friendly holiday, a digital detox, or a rejuvenating wellness retreat, our team helps you discover destinations that support both inner peace and environmental awareness. Travel can restore—not only your energy, but also your relationship with nature and yourself.
+          Majestic Skyline designs sustainable and wellness-focused travel experiences for conscious travelers based in Dubai. Whether you&#39;re looking for an eco-friendly holiday, a digital detox, or a rejuvenating wellness retreat, our team helps you discover destinations that support both inner peace and environmental awareness. Travel can restore—not only your energy, but also your relationship with nature and yourself.
         </p>
         <p>
           Our Dubai-based travel planners curate journeys that minimize environmental impact, support local communities, and nourish body and mind. From eco-lodges in the jungle to mountaintop retreats and coastal sanctuaries, each experience is designed to align with your values and improve your wellbeing.
@@ -103,19 +103,19 @@ export default function SustainableAndWellnessTravel() {
 
         <h3 className="text-2xl font-semibold text-[#1c355e]">How We Plan Your Wellness or Sustainable Holiday</h3>
         <ol className="list-decimal pl-6 space-y-3">
-          <li><strong>Discovery Call:</strong> We begin with a conversation to understand your current state—physically, mentally, and emotionally. We discuss your goals, whether it's rest, clarity, movement, or recovery.</li>
+          <li><strong>Discovery Call:</strong> We begin with a conversation to understand your current state—physically, mentally, and emotionally. We discuss your goals, whether it&#39;s rest, clarity, movement, or recovery.</li>
           <li><strong>Curated Options:</strong> Based on your timeline and budget, we present a selection of wellness resorts, retreat centers, and eco-stay locations. Each proposal includes accommodation, meal plans, activity schedules, and optional extras.</li>
           <li><strong>Trip Structuring:</strong> We coordinate flights, transport, pre-retreat stays (if needed), and any visa or insurance requirements. You receive a clear daily outline for your retreat or journey.</li>
-          <li><strong>During the Trip:</strong> We remain in touch throughout your travel. Whether it’s a missed transfer or program rescheduling, our Dubai team is available by phone or WhatsApp.</li>
-          <li><strong>Post-Trip Check-In:</strong> We follow up after your return to support integration of what you experienced—and help you plan future wellness-focused travel when you’re ready.</li>
+          <li><strong>During the Trip:</strong> We remain in touch throughout your travel. Whether it&#39;s a missed transfer or program rescheduling, our Dubai team is available by phone or WhatsApp.</li>
+          <li><strong>Post-Trip Check-In:</strong> We follow up after your return to support integration of what you experienced—and help you plan future wellness-focused travel when you&#39;re ready.</li>
         </ol>
 
         <h3 className="text-2xl font-semibold text-[#1c355e]">Why Travel Consciously with Majestic Skyline</h3>
         <ul className="list-disc pl-6 space-y-3">
           <li><strong>Local Insight from Dubai:</strong> Our team lives and works in the UAE, so we understand your lifestyle pressures. We design trips that allow for true relaxation and detachment from daily noise.</li>
           <li><strong>Focus on Integrity:</strong> We only work with partners who align with core ethical values—environmental protection, fair wages, and authentic wellness practices.</li>
-          <li><strong>Personalized, Not Trendy:</strong> We don’t follow fads. We listen to your needs and suggest experiences that support your personal growth and peace.</li>
-          <li><strong>Real Support, Not Just Bookings:</strong> We care about the outcome of your trip, not just the itinerary. That’s why we check in, help you prepare emotionally, and provide post-travel care if needed.</li>
+          <li><strong>Personalized, Not Trendy:</strong> We don&#39;t follow fads. We listen to your needs and suggest experiences that support your personal growth and peace.</li>
+          <li><strong>Real Support, Not Just Bookings:</strong> We care about the outcome of your trip, not just the itinerary. That&#39;s why we check in, help you prepare emotionally, and provide post-travel care if needed.</li>
         </ul>
 
         <h3 className="text-2xl font-semibold text-[#1c355e]">Frequently Asked Questions</h3>
@@ -159,7 +159,7 @@ export default function SustainableAndWellnessTravel() {
           Travel Gently. Return Renewed.
         </h4>
         <p className="mb-6 text-[#8b7866]">
-          Majestic Skyline helps Dubai travelers plan sustainable escapes and wellness journeys that restore balance and expand awareness. Whether you’re seeking silence in the mountains, renewal by the sea, or purpose through community connection, we help you find the right path.
+          Majestic Skyline helps Dubai travelers plan sustainable escapes and wellness journeys that restore balance and expand awareness. Whether you&#39;re seeking silence in the mountains, renewal by the sea, or purpose through community connection, we help you find the right path.
         </p>
         <Link
           href="/contact"

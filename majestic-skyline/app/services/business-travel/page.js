@@ -39,7 +39,7 @@ export default function CorporateTravelSolutions() {
           Smart Business Travel Services for Companies Based in the UAE
         </h2>
         <p>
-          Majestic Skyline offers specialized corporate travel services designed for businesses, government delegations, and professionals traveling from Dubai. Whether you're sending a team to a trade fair in Germany, hosting clients in Asia, or organizing an executive retreat in the Mediterranean, our team takes care of every travel detail—accurately, efficiently, and discreetly.
+          Majestic Skyline offers specialized corporate travel services designed for businesses, government delegations, and professionals traveling from Dubai. Whether you&#39;re sending a team to a trade fair in Germany, hosting clients in Asia, or organizing an executive retreat in the Mediterranean, our team takes care of every travel detail—accurately, efficiently, and discreetly.
         </p>
         <p>
           From flight bookings and hotel reservations to conference coordination and airport transfers, our Dubai-based agency manages end-to-end corporate travel with unmatched reliability. We serve startups, SMEs, and large enterprises across various industries.
@@ -64,10 +64,10 @@ export default function CorporateTravelSolutions() {
             {[
               {
                 q: "How early should I start planning?",
-                a: "We recommend at least 4–8 weeks in advance, more for complex trips.",
+                a: "We recommend at least 4 to 8 weeks in advance, more for complex trips.",
               },
               {
-                q: "Can I book if I'm not in Dubai?",
+                q: "Can I book if Iam not in Dubai?",
                 a: "Absolutely. We work with international clients via secure online channels.",
               },
               {

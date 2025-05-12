@@ -30,7 +30,7 @@ export default function TravelPlanning() {
         <p>
           Majestic Skyline offers complete travel planning services from our
           base in Dubai, helping travelers create unforgettable experiences
-          across the globe. Whether you're seeking a relaxing beach break, an
+          across the globe. Whether you&#39;re seeking a relaxing beach break, an
           adventurous mountain escape, or a culturally rich city tour, we manage
           every detail.
         </p>
@@ -145,7 +145,7 @@ export default function TravelPlanning() {
           {[
             {
               q: "How early should I start planning?",
-              a: "We recommend at least 4–8 weeks in advance, more for complex trips.",
+              a: "We recommend at least 4 to 8 weeks in advance, more for complex trips.",
             },
             {
               q: "Can I book if I'm not in Dubai?",

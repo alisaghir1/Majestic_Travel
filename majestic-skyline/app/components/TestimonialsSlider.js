@@ -23,7 +23,7 @@ export default function TestimonialsSlider() {
       name: 'Emily R.',
       image: 'https://randomuser.me/api/portraits/women/44.jpg',
       message:
-        'We’ve traveled a lot, but this was the first time it felt completely stress-free. The whole trip was smooth and well-organized.',
+        'We have traveled a lot, but this was the first time it felt completely stress-free. The whole trip was smooth and well-organized.',
       profession: 'Travel Blogger',
       rating: 5,
       bio: 'Emily loves exploring off-the-beaten-path destinations and sharing her experiences with her large audience.',
@@ -43,7 +43,7 @@ export default function TestimonialsSlider() {
       name: 'Sofia G.',
       image: 'https://randomuser.me/api/portraits/women/68.jpg',
       message:
-        'Quick responses, real local tips, and a team that really listened to what we wanted. Can’t wait for our next trip!',
+        'Quick responses, real local tips, and a team that really listened to what we wanted. Cannot wait for our next trip!',
       profession: 'Content Creator',
       rating: 5,
       bio: 'Sofia is a content creator who shares her travel adventures and lifestyle through engaging videos and blog posts.',
@@ -93,7 +93,7 @@ export default function TestimonialsSlider() {
 
                   {/* Bio and Travel Style */}
                   <div className="mt-6 text-center">
-                    <p className="text-lg text-[#8b7866] italic">"{bio}"</p>
+                    <p className="text-lg text-[#8b7866] italic">&ldquo;{bio}&rdquo;</p>
                     <span className="text-md font-semibold mt-2 block text-[#1c355e]">{`Travel Style: ${travelStyle}`}</span>
                   </div>
                 </div>

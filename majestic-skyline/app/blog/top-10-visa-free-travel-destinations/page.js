@@ -29,14 +29,14 @@ const TopVisaFreeDestinations2025 = () => {
         <p className="xl:text-2xl text-xl">
           Traveling from the UAE has never been easier. In 2025, UAE passport
           holders and residents have access to several stunning destinations
-          without the need for a visa in advance. Whether you're planning a
+          without the need for a visa in advance. Whether you&#39;re planning a
           quick getaway, a family trip, or a romantic escape, visa-free
           destinations help save time, reduce paperwork, and make spontaneous
           travel possible.
         </p>
         <p className="xl:text-2xl text-xl">
           Majestic Skyline, based in Dubai, helps travelers discover exciting
-          places that don’t require complex visa applications. Below is a
+          places that don&#39;t require complex visa applications. Below is a
           curated list of the top 10 visa-free travel destinations for UAE
           citizens and residents in 2025—complete with reasons to go, ideal
           travel seasons, and what to expect.
@@ -97,7 +97,7 @@ const TopVisaFreeDestinations2025 = () => {
               "Why Go: Rich culture, historic churches, and mountain views—peaceful, welcoming, and affordable.",
               "Top Experiences:",
               [
-                "Yerevan’s Republic Square",
+                "Yerevan's Republic Square",
                 "Lake Sevan for summer swimming",
                 "Geghard Monastery and Garni Temple",
               ],
@@ -157,7 +157,7 @@ const TopVisaFreeDestinations2025 = () => {
               "Why Go: Balkan charm, vibrant cities, and peaceful nature—great for culture-focused trips.",
               "Top Experiences:",
               [
-                "Belgrade’s neighborhoods and river cruises",
+                "Belgrade neighborhoods and river cruises",
                 "Novi Sad and Petrovaradin Fortress",
                 "Tara National Park for lakes and forests",
               ],
@@ -184,7 +184,7 @@ const TopVisaFreeDestinations2025 = () => {
             details: [
               "Distance from Dubai: ~4.5 hours",
               "Visa Policy: Visa-free for UAE citizens (30 days); residents may require e-visa",
-              "Why Go: A blend of futuristic cities and raw nature—Central Asia’s rising star.",
+              "Why Go: A blend of futuristic cities and raw nature—Central Asia rising star.",
               "Top Experiences:",
               [
                 "Almaty: Tree-lined streets and mountains",
@@ -247,7 +247,7 @@ const TopVisaFreeDestinations2025 = () => {
           </h2>
           <p>
             <strong>
-              Do visa-free destinations mean I don’t need any documents?
+              Do visa-free destinations mean I don&#39;t need any documents?
             </strong>
             <br />
             No. You still need a valid passport, confirmed return ticket, and
@@ -278,8 +278,8 @@ const TopVisaFreeDestinations2025 = () => {
           </p>
           <p className="mb-6">
             Majestic Skyline helps you explore beautiful visa-free destinations
-            from Dubai—quickly, smoothly, and affordably. Whether you're
-            planning a short break or a long escape, we’ll guide you every step
+            from Dubai—quickly, smoothly, and affordably. Whether you&#39;re
+            planning a short break or a long escape, we&#39;ll guide you every step
             of the way.
           </p>
           <Link

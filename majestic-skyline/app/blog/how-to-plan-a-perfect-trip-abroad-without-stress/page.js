@@ -27,7 +27,7 @@ const PlanPerfectTrip = () => {
       {/* Content */}
       <div className="px-6 md:px-12 xl:px-32 space-y-12 mx-auto text-lg leading-relaxed">
         <p className="xl:text-2xl text-xl">
-          Traveling abroad should bring excitement, not pressure. Whether you’re
+          Traveling abroad should bring excitement, not pressure. Whether you&#39;re
           exploring a new culture, celebrating a milestone, or taking a break
           from your routine, preparation makes the difference. For many
           Dubai-based travelers, time is limited—and so is patience for delays,
@@ -96,7 +96,7 @@ const PlanPerfectTrip = () => {
           <li>Shopping and incidentals</li>
         </ul>
         <p className="mt-4">
-          <strong>Plan for Flexibility:</strong> Adding a buffer of 10–15%
+          <strong>Plan for Flexibility:</strong> Adding a buffer of 10 to 15%
           above your target budget is wise. This allows you to handle changes in
           flight prices or upgrades without worry.
         </p>
@@ -112,7 +112,7 @@ const PlanPerfectTrip = () => {
           Majestic Skyline track flight deals for you.
         </p>
         <p className="mt-2">
-          <strong>Smart Booking Window:</strong> 2–4 months before the trip is
+          <strong>Smart Booking Window:</strong> 2 to 4 months before the trip is
           ideal for international flights.
         </p>
         <p className="mt-4">
@@ -176,7 +176,7 @@ const PlanPerfectTrip = () => {
         </ul>
         <p className="mt-2">
           <strong>Leave Room for Flexibility:</strong> Some of the best moments
-          happen unplanned. Don’t fill every hour. Keep space for rest,
+          happen unplanned. Don&#39;t fill every hour. Keep space for rest,
           spontaneous stops, or unexpected discoveries.
         </p>
 
@@ -213,7 +213,7 @@ const PlanPerfectTrip = () => {
         <p className="xl:text-2xl text-xl mt-10">
           A perfect trip starts with smart planning. With the right
           destination, budget, and itinerary, travel stress fades—and memories
-          shine. Whether you're planning your first journey or your fiftieth,
+          shine. Whether  you&#39;re planning your first journey or your fiftieth,
           Majestic Skyline helps you travel better, smoother, and more
           confidently.
         </p>

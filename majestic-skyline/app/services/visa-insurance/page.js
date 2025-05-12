@@ -28,7 +28,7 @@ export default function VisaAndInsuranceServices() {
           Comprehensive Visa and Travel Insurance Services for Dubai-Based Travelers
         </h2>
         <p>
-          Majestic Skyline provides complete visa and travel insurance services from our Dubai office, helping travelers secure essential documentation and protection before every trip. Whether you're visiting Europe, the United States, Asia, or Africa, our team simplifies the visa application process and offers reliable insurance solutions to protect your journey.
+          Majestic Skyline provides complete visa and travel insurance services from our Dubai office, helping travelers secure essential documentation and protection before every trip. Whether you&#39;re visiting Europe, the United States, Asia, or Africa, our team simplifies the visa application process and offers reliable insurance solutions to protect your journey.
         </p>
         <p>
           With ever-changing visa regulations, long waiting times, and complex forms, applying on your own can be frustrating. Our Dubai-based visa experts assist with every step, reducing the risk of rejection and saving time. In addition, our travel insurance plans cover medical emergencies, trip cancellations, baggage loss, and more—giving you peace of mind before takeoff.
@@ -176,7 +176,7 @@ export default function VisaAndInsuranceServices() {
             Travel Confidently with the Right Documents and Coverage
           </h4>
           <p className="mb-6 text-[#8b7866]">
-            Majestic Skyline helps Dubai-based travelers secure visas and insurance with ease and accuracy. Whether you're planning a family trip, attending a global summit, or heading abroad for education, we ensure you're prepared before departure.
+            Majestic Skyline helps Dubai-based travelers secure visas and insurance with ease and accuracy. Whether you&#39;re planning a family trip, attending a global summit, or heading abroad for education, we ensure you&#39;re prepared before departure.
           </p>
           <Link
             href="/contact"

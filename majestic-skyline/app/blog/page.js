@@ -53,7 +53,7 @@ const [sliderRef, slider] = useKeenSlider({
       subtitle: "Traveling from the UAE has never been easier. In 2025, UAE passport holders and residents have access to several stunning destinations without the need for a visa in advance. ",
       image: "/destinations/dubai.jpg",
       content:
-        "Majestic Skyline, based in Dubai, helps travelers discover exciting places that don’t require complex visa applications. Below is a curated list of the top 10 visa-free travel destinations for UAE citizens and residents in 2025—complete with reasons to go, ideal travel seasons, and what to expect.",
+        "Majestic Skyline, based in Dubai, helps travelers discover exciting places that do not require complex visa applications. Below is a curated list of the top 10 visa-free travel destinations for UAE citizens and residents in 2025—complete with reasons to go, ideal travel seasons, and what to expect.",
       date: "January 9, 2025",
       slug: "top-10-visa-free-travel-destinations",
     },
