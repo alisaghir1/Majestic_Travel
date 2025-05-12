@@ -38,19 +38,7 @@ export default function AboutUs() {
             Dubai brings the world together. Its central location, international airports, and thriving tourism industry make it ideal for a global travel agency. From short getaways to complex multi-city tours, the city provided the tools and energy to build something different. Majestic Skyline chose Dubai because it reflects what we stand for—global vision with local roots.
           </p>
         </div>
-
-        {/* Additional Sections... */}
-
       </div>
-
-        {/* Section: Why Dubai */}
-        <div className="mb-20">
-          <h3 className="text-3xl font-semibold text-[#1c355e] text-center mb-4">Why Dubai Was the Perfect Launchpad</h3>
-          <div className="border-t-4 border-[#8b7866] w-48 mx-auto mb-8"></div>
-          <p className="text-lg max-w-4xl mx-auto leading-relaxed text-[#8b7866] text-center">
-            Dubai brings the world together. Its central location, international airports, and thriving tourism industry make it ideal for a global travel agency. From short getaways to complex multi-city tours, the city provided the tools and energy to build something different. Majestic Skyline chose Dubai because it reflects what we stand for—global vision with local roots.
-          </p>
-        </div>
 
         {/* Section: How We Grew */}
         <div className="mb-20">
