@@ -46,9 +46,16 @@ export default function Navbar() {
     >
       <div className="mx-auto xl:px-20 px-5 flex items-center justify-between  transition-all duration-300">
         {/* Logo */}
-        <Link href="/" className="text-2xl">
-          <Image src="/logo.svg" width={250} height={250} alt="logo image" />
-        </Link>
+        
+   <Link href="/" className="block">
+  <Image
+    src="/logo.svg"
+    alt="logo image"
+    width={150}
+    height={150}
+    className="w-50 sm:w-52 md:w-56 lg:w-64" // adjust based on breakpoints
+  />
+</Link>
 
         {/* Desktop Nav */}
         <nav
@@ -116,7 +123,7 @@ export default function Navbar() {
           onClick={toggleMenu}
           aria-label="Toggle Menu"
         >
-          {menuOpen ? <X size={40} /> : <Menu size={40} />}
+          {menuOpen ? <X size={35} /> : <Menu size={35} />}
         </button>
       </div>
 
