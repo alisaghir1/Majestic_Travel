@@ -67,10 +67,10 @@ export default function Footer() {
             <p className="text-lg mb-2">
               <span className="font-semibold text-[#1c355e]">Email: </span>
               <a
-                href="mailto:hello@majesticskyline.com"
+                href="mailto:info@mstravel.ae"
                 className="hover:text-[#8b7866] transition-all"
               >
-                hello@majesticskyline.com
+                info@mstravel.ae
               </a>
             </p>
 

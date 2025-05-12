@@ -37,8 +37,8 @@ const ContactSection = () => {
 
           <div className="flex items-center mt-8 space-x-2 text-[#1c355e]">
             <Mail className="w-5 h-5" />
-            <a href="mailto:hello@company.com" className="hover:underline">
-              hello@majestic-skyline.com
+            <a href="mailto:info@mstravel.ae" className="hover:underline">
+              info@mstravel.ae
             </a>
           </div>
 
