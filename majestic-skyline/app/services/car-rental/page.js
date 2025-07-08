@@ -24,7 +24,7 @@ export default function CarRentalServices() {
       description: "Fuel-efficient and budget-friendly options",
       features: ["Manual/Automatic", "AC", "4-5 Seats", "Compact Size"],
       price: "From AED 80/day",
-      image: "/services/economy-car.png",
+      image: "/services/economy-car.jpg",
       cars: ["Toyota Yaris", "Nissan Sunny", "Hyundai Accent"]
     },
     {
@@ -33,7 +33,7 @@ export default function CarRentalServices() {
       description: "Spacious vehicles for group travel",
       features: ["7-8 Seats", "Large Luggage Space", "All-Wheel Drive", "Premium Interior"],
       price: "From AED 180/day",
-      image: "/services/family-suv.avif",
+      image: "/services/family-suv.jpg",
       cars: ["Toyota Prado", "Nissan Patrol", "Chevrolet Tahoe"]
     },
     {
@@ -42,7 +42,7 @@ export default function CarRentalServices() {
       description: "Premium cars for special occasions",
       features: ["Leather Seats", "Advanced Tech", "Premium Sound", "Chauffeur Available"],
       price: "From AED 350/day",
-      image: "/services/rolls-royce-spectre.avif",
+      image: "/services/luxury.avif",
       cars: ["BMW 5 Series", "Mercedes E-Class", "Audi A6"]
     },
     {
@@ -166,9 +166,9 @@ export default function CarRentalServices() {
                 </div>
                 
                 {/* Book Now Button */}
-                <button className="w-full bg-[#1c355e] hover:bg-[#8b7866] text-white py-2 px-4 rounded-lg transition-colors duration-300">
-                  Book This Category
-                </button>
+                <Link href="/contact" className="w-full bg-[#1c355e] hover:bg-[#8b7866] text-white py-2 px-4 rounded-lg transition-colors duration-300 block text-center">
+                  Book Now
+                </Link>
               </div>
             </div>
           ))}
