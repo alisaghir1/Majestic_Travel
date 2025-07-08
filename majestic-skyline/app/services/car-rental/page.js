@@ -108,7 +108,7 @@ export default function CarRentalServices() {
           Your Trusted Car Rental Partner in the UAE
         </h2>
         <p>
-          Majestic Skyline provides premium car rental services across Dubai and the UAE, offering everything from economy cars to luxury vehicles. Whether you're a tourist exploring the city's attractions, a business professional attending meetings, or a resident needing temporary transportation, we have the perfect vehicle for your needs.
+          Majestic Skyline provides premium car rental services across Dubai and the UAE, offering everything from economy cars to luxury vehicles. Whether you&apos;re a tourist exploring the city&apos;s attractions, a business professional attending meetings, or a resident needing temporary transportation, we have the perfect vehicle for your needs.
         </p>
         <p>
           Our extensive fleet includes the latest models from renowned international brands, all maintained to the highest standards with comprehensive insurance coverage. Experience the freedom of the road with our flexible rental options, competitive pricing, and exceptional customer service.
@@ -260,7 +260,7 @@ export default function CarRentalServices() {
                 </div>
               </div>
               <p className="text-[#8b7866] italic mb-4">
-                "Excellent service! The car was in perfect condition and the delivery was right on time. Highly recommended for anyone visiting Dubai."
+                &ldquo;Excellent service! The car was in perfect condition and the delivery was right on time. Highly recommended for anyone visiting Dubai.&rdquo;
               </p>
               <div className="font-semibold text-[#1c355e]">- Sarah M., Tourist</div>
             </div>
@@ -273,7 +273,7 @@ export default function CarRentalServices() {
                 </div>
               </div>
               <p className="text-[#8b7866] italic mb-4">
-                "Professional service and transparent pricing. Used their luxury car for my business meetings and everything was seamless."
+                &ldquo;Professional service and transparent pricing. Used their luxury car for my business meetings and everything was seamless.&rdquo;
               </p>
               <div className="font-semibold text-[#1c355e]">- Ahmed K., Business Executive</div>
             </div>
@@ -286,7 +286,7 @@ export default function CarRentalServices() {
                 </div>
               </div>
               <p className="text-[#8b7866] italic mb-4">
-                "Great family SUV for our vacation. Clean, comfortable, and the customer service was outstanding throughout our rental period."
+                &ldquo;Great family SUV for our vacation. Clean, comfortable, and the customer service was outstanding throughout our rental period.&rdquo;
               </p>
               <div className="font-semibold text-[#1c355e]">- Lisa R., Family Traveler</div>
             </div>
@@ -364,7 +364,7 @@ export default function CarRentalServices() {
           Ready to Hit the Road?
         </h4>
         <p className="mb-6 text-[#8b7866]">
-          Book your perfect car today and experience the freedom of Dubai's roads with confidence.
+          Book your perfect car today and experience the freedom of Dubai&apos;s roads with confidence.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link

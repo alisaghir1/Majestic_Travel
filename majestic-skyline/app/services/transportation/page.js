@@ -292,7 +292,7 @@ export default function TransportationServices() {
               Destinations <span className="text-[#8b7866]">We Cover</span>
             </h2>
             <p className="text-xl text-[#8b7866] max-w-2xl mx-auto">
-              From city centers to coastal retreats, we'll take you anywhere you want to go
+              From city centers to coastal retreats, we&apos;ll take you anywhere you want to go
             </p>
           </div>
           
