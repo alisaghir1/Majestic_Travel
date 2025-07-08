@@ -23,28 +23,36 @@ export default function CarRentalServices() {
       name: "Economy Cars",
       description: "Fuel-efficient and budget-friendly options",
       features: ["Manual/Automatic", "AC", "4-5 Seats", "Compact Size"],
-      price: "From AED 80/day"
+      price: "From AED 80/day",
+      image: "/services/economy-car.png",
+      cars: ["Toyota Yaris", "Nissan Sunny", "Hyundai Accent"]
     },
     {
       icon: <Users className="w-6 h-6" />,
       name: "Family SUVs",
       description: "Spacious vehicles for group travel",
       features: ["7-8 Seats", "Large Luggage Space", "All-Wheel Drive", "Premium Interior"],
-      price: "From AED 180/day"
+      price: "From AED 180/day",
+      image: "/services/family-suv.avif",
+      cars: ["Toyota Prado", "Nissan Patrol", "Chevrolet Tahoe"]
     },
     {
       icon: <Award className="w-6 h-6" />,
       name: "Luxury Vehicles",
       description: "Premium cars for special occasions",
       features: ["Leather Seats", "Advanced Tech", "Premium Sound", "Chauffeur Available"],
-      price: "From AED 350/day"
+      price: "From AED 350/day",
+      image: "/services/rolls-royce-spectre.avif",
+      cars: ["BMW 5 Series", "Mercedes E-Class", "Audi A6"]
     },
     {
       icon: <Settings className="w-6 h-6" />,
       name: "Commercial Vans",
       description: "Perfect for business and cargo needs",
       features: ["Large Cargo Space", "Heavy Duty", "GPS Navigation", "Insurance Included"],
-      price: "From AED 200/day"
+      price: "From AED 200/day",
+      image: "/services/commercial-van.jpg",
+      cars: ["Ford Transit", "Toyota Hiace", "Nissan Urvan"]
     }
   ];
 
@@ -109,26 +117,58 @@ export default function CarRentalServices() {
         {/* Car Types Grid */}
         <div className="grid md:grid-cols-2 gap-6 my-16">
           {carTypes.map((car, index) => (
-            <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="flex items-center mb-4">
-                <div className="bg-[#1c355e] p-3 rounded-full text-white mr-4">
-                  {car.icon}
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-[#1c355e]">{car.name}</h3>
-                  <p className="text-[#8b7866]">{car.description}</p>
+            <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+              {/* Car Image */}
+              <div className="relative h-48 w-full">
+                <Image
+                  src={car.image}
+                  alt={car.name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute top-4 right-4 bg-[#1c355e] text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  {car.price}
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-2 mb-4">
-                {car.features.map((feature, i) => (
-                  <div key={i} className="flex items-center text-sm">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
-                    {feature}
+              
+              {/* Car Details */}
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <div className="bg-[#1c355e] p-3 rounded-full text-white mr-4">
+                    {car.icon}
                   </div>
-                ))}
-              </div>
-              <div className="text-right">
-                <span className="text-2xl font-bold text-[#1c355e]">{car.price}</span>
+                  <div>
+                    <h3 className="text-xl font-bold text-[#1c355e]">{car.name}</h3>
+                    <p className="text-[#8b7866]">{car.description}</p>
+                  </div>
+                </div>
+                
+                {/* Available Car Models */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-[#1c355e] mb-2">Available Models:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {car.cars.map((carModel, i) => (
+                      <span key={i} className="bg-gray-100 text-[#8b7866] px-2 py-1 rounded-md text-xs">
+                        {carModel}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Features */}
+                <div className="grid grid-cols-2 gap-2 mb-4">
+                  {car.features.map((feature, i) => (
+                    <div key={i} className="flex items-center text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Book Now Button */}
+                <button className="w-full bg-[#1c355e] hover:bg-[#8b7866] text-white py-2 px-4 rounded-lg transition-colors duration-300">
+                  Book This Category
+                </button>
               </div>
             </div>
           ))}
