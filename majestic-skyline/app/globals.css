@@ -2,10 +2,11 @@
 @import 'keen-slider/keen-slider.min.css';
 
 @font-face {
-  font-family: 'Recoleta DEMO';
+  font-family: 'Recoleta';
   src: url('/fonts/Recoleta.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -13,12 +14,13 @@
   src: url('/fonts/Abel.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Recoleta DEMO', cursive;
+  font-family: 'Recoleta', 'Georgia', 'Times New Roman', serif;
 }
 
 body, p{
-  font-family: 'Abel', 'sans serif';
+  font-family: 'Abel', 'Helvetica', 'Arial', sans-serif;
 }
