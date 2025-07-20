@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "../contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { RTLWrapper } from "./RTLWrapper";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t, isRTL } = useLanguage();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -20,18 +24,18 @@ export default function Navbar() {
   };
 
   const serviceLinks = [
-    { label: "Custom Travel Planning", href: "/services/custom-travel" },
-    { label: "Flights & Accommodations", href: "/services/flights-and-accommodations" },
-    { label: "Guided Tours", href: "/services/guided-tours" },
-    { label: "Business Travel", href: "/services/business-travel" },
-    { label: "Romantic Escapes", href: "/services/romantic-escapes" },
-    { label: "Visa & Insurance Help", href: "/services/visa-insurance" },
-    { label: "Sustainable & Wellness Travel", href: "/services/sustainable-wellness" },
-    { label: "Car Rental", href: "/services/car-rental" },
-    { label: "Cargo Services", href: "/services/cargo" },
-    { label: "Hotel Reservations", href: "/services/hotel-reservation" },
-    { label: "Private Jet", href: "/services/private-jet" },
-    { label: "Transportation", href: "/services/transportation" },
+    { labelKey: "navbar.customTravel", href: "/services/custom-travel" },
+    { labelKey: "navbar.flightsAccommodations", href: "/services/flights-and-accommodations" },
+    { labelKey: "navbar.guidedTours", href: "/services/guided-tours" },
+    { labelKey: "navbar.businessTravel", href: "/services/business-travel" },
+    { labelKey: "navbar.romanticEscapes", href: "/services/romantic-escapes" },
+    { labelKey: "navbar.visaInsurance", href: "/services/visa-insurance" },
+    { labelKey: "navbar.sustainableWellness", href: "/services/sustainable-wellness" },
+    { labelKey: "navbar.carRental", href: "/services/car-rental" },
+    { labelKey: "navbar.cargoServices", href: "/services/cargo" },
+    { labelKey: "navbar.hotelReservations", href: "/services/hotel-reservation" },
+    { labelKey: "navbar.privateJet", href: "/services/private-jet" },
+    { labelKey: "navbar.transportation", href: "/services/transportation" },
   ];
 
   // Handle scroll effect
@@ -39,7 +43,7 @@ export default function Navbar() {
     const handleScroll = () => {
       if (window.scrollY > 30) {
         setScrolled(true);
-      } else {
+      } else { 
         setScrolled(false);
       }
     };
@@ -61,13 +65,14 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={`fixed text-xl top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-lg shadow-xl py-3"
-          : "bg-white/90 backdrop-blur-sm shadow-lg py-6"
-      }`}
-    >
+    <RTLWrapper>
+      <header
+        className={`fixed text-xl top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
+          scrolled
+            ? "bg-white/95 backdrop-blur-lg shadow-xl py-3"
+            : "bg-white/90 backdrop-blur-sm shadow-lg py-6"
+        }`}
+      >
       <div className="mx-auto xl:px-20 px-5 flex items-center justify-between transition-all duration-500 ease-in-out">
         {/* Logo */}
         <Link href="/" className="block transform hover:scale-105 transition-transform duration-300">
@@ -83,19 +88,21 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-8 text-[#8b7866] font-medium relative">
+        <nav className={`hidden lg:flex items-center text-[#8b7866] font-medium relative ${
+          isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'
+        }`}>
           <Link
             className="hover:text-[#1c355e] transition-all duration-300 relative group"
             href="/"
           >
-            Home
+            {t('navbar.home')}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1c355e] transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
             className="hover:text-[#1c355e] transition-all duration-300 relative group"
             href="/about"
           >
-            About
+            {t('navbar.about')}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1c355e] transition-all duration-300 group-hover:w-full"></span>
           </Link>
 
@@ -106,7 +113,7 @@ export default function Navbar() {
             onMouseLeave={() => setServicesDropdownOpen(false)}
           >
             <span className="hover:text-[#1c355e] cursor-pointer flex items-center gap-1 transition-all duration-300 relative group">
-              Services 
+              {t('navbar.services')}
               <ChevronDown 
                 size={16} 
                 className={`transition-transform duration-300 ${servicesDropdownOpen ? 'rotate-180' : ''}`}
@@ -119,14 +126,14 @@ export default function Navbar() {
                 : 'opacity-0 translate-y-2 invisible'
             }`}>
               <div className="grid grid-cols-1 gap-3">
-                {serviceLinks.map(({ label, href }, index) => (
+                {serviceLinks.map(({ labelKey, href }, index) => (
                   <Link
                     key={href}
                     href={href}
                     className="block text-[#8b7866] hover:text-[#1c355e] hover:bg-blue-50 px-3 py-2 rounded-lg transition-all duration-300 transform hover:translate-x-1"
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
-                    {label}
+                    {t(labelKey)}
                   </Link>
                 ))}
               </div>
@@ -137,22 +144,23 @@ export default function Navbar() {
             className="hover:text-[#1c355e] transition-all duration-300 relative group"
             href="/destinations"
           >
-            Destinations
+            {t('navbar.destinations')}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1c355e] transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
             className="hover:text-[#1c355e] transition-all duration-300 relative group"
             href="/blog"
           >
-            Blog
+            {t('navbar.blog')}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1c355e] transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
             className="bg-gradient-to-r from-[#1c355e] to-[#8b7866] text-white px-6 py-2 rounded-full hover:shadow-lg hover:from-[#8b7866] hover:to-[#1c355e] transform hover:scale-105 transition-all duration-300"
             href="/contact"
           >
-            Contact
+            {t('navbar.contact')}
           </Link>
+          <LanguageSwitcher />
         </nav>
 
         {/* Mobile Toggle */}
@@ -193,14 +201,14 @@ export default function Navbar() {
                 href="/"
                 onClick={handleMobileMenuClose}
               >
-                Home
+                {t('navbar.home')}
               </Link>
               <Link
                 className="text-xl text-[#8b7866] hover:text-[#1c355e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-blue-50"
                 href="/about"
                 onClick={handleMobileMenuClose}
               >
-                About
+                {t('navbar.about')}
               </Link>
 
               {/* Mobile Services Dropdown */}
@@ -209,7 +217,7 @@ export default function Navbar() {
                   onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                   className="flex items-center justify-between text-xl text-[#8b7866] hover:text-[#1c355e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-blue-50"
                 >
-                  <span>Services</span>
+                  <span>{t('navbar.services')}</span>
                   <ChevronDown
                     size={20}
                     className={`transition-transform duration-300 ${
@@ -222,14 +230,14 @@ export default function Navbar() {
                   servicesDropdownOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
                 }`}>
                   <div className="ml-4 mt-2 space-y-2 bg-gradient-to-r from-blue-50 to-amber-50 rounded-xl p-3">
-                    {serviceLinks.map(({ label, href }) => (
+                    {serviceLinks.map(({ labelKey, href }) => (
                       <Link
                         key={href}
                         href={href}
                         onClick={handleMobileMenuClose}
                         className="block text-base text-[#8b7866] hover:text-[#1c355e] transition-all duration-300 py-2 px-3 rounded-lg hover:bg-white/70"
                       >
-                        {label}
+                        {t(labelKey)}
                       </Link>
                     ))}
                   </div>
@@ -241,22 +249,25 @@ export default function Navbar() {
                 href="/destinations"
                 onClick={handleMobileMenuClose}
               >
-                Destinations
+                {t('navbar.destinations')}
               </Link>
               <Link
                 className="text-xl text-[#8b7866] hover:text-[#1c355e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-blue-50"
                 href="/blog"
                 onClick={handleMobileMenuClose}
               >
-                Blog
+                {t('navbar.blog')}
               </Link>
               <Link
                 className="bg-gradient-to-r from-[#1c355e] to-[#8b7866] text-white px-6 py-3 rounded-full hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center text-xl font-medium mt-4"
                 href="/contact"
                 onClick={handleMobileMenuClose}
               >
-                Contact
+                {t('navbar.contact')}
               </Link>
+              <div className="mt-4 flex justify-center">
+                <LanguageSwitcher />
+              </div>
             </nav>
           </div>
         </div>
@@ -281,5 +292,6 @@ export default function Navbar() {
         }
       `}</style>
     </header>
+    </RTLWrapper>
   );
 }

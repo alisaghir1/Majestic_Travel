@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import 'keen-slider/keen-slider.min.css';
+@import './styles/rtl.css';
 
 @font-face {
   font-family: 'Recoleta';
