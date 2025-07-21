@@ -24,109 +24,79 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { RTLWrapper } from "@/app/components/RTLWrapper";
+import { transportationTranslations } from "@/app/translations/services/transportation";
 
 export default function TransportationServices() {
-  const transportTypes = [
-    {
-      icon: <Car className="w-8 h-8" />,
-      name: "Private Transfers",
-      description: "Comfortable private vehicles for individuals and families",
-      features: ["1-4 Passengers", "Personal Driver", "Door-to-Door", "Flexible Schedule"],
-      price: "120",
-      gradient: "from-[#1c355e] to-[#8b7866]",
-      items: ["Luxury Sedan", "SUV Available", "Child Seats"]
-    },
-    {
-      icon: <Bus className="w-8 h-8" />,
-      name: "Group Transport",
-      description: "Spacious buses for larger groups and tours",
-      features: ["8-50 Passengers", "Air Conditioning", "Tour Guide", "Scenic Routes"],
-      price: "80",
-      gradient: "from-[#8b7866] to-[#1c355e]",
-      items: ["Mini Bus", "Coach Bus", "WiFi Equipped"]
-    },
-    {
-      icon: <Plane className="w-8 h-8" />,
-      name: "Airport Transfers",
-      description: "Reliable pickup and drop-off from major airports",
-      features: ["Flight Monitoring", "Meet & Greet", "Luggage Assist", "No Wait Fees"],
-      price: "100",
-      gradient: "from-[#1c355e] to-[#2a4a73]",
-      items: ["Welcome Service", "Sign Holding", "Flight Tracking"]
-    },
-    {
-      icon: <Sparkles className="w-8 h-8" />,
-      name: "City Tours",
-      description: "Guided transportation to cultural and tourist attractions",
-      features: ["Local Guide", "Multiple Stops", "Photo Stops", "Cultural Insights"],
-      price: "150",
-      gradient: "from-[#8b7866] to-[#a68b5b]",
-      items: ["Half Day", "Full Day", "Custom Routes"]
-    }
-  ];
+  const { language } = useLanguage();
 
-  const benefits = [
-    {
-      icon: <Navigation className="w-12 h-12" />,
-      title: "Local Expertise",
-      description: "Experienced drivers with regional knowledge",
-      color: "text-[#1c355e]",
-      bg: "bg-blue-100"
-    },
-    {
-      icon: <Clock className="w-12 h-12" />,
-      title: "Timely Service",
-      description: "Punctual departures and arrivals",
-      color: "text-[#8b7866]",
-      bg: "bg-amber-100"
-    },
-    {
-      icon: <Shield className="w-12 h-12" />,
-      title: "Safe & Secure",
-      description: "Well-maintained vehicles and professional drivers",
-      color: "text-[#1c355e]",
-      bg: "bg-blue-50"
-    },
-    {
-      icon: <Heart className="w-12 h-12" />,
-      title: "Comfort First",
-      description: "Air conditioning and spacious interiors",
-      color: "text-[#8b7866]",
-      bg: "bg-amber-50"
+  const t = (key) => {
+    const keys = key.split('.');
+    let result = transportationTranslations[language];
+    for (const k of keys) {
+      result = result?.[k];
     }
-  ];
+    return result || key;
+  };
 
-  const process = [
-    { step: "01", title: "Book Online", desc: "Reserve your transportation in advance", icon: <Calendar className="w-6 h-6" /> },
-    { step: "02", title: "Confirmation", desc: "Receive pickup details and driver info", icon: <CheckCircle className="w-6 h-6" /> },
-    { step: "03", title: "Meet & Greet", desc: "Driver meets you with clear signage", icon: <Users className="w-6 h-6" /> },
-    { step: "04", title: "Enjoy Journey", desc: "Comfortable ride to your destination", icon: <Route className="w-6 h-6" /> }
-  ];
+  const transportTypes = t('transportTypes').map((type, index) => ({
+    icon: [
+      <Car key="car" className="w-8 h-8" />,
+      <Bus key="bus" className="w-8 h-8" />,
+      <Plane key="plane" className="w-8 h-8" />,
+      <Sparkles key="sparkles" className="w-8 h-8" />
+    ][index],
+    name: type.name,
+    description: type.description,
+    features: type.features,
+    price: ["120", "80", "100", "150"][index],
+    gradient: [
+      "from-[#1c355e] to-[#8b7866]",
+      "from-[#8b7866] to-[#1c355e]",
+      "from-[#1c355e] to-[#2a4a73]",
+      "from-[#8b7866] to-[#a68b5b]"
+    ][index],
+    items: type.items
+  }));
+  const benefits = t('benefits').map((benefit, index) => ({
+    icon: [
+      <Navigation key="navigation" className="w-12 h-12" />,
+      <Clock key="clock" className="w-12 h-12" />,
+      <Shield key="shield" className="w-12 h-12" />,
+      <Heart key="heart" className="w-12 h-12" />
+    ][index],
+    title: benefit.title,
+    description: benefit.description,
+    color: ["text-[#1c355e]", "text-[#8b7866]", "text-[#1c355e]", "text-[#8b7866]"][index],
+    bg: ["bg-blue-100", "bg-amber-100", "bg-blue-50", "bg-amber-50"][index]
+  }));
 
-  const destinations = [
-    {
-      icon: <Building className="w-6 h-6" />,
-      name: "City Centers",
-      description: "Hotels, shopping districts, business areas"
-    },
-    {
-      icon: <Star className="w-6 h-6" />,
-      name: "Cultural Sites",
-      description: "Museums, historic landmarks, galleries"
-    },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      name: "Nature Parks",
-      description: "National parks, scenic viewpoints, trails"
-    },
-    {
-      icon: <Globe className="w-6 h-6" />,
-      name: "Coastal Areas",
-      description: "Beaches, marinas, waterfront attractions"
-    }
-  ];
+  const process = t('process').map((step, index) => ({
+    step: ["01", "02", "03", "04"][index],
+    title: step.title,
+    desc: step.desc,
+    icon: [
+      <Calendar key="calendar" className="w-6 h-6" />,
+      <CheckCircle key="check" className="w-6 h-6" />,
+      <Users key="users" className="w-6 h-6" />,
+      <Route key="route" className="w-6 h-6" />
+    ][index]
+  }));
+
+  const destinations = t('destinations').map((destination, index) => ({
+    icon: [
+      <Building key="building" className="w-6 h-6" />,
+      <Star key="star" className="w-6 h-6" />,
+      <MapPin key="mappin" className="w-6 h-6" />,
+      <Globe key="globe" className="w-6 h-6" />
+    ][index],
+    name: destination.name,
+    description: destination.description
+  }));
 
   return (
+    <RTLWrapper>
     <div className="min-h-screen bg-[#f2f2f7] mt-20">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -137,28 +107,28 @@ export default function TransportationServices() {
             <div className="space-y-8">
               <div className="inline-flex items-center bg-white rounded-full px-6 py-2 shadow-lg">
                 <Car className="w-5 h-5 text-[#1c355e] mr-2" />
-                <span className="text-[#1c355e] font-semibold">Transportation Services</span>
+                <span className="text-[#1c355e] font-semibold">{t('hero.badge')}</span>
               </div>
               <h1 className="text-5xl lg:text-6xl font-black text-gray-900 leading-tight">
-                Travel With
-                <span className="bg-gradient-to-r from-[#1c355e] to-[#8b7866] bg-clip-text text-transparent"> Confidence</span>
-                <br />Every Mile
+                {t('hero.title')}
+                <span className="bg-gradient-to-r from-[#1c355e] to-[#8b7866] bg-clip-text text-transparent"> {t('hero.highlight')}</span>
+                <br />{t('hero.subtitle')}
               </h1>
               <p className="text-xl text-[#8b7866] leading-relaxed">
-                Experience seamless travel across cities and nature destinations with our reliable transportation services and knowledgeable local drivers.
+                {t('hero.description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/contact"
                   className="bg-gradient-to-r from-[#1c355e] to-[#8b7866] text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
                 >
-                  Book Transport
+                  {t('hero.cta1')}
                 </Link>
                 <Link
                   href="/contact"
                   className="border-2 border-[#1c355e] text-[#1c355e] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#1c355e] hover:text-white transition-all duration-300 inline-flex items-center justify-center"
                 >
-                  Get Quote
+                  {t('hero.cta2')}
                 </Link>
               </div>
             </div>
@@ -193,10 +163,10 @@ export default function TransportationServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1c355e] mb-4">
-              Choose Your <span className="text-[#8b7866]">Transport Style</span>
+              {t('transportHeading.title')} <span className="text-[#8b7866]">{t('transportHeading.highlight')}</span>
             </h2>
             <p className="text-xl text-[#8b7866] max-w-2xl mx-auto">
-              From private transfers to group tours, find the perfect transportation solution for your journey.
+              {t('transportHeading.subtitle')}
             </p>
           </div>
           
@@ -218,8 +188,8 @@ export default function TransportationServices() {
                   
                   {/* Price */}
                   <div className="flex items-center mb-4">
-                    <span className="text-3xl font-black text-gray-900">AED {transport.price}</span>
-                    <span className="text-gray-500 ml-2">starting</span>
+                    <span className="text-3xl font-black text-gray-900">{t('common.aed')} {transport.price}</span>
+                    <span className="text-gray-500 ml-2">{t('common.starting')}</span>
                   </div>
                   
                   {/* Features */}
@@ -246,7 +216,7 @@ export default function TransportationServices() {
                     href="/contact"
                     className={`w-full bg-gradient-to-r ${transport.gradient} text-white py-3 rounded-2xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center group`}
                   >
-                    Book Now
+                    {t('common.bookNow')}
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
@@ -261,10 +231,10 @@ export default function TransportationServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-white mb-4">
-              Why Choose Our Transportation?
+              {t('benefitsHeading.title')}
             </h2>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Experience reliable, comfortable, and efficient transportation services
+              {t('benefitsHeading.subtitle')}
             </p>
           </div>
           
@@ -289,10 +259,10 @@ export default function TransportationServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1c355e] mb-4">
-              Destinations <span className="text-[#8b7866]">We Cover</span>
+              {t('destinationsHeading.title')} <span className="text-[#8b7866]">{t('destinationsHeading.highlight')}</span>
             </h2>
             <p className="text-xl text-[#8b7866] max-w-2xl mx-auto">
-              From city centers to coastal retreats, we&apos;ll take you anywhere you want to go
+              {t('destinationsHeading.subtitle')}
             </p>
           </div>
           
@@ -317,9 +287,9 @@ export default function TransportationServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1c355e] mb-4">
-              How It <span className="text-[#8b7866]">Works</span>
+              {t('processHeading.title')} <span className="text-[#8b7866]">{t('processHeading.highlight')}</span>
             </h2>
-            <p className="text-xl text-[#8b7866]">Simple steps to book your transportation</p>
+            <p className="text-xl text-[#8b7866]">{t('processHeading.subtitle')}</p>
           </div>
           
           <div className="max-w-4xl mx-auto">
@@ -356,17 +326,12 @@ export default function TransportationServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1c355e] mb-4">
-              Transportation <span className="text-[#8b7866]">Features</span>
+              {t('featuresHeading.title')} <span className="text-[#8b7866]">{t('featuresHeading.highlight')}</span>
             </h2>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              "Well-maintained vehicles", "Air conditioning & comfort", "Knowledgeable local drivers",
-              "Multilingual driver support", "Group & private options", "Airport transfer service",
-              "Timely departures & arrivals", "Scenic route planning", "Luggage assistance",
-              "Real-time flight monitoring", "Clean & spacious interiors", "Flexible scheduling"
-            ].map((feature, index) => (
+            {t('features').map((feature, index) => (
               <div key={index} className="flex items-center p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
                 <CheckCircle className="w-6 h-6 text-[#1c355e] mr-3 flex-shrink-0" />
                 <span className="text-[#8b7866] font-medium">{feature}</span>
@@ -381,37 +346,18 @@ export default function TransportationServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1c355e] mb-4">
-              Vehicle <span className="text-[#8b7866]">Standards</span>
+              {t('vehicleHeading.title')} <span className="text-[#8b7866]">{t('vehicleHeading.highlight')}</span>
             </h2>
             <p className="text-xl text-[#8b7866] max-w-2xl mx-auto">
-              Every vehicle meets our high standards for comfort, safety, and cleanliness
+              {t('vehicleHeading.subtitle')}
             </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                icon: <Shield className="w-8 h-8" />,
-                title: "Safety First",
-                description: "Regular mechanical inspections and professional drivers ensure your safety throughout the journey.",
-                features: ["Routine maintenance", "Safety inspections", "Professional drivers", "Insurance coverage"]
-              },
-              {
-                icon: <Sparkles className="w-8 h-8" />,
-                title: "Comfort & Cleanliness",
-                description: "Every vehicle is cleaned after each use with spacious interiors and modern amenities.",
-                features: ["Deep cleaning", "Spacious seating", "Climate control", "Modern interiors"]
-              },
-              {
-                icon: <Zap className="w-8 h-8" />,
-                title: "Modern Amenities",
-                description: "Stay connected and comfortable with WiFi, charging ports, and refreshments on longer routes.",
-                features: ["USB charging", "WiFi available", "Cold water", "Reading materials"]
-              }
-            ].map((standard, index) => (
+            {t('vehicleStandards').map((standard, index) => (
               <div key={index} className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#1c355e] to-[#8b7866] rounded-2xl text-white mb-6">
-                  {standard.icon}
+                  {[<Shield key="shield" className="w-8 h-8" />, <Sparkles key="sparkles" className="w-8 h-8" />, <Zap key="zap" className="w-8 h-8" />][index]}
                 </div>
                 <h3 className="text-xl font-bold text-[#1c355e] mb-4">{standard.title}</h3>
                 <p className="text-[#8b7866] mb-6 leading-relaxed">{standard.description}</p>
@@ -434,33 +380,12 @@ export default function TransportationServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1c355e] mb-4">
-              Transportation <span className="text-[#8b7866]">Questions?</span>
+              {t('faqHeading.title')} <span className="text-[#8b7866]">{t('faqHeading.highlight')}</span>
             </h2>
           </div>
           
           <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              {
-                q: "How far in advance should I book?",
-                a: "We recommend booking at least 24 hours in advance for regular transfers. Airport pickups can be arranged with shorter notice, and we handle last-minute requests during operational hours."
-              },
-              {
-                q: "Are your drivers multilingual?",
-                a: "Yes! Our drivers speak multiple languages including English, Arabic, and other regional languages to ensure clear communication with international travelers."
-              },
-              {
-                q: "What happens if my flight is delayed?",
-                a: "We monitor flight times in real-time and adjust pickup times accordingly. Standard wait periods for delays are included at no extra charge."
-              },
-              {
-                q: "Can you arrange custom routes for sightseeing?",
-                a: "Absolutely! We offer customized city tours and scenic routes. Our local drivers can suggest the best stops and provide cultural insights along the way."
-              },
-              {
-                q: "Do you provide child seats and accessibility options?",
-                a: "Yes, we provide child seats upon request and have vehicles equipped for travelers requiring additional support or accessibility features."
-              }
-            ].map((faq, index) => (
+            {t('faq').map((faq, index) => (
               <details key={index} className="group bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
                 <summary className="cursor-pointer p-6 font-bold text-lg text-[#1c355e] hover:text-[#8b7866] transition-colors duration-300">
                   {faq.q}
@@ -479,17 +404,17 @@ export default function TransportationServices() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
-              Ready for Seamless Transportation?
+              {t('cta.title')}
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Book your reliable transportation today and focus fully on your travel experience with confidence.
+              {t('cta.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 href="/contact"
                 className="bg-white text-[#1c355e] px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
               >
-                Book Transport
+                {t('cta.bookTransport')}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <Link
@@ -497,12 +422,13 @@ export default function TransportationServices() {
                 className="border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-[#1c355e] transition-all duration-300 inline-flex items-center justify-center"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Call Now
+                {t('cta.callNow')}
               </Link>
             </div>
           </div>
         </div>
       </section>
     </div>
+    </RTLWrapper>
   );
 }

@@ -22,87 +22,80 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { RTLWrapper } from "@/app/components/RTLWrapper";
+import { privateJetTranslations } from "@/app/translations/services/private-jet";
 
 export default function PrivateJetServices() {
-  const jetTypes = [
-    {
-      icon: <Plane className="w-8 h-8" />,
-      name: "Light Jets",
-      description: "Perfect for short to medium range flights",
-      features: ["4-8 Passengers", "2-4 Hour Range", "Fast Boarding", "Cost Efficient"],
-      price: "8,000",
-      gradient: "from-[#1c355e] to-[#8b7866]",
-      items: ["Citation CJ3", "Learjet 75", "Phenom 300"]
-    },
-    {
-      icon: <Crown className="w-8 h-8" />,
-      name: "Mid-Size Jets",
-      description: "Ideal balance of comfort and efficiency",
-      features: ["6-9 Passengers", "4-6 Hour Range", "Stand-Up Cabin", "Galley Service"],
-      price: "15,000",
-      gradient: "from-[#8b7866] to-[#1c355e]",
-      items: ["Citation Latitude", "Hawker 900XP", "Learjet 60XR"]
-    },
-    {
-      icon: <Star className="w-8 h-8" />,
-      name: "Heavy Jets",
-      description: "Ultimate luxury for long-haul flights",
-      features: ["8-14 Passengers", "8-12 Hour Range", "Full Galley", "Bedroom Suite"],
-      price: "25,000",
-      gradient: "from-[#1c355e] to-[#2a4a73]",
-      items: ["Gulfstream G650", "Global 6000", "Falcon 7X"]
-    },
-    {
-      icon: <Sparkles className="w-8 h-8" />,
-      name: "Ultra Long Range",
-      description: "Non-stop intercontinental travel",
-      features: ["12-18 Passengers", "12+ Hour Range", "Master Suite", "Full Crew Rest"],
-      price: "40,000",
-      gradient: "from-[#8b7866] to-[#a68b5b]",
-      items: ["Global 7500", "Gulfstream G700", "Falcon 8X"]
-    }
-  ];
+  const { language } = useLanguage();
 
-  const benefits = [
-    {
-      icon: <Clock className="w-12 h-12" />,
-      title: "Time Efficiency",
-      description: "Skip commercial delays and queues",
-      color: "text-[#1c355e]",
-      bg: "bg-blue-100"
-    },
-    {
-      icon: <Lock className="w-12 h-12" />,
-      title: "Complete Privacy",
-      description: "Discreet and confidential service",
-      color: "text-[#8b7866]",
-      bg: "bg-amber-100"
-    },
-    {
-      icon: <Shield className="w-12 h-12" />,
-      title: "Maximum Safety",
-      description: "International safety standards",
-      color: "text-[#1c355e]",
-      bg: "bg-blue-50"
-    },
-    {
-      icon: <Globe className="w-12 h-12" />,
-      title: "Global Access",
-      description: "8,000+ destinations worldwide",
-      color: "text-[#8b7866]",
-      bg: "bg-amber-50"
+  const t = (key) => {
+    const keys = key.split('.');
+    let result = privateJetTranslations[language];
+    for (const k of keys) {
+      result = result?.[k];
     }
-  ];
+    return result || key;
+  };
+  const jetTypes = t('jetTypes').map((type, index) => ({
+    icon: [
+      <Plane key="plane" className="w-8 h-8" />,
+      <Crown key="crown" className="w-8 h-8" />,
+      <Star key="star" className="w-8 h-8" />,
+      <Sparkles key="sparkles" className="w-8 h-8" />
+    ][index],
+    name: type.name,
+    description: type.description,
+    features: type.features,
+    price: ["8,000", "15,000", "25,000", "40,000"][index],
+    gradient: [
+      "from-[#1c355e] to-[#8b7866]",
+      "from-[#8b7866] to-[#1c355e]",
+      "from-[#1c355e] to-[#2a4a73]",
+      "from-[#8b7866] to-[#a68b5b]"
+    ][index],
+    items: type.items
+  }));
 
-  const process = [
-    { step: "01", title: "Request & Quote", desc: "Contact our advisors for personalized options", icon: <Phone className="w-6 h-6" /> },
-    { step: "02", title: "Aircraft Selection", desc: "Choose the perfect jet for your journey", icon: <Plane className="w-6 h-6" /> },
-    { step: "03", title: "Flight Planning", desc: "Customize routing and scheduling", icon: <Navigation className="w-6 h-6" /> },
-    { step: "04", title: "Departure", desc: "Enjoy seamless private terminal experience", icon: <CheckCircle className="w-6 h-6" /> }
-  ];
+  const benefits = t('benefits').map((benefit, index) => ({
+    icon: [
+      <Clock key="clock" className="w-12 h-12" />,
+      <Lock key="lock" className="w-12 h-12" />,
+      <Shield key="shield" className="w-12 h-12" />,
+      <Globe key="globe" className="w-12 h-12" />
+    ][index],
+    title: benefit.title,
+    description: benefit.description,
+    color: ["text-[#1c355e]", "text-[#8b7866]", "text-[#1c355e]", "text-[#8b7866]"][index],
+    bg: ["bg-blue-100", "bg-amber-100", "bg-blue-50", "bg-amber-50"][index]
+  }));
+
+  const process = t('process').map((step, index) => ({
+    step: ["01", "02", "03", "04"][index],
+    title: step.title,
+    desc: step.desc,
+    icon: [
+      <Phone key="phone-process" className="w-6 h-6" />,
+      <Plane key="plane-process" className="w-6 h-6" />,
+      <Navigation key="navigation-process" className="w-6 h-6" />,
+      <CheckCircle key="check-process" className="w-6 h-6" />
+    ][index]
+  }));
+
+  const experiences = t('experiences').map((experience, index) => ({
+    icon: [
+      <Coffee key="coffee" className="w-16 h-16" />,
+      <Wifi key="wifi" className="w-16 h-16" />,
+      <Heart key="heart" className="w-16 h-16" />
+    ][index],
+    title: experience.title,
+    description: experience.description,
+    features: experience.features
+  }));
 
   return (
-    <div className="min-h-screen bg-[#f2f2f7] mt-20">
+    <RTLWrapper>
+      <div className="min-h-screen bg-[#f2f2f7] mt-20">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#1c355e] via-[#8b7866] to-[#1c355e] opacity-10"></div>
@@ -112,28 +105,28 @@ export default function PrivateJetServices() {
             <div className="space-y-8">
               <div className="inline-flex items-center bg-white rounded-full px-6 py-2 shadow-lg">
                 <Plane className="w-5 h-5 text-[#1c355e] mr-2" />
-                <span className="text-[#1c355e] font-semibold">Private Jet Services</span>
+                <span className="text-[#1c355e] font-semibold">{t('hero.badge')}</span>
               </div>
               <h1 className="text-5xl lg:text-6xl font-black text-gray-900 leading-tight">
-                Fly Beyond
-                <span className="bg-gradient-to-r from-[#1c355e] to-[#8b7866] bg-clip-text text-transparent"> Luxury</span>
-                <br />On Your Terms
+                {t('hero.title')}
+                <span className="bg-gradient-to-r from-[#1c355e] to-[#8b7866] bg-clip-text text-transparent"> {t('hero.highlight')}</span>
+                <br />{t('hero.subtitle')}
               </h1>
               <p className="text-xl text-[#8b7866] leading-relaxed">
-                Experience the ultimate in private aviation with our exclusive jet services. Efficiency, privacy, and sophistication redefined.
+                {t('hero.description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/contact"
                   className="bg-gradient-to-r from-[#1c355e] to-[#8b7866] text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
                 >
-                  Book Flight
+                  {t('hero.cta1')}
                 </Link>
                 <Link
                   href="/contact"
                   className="border-2 border-[#1c355e] text-[#1c355e] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#1c355e] hover:text-white transition-all duration-300 inline-flex items-center justify-center"
                 >
-                  Get Quote
+                  {t('hero.cta2')}
                 </Link>
               </div>
             </div>
@@ -168,10 +161,10 @@ export default function PrivateJetServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1c355e] mb-4">
-              Choose Your <span className="text-[#8b7866]">Aircraft</span>
+              {t('jetTypesHeading.title')} <span className="text-[#8b7866]">{t('jetTypesHeading.highlight')}</span>
             </h2>
             <p className="text-xl text-[#8b7866] max-w-2xl mx-auto">
-              From efficient light jets to ultra-luxury long-range aircraft, find the perfect jet for your journey.
+              {t('jetTypesHeading.subtitle')}
             </p>
           </div>
           
@@ -193,8 +186,8 @@ export default function PrivateJetServices() {
                   
                   {/* Price */}
                   <div className="flex items-center mb-4">
-                    <span className="text-3xl font-black text-gray-900">€{jet.price}</span>
-                    <span className="text-gray-500 ml-2">starting</span>
+                    <span className="text-3xl font-black text-gray-900">{t('common.aed')} {jet.price}</span>
+                    <span className="text-gray-500 ml-2">{t('common.perHour')}</span>
                   </div>
                   
                   {/* Features */}
@@ -221,7 +214,7 @@ export default function PrivateJetServices() {
                     href="/contact"
                     className={`w-full bg-gradient-to-r ${jet.gradient} text-white py-3 rounded-2xl font-bold hover:shadow-lg transition-all duration-300 flex items-center justify-center group`}
                   >
-                    Select Aircraft
+                    {t('common.charterNow')}
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
@@ -236,10 +229,10 @@ export default function PrivateJetServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-white mb-4">
-              Why Choose Private Aviation?
+              {t('benefitsHeading.title')}
             </h2>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Experience unparalleled luxury, privacy, and efficiency with our exclusive jet services
+              {t('benefitsHeading.subtitle')}
             </p>
           </div>
           
@@ -264,9 +257,9 @@ export default function PrivateJetServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1c355e] mb-4">
-              How It <span className="text-[#8b7866]">Works</span>
+              {t('processHeading.title')} <span className="text-[#8b7866]">{t('processHeading.highlight')}</span>
             </h2>
-            <p className="text-xl text-[#8b7866]">Simple steps to your private flight experience</p>
+            <p className="text-xl text-[#8b7866]">{t('processHeading.subtitle')}</p>
           </div>
           
           <div className="max-w-4xl mx-auto">
@@ -303,7 +296,7 @@ export default function PrivateJetServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1c355e] mb-4">
-              Luxury <span className="text-[#8b7866]">Features</span>
+              {t('featuresHeading.title')} <span className="text-[#8b7866]">{t('featuresHeading.highlight')}</span>
             </h2>
           </div>
           
@@ -336,26 +329,7 @@ export default function PrivateJetServices() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                icon: <Coffee className="w-8 h-8" />,
-                title: "Gourmet Dining",
-                description: "Fresh meals prepared by renowned chefs, customized to your preferences and dietary requirements.",
-                features: ["Custom menus", "Fine wines", "Fresh ingredients", "Special diets"]
-              },
-              {
-                icon: <Wifi className="w-8 h-8" />,
-                title: "Connectivity",
-                description: "Stay connected with high-speed internet, satellite phones, and entertainment systems.",
-                features: ["High-speed WiFi", "Satellite phone", "Entertainment", "Video conferencing"]
-              },
-              {
-                icon: <Heart className="w-8 h-8" />,
-                title: "Comfort & Rest",
-                description: "Spacious cabins with luxurious seating that converts to fully flat beds for long journeys.",
-                features: ["Flat-bed seats", "Premium linens", "Quiet cabin", "Climate control"]
-              }
-            ].map((experience, index) => (
+            {experiences.map((experience, index) => (
               <div key={index} className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#1c355e] to-[#8b7866] rounded-2xl text-white mb-6">
                   {experience.icon}
@@ -381,33 +355,12 @@ export default function PrivateJetServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-[#1c355e] mb-4">
-              Private Jet <span className="text-[#8b7866]">Questions?</span>
+              {t('faqHeading.title')} <span className="text-[#8b7866]">{t('faqHeading.highlight')}</span>
             </h2>
           </div>
           
           <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              {
-                q: "How far in advance should I book?",
-                a: "While we can arrange flights with minimal notice, we recommend booking 24-48 hours in advance for optimal aircraft selection and scheduling flexibility."
-              },
-              {
-                q: "What destinations can you reach?",
-                a: "Our network covers over 8,000 destinations worldwide, including major airports and exclusive landing strips often unavailable to commercial airlines."
-              },
-              {
-                q: "Is the service completely private?",
-                a: "Absolutely. We operate under strict confidentiality protocols. All passenger data, itineraries, and onboard activities remain completely private and secure."
-              },
-              {
-                q: "Can I customize catering and cabin setup?",
-                a: "Yes! We offer fully customizable catering from renowned chefs and can arrange cabin configurations to meet your specific needs and preferences."
-              },
-              {
-                q: "What safety standards do you follow?",
-                a: "All our aircraft and crew operate under international safety standards with routine maintenance, pre-flight assessments, and experienced pilots for every journey."
-              }
-            ].map((faq, index) => (
+            {t('faq').map((faq, index) => (
               <details key={index} className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
                 <summary className="cursor-pointer p-6 font-bold text-lg text-[#1c355e] hover:text-[#8b7866] transition-colors duration-300">
                   {faq.q}
@@ -426,17 +379,17 @@ export default function PrivateJetServices() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
-              Ready to Fly in Ultimate Luxury?
+              {t('cta.title')}
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Experience the world on your terms with our exclusive private jet services. Contact us to arrange your flight.
+              {t('cta.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 href="/contact"
                 className="bg-white text-[#1c355e] px-10 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
               >
-                Book Your Flight
+                {t('cta.startBooking')}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
               <Link
@@ -444,12 +397,13 @@ export default function PrivateJetServices() {
                 className="border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-[#1c355e] transition-all duration-300 inline-flex items-center justify-center"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Call Expert
+                {t('cta.callExpert')}
               </Link>
             </div>
           </div>
         </div>
       </section>
     </div>
+    </RTLWrapper>
   );
 }
