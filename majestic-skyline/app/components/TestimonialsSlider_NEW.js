@@ -41,7 +41,7 @@ export default function TestimonialsSlider() {
               >
                 <Quote className="text-[#8b7866] w-10 h-10" />
                 <p className={`text-2xl leading-relaxed text-center italic max-w-2xl ${isRTL ? 'text-right' : 'text-center'}`}>
-                  "{t(`testimonials.testimonials.${key}.message`)}"
+                  &ldquo;{t(`testimonials.testimonials.${key}.message`)}&rdquo;
                 </p>
 
                 <div className="flex items-center gap-4 mt-6 ">

@@ -39,10 +39,10 @@ export default function HotelReservationServices() {
   };
   const hotelTypes = t('hotelTypes').map((type, index) => ({
     icon: [
-      <Building className="w-8 h-8" />,
-      <Sparkles className="w-8 h-8" />,
-      <Star className="w-8 h-8" />,
-      <Heart className="w-8 h-8" />
+      <Building key="building" className="w-8 h-8" />,
+      <Sparkles key="sparkles" className="w-8 h-8" />,
+      <Star key="star" className="w-8 h-8" />,
+      <Heart key="heart" className="w-8 h-8" />
     ][index],
     title: type.title,
     description: type.description,
@@ -59,10 +59,10 @@ export default function HotelReservationServices() {
 
   const benefits = t('benefits').map((benefit, index) => ({
     icon: [
-      <Globe className="w-12 h-12" />,
-      <Shield className="w-12 h-12" />,
-      <Calendar className="w-12 h-12" />,
-      <Users className="w-12 h-12" />
+      <Globe key="globe" className="w-12 h-12" />,
+      <Shield key="shield" className="w-12 h-12" />,
+      <Calendar key="calendar" className="w-12 h-12" />,
+      <Users key="users" className="w-12 h-12" />
     ][index],
     title: benefit.title,
     description: benefit.description,
@@ -75,10 +75,10 @@ export default function HotelReservationServices() {
     title: step.title,
     desc: step.desc,
     icon: [
-      <Globe className="w-6 h-6" />,
-      <Calendar className="w-6 h-6" />,
-      <CheckCircle className="w-6 h-6" />,
-      <Hotel className="w-6 h-6" />
+      <Globe key="globe-process" className="w-6 h-6" />,
+      <Calendar key="calendar-process" className="w-6 h-6" />,
+      <CheckCircle key="check-process" className="w-6 h-6" />,
+      <Hotel key="hotel-process" className="w-6 h-6" />
     ][index]
   }));
 
