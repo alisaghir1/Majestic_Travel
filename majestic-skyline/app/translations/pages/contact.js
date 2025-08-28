@@ -9,10 +9,11 @@ export const contactPageTranslations = {
     leftTitle: "Reach Out to Our Travel Experts",
     leftDescription: "Have a question about your dream destination? Or maybe you'd like to customize your travel plans? Whatever it is, we're ready to make it happen. Get in touch today and let us help you plan the journey of a lifetime.",
     
-    // Contact Information
-    address: "Majestic Skyline, Dubai, United Arab Emirates",
-    email: "info@mstravel.ae",
-    phone: "+51 11111111111",
+  // Contact Information
+  address: "Majestic Skyline, Dubai, United Arab Emirates",
+  email: "info@mstravel.ae",
+  phone: "+971 056 417 111",
+  phone2: "+971 056 416 111",
     
     // Form Fields
     fullNamePlaceholder: "Full Name",
@@ -34,10 +35,11 @@ export const contactPageTranslations = {
     leftTitle: "تواصل مع خبراء السفر لدينا",
     leftDescription: "هل لديك سؤال حول وجهة أحلامك؟ أم ربما تريد تخصيص خطط سفرك؟ مهما كان الأمر، نحن مستعدون لتحقيقه. تواصل معنا اليوم ودعنا نساعدك في التخطيط لرحلة العمر.",
     
-    // Contact Information
-    address: "ماجستيك سكايلاين، دبي، الإمارات العربية المتحدة",
-    email: "info@mstravel.ae",
-    phone: "+51 11111111111",
+  // Contact Information
+  address: "ماجستيك سكايلاين، دبي، الإمارات العربية المتحدة",
+  email: "info@mstravel.ae",
+  phone: "+971 056 417 111",
+  phone2: "+971 056 416 111",
     
     // Form Fields
     fullNamePlaceholder: "الاسم الكامل",

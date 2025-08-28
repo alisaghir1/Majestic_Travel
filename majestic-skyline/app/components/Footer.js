@@ -88,13 +88,19 @@ export default function Footer() {
                 </a>
               </p>
 
-              <p className="text-lg">
+              <p className="text-lg mb-2">
                 <span className="font-semibold text-[#1c355e]">{t('footer.callLabel')} </span>
                 <a
                   href={`tel:${t('footer.phone')}`}
-                  className="hover:text-[#8b7866] transition-all"
+                  className="hover:text-[#8b7866] transition-all mr-4"
                 >
                   {t('footer.phone')}
+                </a>
+                <a
+                  href={`tel:${t('footer.phone2')}`}
+                  className="hover:text-[#8b7866] transition-all"
+                >
+                  {t('footer.phone2')}
                 </a>
               </p>
             </div>
