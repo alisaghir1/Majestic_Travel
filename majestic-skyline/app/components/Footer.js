@@ -63,47 +63,52 @@ export default function Footer() {
             </div>
 
             {/* Contact Information */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-4 text-[#1c355e]">
-                {t('footer.contactTitle')}
-              </h3>
+              <div>
+                <h3 className="text-2xl font-semibold mb-4 text-[#1c355e]">
+                  {t('footer.contactTitle')}
+                </h3>
 
-              <p className="text-lg mb-2">
-                <span className="font-semibold text-[#1c355e]">{t('footer.emailLabel')} </span>
-                <a
-                  href={`mailto:${t('footer.email')}`}
-                  className="hover:text-[#8b7866] transition-all"
-                >
-                  {t('footer.email')}
-                </a>
-              </p>
+                <p className="text-lg mb-2">
+                  <span className="font-semibold text-[#1c355e]">{t('footer.emailLabel')} </span>
+                  <a
+                    href={`mailto:${t('footer.email')}`}
+                    className="hover:text-[#8b7866] transition-all"
+                  >
+                    {t('footer.email')}
+                  </a>
+                </p>
 
-              <p className="text-lg mb-2">
-                <span className="font-semibold text-[#1c355e]">{t('footer.whatsappLabel')} </span>
-                <a
-                  href={`tel:${t('footer.phone')}`}
-                  className="hover:text-[#8b7866] transition-all"
-                >
-                  {t('footer.phone')}
-                </a>
-              </p>
+                <p className="text-lg mb-2">
+                  <span className="font-semibold text-[#1c355e]">{t('footer.whatsappLabel')} </span>
+                  <span dir={isRTL ? 'ltr' : undefined} className="inline-block">
+                    <a
+                      href={`tel:${t('footer.phone')}`}
+                      className="hover:text-[#8b7866] transition-all"
+                    >
+                      {t('footer.phone_display')}
+                    </a>
+                  </span>
+                </p>
 
-              <p className="text-lg mb-2">
-                <span className="font-semibold text-[#1c355e]">{t('footer.callLabel')} </span>
-                <a
-                  href={`tel:${t('footer.phone')}`}
-                  className="hover:text-[#8b7866] transition-all mr-4"
-                >
-                  {t('footer.phone')}
-                </a>
-                <a
-                  href={`tel:${t('footer.phone2')}`}
-                  className="hover:text-[#8b7866] transition-all"
-                >
-                  {t('footer.phone2')}
-                </a>
-              </p>
-            </div>
+                <p className="text-lg mb-2">
+                  <span className="font-semibold text-[#1c355e]">{t('footer.callLabel')} </span>
+                  <span dir={isRTL ? 'ltr' : undefined} className="inline-flex items-center gap-4">
+                    <a
+                      href={`tel:${t('footer.phone')}`}
+                      className="hover:text-[#8b7866] transition-all"
+                    >
+                      {t('footer.phone_display')}
+                    </a>
+                    <span className="text-[#1c355e]/80">|</span>
+                    <a
+                      href={`tel:${t('footer.phone2')}`}
+                      className="hover:text-[#8b7866] transition-all"
+                    >
+                      {t('footer.phone2_display')}
+                    </a>
+                  </span>
+                </p>
+              </div>
           </div>
 
           {/* Bottom copyright */}

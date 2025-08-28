@@ -17,7 +17,9 @@ export const footerTranslations = {
     callLabel: "Call:",
     email: "info@mstravel.ae",
   phone: "+971 056 417 111",
-    phone2: "+971 056 416 111",
+  phone2: "+971 056 416 111",
+  phone_display: "+971 056 417 111",
+  phone2_display: "+971 056 416 111",
     
     // Copyright
     copyright: "Majestic Skyline. All rights reserved."
@@ -38,8 +40,10 @@ export const footerTranslations = {
     whatsappLabel: "واتساب:",
     callLabel: "اتصل:",
     email: "info@mstravel.ae",
-    phone: "+971 056 417 111",
-    phone2: "+971 056 416 111",
+  phone: "+971 056 417 111",
+  phone2: "+971 056 416 111",
+  phone_display: "+٩٧١٠٥٦٤١٧١١١",
+  phone2_display: "+٩٧١٠٥٦٤١٦١١١",
     
     // Copyright
     copyright: "ماجستيك سكايلاين. جميع الحقوق محفوظة."

@@ -43,11 +43,13 @@ const ContactSection = () => {
 
           <div className="flex items-center mt-8 space-x-2 text-[#1c355e]">
             <Phone className="w-5 h-5" />
-            <a href={`tel:${t('contactPage.phone')}`} className="hover:underline">
-              {t('contactPage.phone')}
-            </a>
-            <span className="text-[#1c355e]/80">|</span>
-            <span className="text-[#1c355e]">{t('contactPage.phone2')}</span>
+            <span dir={isRTL ? 'ltr' : undefined} className="inline-flex items-center gap-4">
+              <a href={`tel:${t('contactPage.phone')}`} className="hover:underline">
+                {t('contactPage.phone_display')}
+              </a>
+              <span className="text-[#1c355e]/80">|</span>
+              <a className="text-[#1c355e]">{t('contactPage.phone2_display')}</a>
+            </span>
           </div>
         </div>
 

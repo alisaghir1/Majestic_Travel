@@ -14,6 +14,9 @@ export const contactPageTranslations = {
   email: "info@mstravel.ae",
   phone: "+971 056 417 111",
   phone2: "+971 056 416 111",
+  // display variants (same as phone for English)
+  phone_display: "+971 056 417 111",
+  phone2_display: "+971 056 416 111",
     
     // Form Fields
     fullNamePlaceholder: "Full Name",
@@ -40,6 +43,9 @@ export const contactPageTranslations = {
   email: "info@mstravel.ae",
   phone: "+971 056 417 111",
   phone2: "+971 056 416 111",
+  // Arabic-Indic numerals for display
+  phone_display: "+٩٧١٠٥٦٤١٧١١١",
+  phone2_display: "+٩٧١٠٥٦٤١٦١١١",
     
     // Form Fields
     fullNamePlaceholder: "الاسم الكامل",
