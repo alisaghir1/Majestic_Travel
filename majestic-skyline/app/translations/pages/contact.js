@@ -12,11 +12,11 @@ export const contactPageTranslations = {
   // Contact Information
   address: "Majestic Skyline, Dubai, United Arab Emirates",
   email: "info@mstravel.ae",
-  phone: "+971 056 417 111",
-  phone2: "+971 056 416 111",
+  phone: "+971 056 417 1111",
+  phone2: "+971 056 416 1111",
   // display variants (same as phone for English)
-  phone_display: "+971 056 417 111",
-  phone2_display: "+971 056 416 111",
+  phone_display: "+971 056 417 1111",
+  phone2_display: "+971 056 416 1111",
     
     // Form Fields
     fullNamePlaceholder: "Full Name",
@@ -41,11 +41,11 @@ export const contactPageTranslations = {
   // Contact Information
   address: "ماجستيك سكايلاين، دبي، الإمارات العربية المتحدة",
   email: "info@mstravel.ae",
-  phone: "+971 056 417 111",
-  phone2: "+971 056 416 111",
+  phone: "+971 056 417 1111",
+  phone2: "+971 056 416 1111",
   // Arabic-Indic numerals for display
-  phone_display: "+٩٧١٠٥٦٤١٧١١١",
-  phone2_display: "+٩٧١٠٥٦٤١٦١١١",
+  phone_display: "+٩٧١٠٥٦٤١٧١١١١",
+  phone2_display: "+٩٧١٠٥٦٤١٦١١١١",
     
     // Form Fields
     fullNamePlaceholder: "الاسم الكامل",
