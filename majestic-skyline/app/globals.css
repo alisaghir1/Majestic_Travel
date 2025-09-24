@@ -18,6 +18,27 @@
   font-display: swap;
 }
 
+/* Custom animations for services page */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 h1, h2, h3, h4 {
   font-family: 'Recoleta', 'Georgia', 'Times New Roman', serif;
 }

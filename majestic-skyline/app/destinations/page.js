@@ -1,13 +1,60 @@
 'use client';
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from '../contexts/LanguageContext';
 import { RTLWrapper } from '../components/RTLWrapper';
 
 const DestinationsPage = () => {
-  const { t, isRTL } = useLanguage();
+  const { t, isRTL, language } = useLanguage();
+  const [destinations, setDestinations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      try {
+        const response = await fetch('/api/destinations');
+        const data = await response.json();
+        setDestinations(data.filter(destination => destination.active));
+      } catch (error) {
+        console.error('Error fetching destinations:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDestinations();
+  }, []);
+
+  // Group destinations by region
+  const groupByRegion = (destinations) => {
+    return destinations.reduce((acc, destination) => {
+      const region = destination.region;
+      if (!acc[region]) {
+        acc[region] = [];
+      }
+      acc[region].push(destination);
+      return acc;
+    }, {});
+  };
+
+  const groupedDestinations = groupByRegion(destinations);
+
+  if (loading) {
+    return (
+      <RTLWrapper>
+        <div className="xl:px-20 px-5 pb-12 pt-60 mx-auto space-y-16 bg-[#f2f2f7]">
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="h-12 bg-gray-300 rounded w-3/4 mx-auto mb-4"></div>
+              <div className="h-6 bg-gray-300 rounded w-1/2 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+      </RTLWrapper>
+    );
+  }
   
   return (
     <RTLWrapper>
@@ -20,231 +67,140 @@ const DestinationsPage = () => {
           <p className="text-lg text-[#8b7866]">{t('destinationsPage.pageSubtitle')}</p>
         </header>
 
-      {/* By Region */}
-      <section>
-        {/* Middle East & North Africa */}
-        <div className="mb-12">
-          <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3  mb-4 text-[#8b7866]">
-            {t('destinationsPage.middleEastTitle')}
-          </h3>
-          <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
-            {t('destinationsPage.middleEastDescription')}
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Jordan */}
-            <DestinationCard
-              image="/destinations/jordan-petra.jpg"
-              title={t('destinationsPage.jordan.title')}
-              description={t('destinationsPage.jordan.description')}
-            />
-            {/* Oman */}
-            <DestinationCard
-              image="/destinations/oman.jpg"
-              title={t('destinationsPage.oman.title')}
-              description={t('destinationsPage.oman.description')}
-            />
-            {/* Egypt */}
-            <DestinationCard
-              image="/destinations/egypt.jpg"
-              title={t('destinationsPage.egypt.title')}
-              description={t('destinationsPage.egypt.description')}
-            />
-            {/* Morocco */}
-            <DestinationCard
-              image="/destinations/marakesh.jpg"
-              title={t('destinationsPage.morocco.title')}
-              description={t('destinationsPage.morocco.description')}
-            />
-            {/* Lebanon */}
-            <DestinationCard
-              image="/destinations/beirut.jpg"
-              title={t('destinationsPage.lebanon.title')}
-              description={t('destinationsPage.lebanon.description')}
-            />
-          </div>
-        </div>
+        {/* Dynamic Destinations by Region */}
+        <section>
+          {/* Middle East & North Africa */}
+          {groupedDestinations['middle-east'] && groupedDestinations['middle-east'].length > 0 && (
+            <div className="mb-12">
+              <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3 mb-4 text-[#8b7866]">
+                {t('destinationsPage.middleEastTitle')}
+              </h3>
+              <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
+                {t('destinationsPage.middleEastDescription')}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {groupedDestinations['middle-east'].map((destination) => (
+                  <DestinationCard
+                    key={destination.id}
+                    image={destination.image}
+                    title={destination.title[language]}
+                    description={destination.description[language]}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
 
-        {/* Asia */}
-        <div className="mb-12">
-          <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3  mb-4 text-[#8b7866]">
-            {t('destinationsPage.asiaTitle')}
-          </h3>
-          <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
-            {t('destinationsPage.asiaDescription')}
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Thailand */}
-            <DestinationCard
-              image="/destinations/thailand.jpg"
-              title={t('destinationsPage.thailand.title')}
-              description={t('destinationsPage.thailand.description')}
-            />
-            {/* Indonesia */}
-            <DestinationCard
-              image="/destinations/bali.jpg"
-              title={t('destinationsPage.indonesia.title')}
-              description={t('destinationsPage.indonesia.description')}
-            />
-            {/* Japan */}
-            <DestinationCard
-              image="/destinations/japan.jpg"
-              title={t('destinationsPage.japan.title')}
-              description={t('destinationsPage.japan.description')}
-            />
-            {/* Vietnam */}
-            <DestinationCard
-              image="/destinations/vietnam.jpg"
-              title={t('destinationsPage.vietnam.title')}
-              description={t('destinationsPage.vietnam.description')}
-            />
-            {/* Sri Lanka */}
-            <DestinationCard
-              image="/destinations/sri-lanka.jpg"
-              title={t('destinationsPage.sriLanka.title')}
-              description={t('destinationsPage.sriLanka.description')}
-            />
-          </div>
-        </div>
+          {/* Asia */}
+          {groupedDestinations['asia'] && groupedDestinations['asia'].length > 0 && (
+            <div className="mb-12">
+              <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3 mb-4 text-[#8b7866]">
+                {t('destinationsPage.asiaTitle')}
+              </h3>
+              <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
+                {t('destinationsPage.asiaDescription')}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {groupedDestinations['asia'].map((destination) => (
+                  <DestinationCard
+                    key={destination.id}
+                    image={destination.image}
+                    title={destination.title[language]}
+                    description={destination.description[language]}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
 
-        {/* Europe */}
-        <div className="mb-12">
-          <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3  mb-4 text-[#8b7866]">
-            {t('destinationsPage.europeTitle')}
-          </h3>
-          <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
-            {t('destinationsPage.europeDescription')}
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Italy */}
-            <DestinationCard
-              image="/destinations/italy.jpg"
-              title={t('destinationsPage.italy.title')}
-              description={t('destinationsPage.italy.description')}
-            />
-            {/* Greece */}
-            <DestinationCard
-              image="/destinations/greece.jpg"
-              title={t('destinationsPage.greece.title')}
-              description={t('destinationsPage.greece.description')}
-            />
-            {/* France */}
-            <DestinationCard
-              image="/destinations/france.jpg"
-              title={t('destinationsPage.france.title')}
-              description={t('destinationsPage.france.description')}
-            />
-            {/* Georgia */}
-            <DestinationCard
-              image="/destinations/georgia.jpg"
-              title={t('destinationsPage.georgia.title')}
-              description={t('destinationsPage.georgia.description')}
-            />
-            {/* Switzerland */}
-            <DestinationCard
-              image="/destinations/switzerland.jpg"
-              title={t('destinationsPage.switzerland.title')}
-              description={t('destinationsPage.switzerland.description')}
-            />
-          </div>
-        </div>
+          {/* Europe */}
+          {groupedDestinations['europe'] && groupedDestinations['europe'].length > 0 && (
+            <div className="mb-12">
+              <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3 mb-4 text-[#8b7866]">
+                {t('destinationsPage.europeTitle')}
+              </h3>
+              <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
+                {t('destinationsPage.europeDescription')}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {groupedDestinations['europe'].map((destination) => (
+                  <DestinationCard
+                    key={destination.id}
+                    image={destination.image}
+                    title={destination.title[language]}
+                    description={destination.description[language]}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
 
-        {/* Africa */}
-        <div className="mb-12">
-          <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3  mb-4 text-[#8b7866]">
-            {t('destinationsPage.africaTitle')}
-          </h3>
-          <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
-            {t('destinationsPage.africaDescription')}
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Kenya */}
-            <DestinationCard
-              image="/destinations/kenya.jpeg"
-              title={t('destinationsPage.kenya.title')}
-              description={t('destinationsPage.kenya.description')}
-            />
-            {/* South Africa */}
-            <DestinationCard
-              image="/destinations/south-africa.jpg"
-              title={t('destinationsPage.southAfrica.title')}
-              description={t('destinationsPage.southAfrica.description')}
-            />
-            {/* Tanzania */}
-            <DestinationCard
-              image="/destinations/tanzania.jpg"
-              title={t('destinationsPage.tanzania.title')}
-              description={t('destinationsPage.tanzania.description')}
-            />
-          </div>
-        </div>
-      </section>
+          {/* Africa */}
+          {groupedDestinations['africa'] && groupedDestinations['africa'].length > 0 && (
+            <div className="mb-12">
+              <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3 mb-4 text-[#8b7866]">
+                {t('destinationsPage.africaTitle')}
+              </h3>
+              <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
+                {t('destinationsPage.africaDescription')}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {groupedDestinations['africa'].map((destination) => (
+                  <DestinationCard
+                    key={destination.id}
+                    image={destination.image}
+                    title={destination.title[language]}
+                    description={destination.description[language]}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
 
-      {/* Hidden Gems */}
-      <section>
-        <h2 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3  mb-4 text-[#8b7866]">{t('destinationsPage.hiddenGemsTitle')}</h2>
-        <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
-          {t('destinationsPage.hiddenGemsDescription')}
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <DestinationCard
-            image="/destinations/bosnia.jpg"
-            title={t('destinationsPage.bosnia.title')}
-            description={t('destinationsPage.bosnia.description')}
-          />
-          <DestinationCard
-            image="/destinations/uzbekistan.jpg"
-            title={t('destinationsPage.uzbekistan.title')}
-            description={t('destinationsPage.uzbekistan.description')}
-          />
-          <DestinationCard
-            image="/destinations/albania.jpg"
-            title={t('destinationsPage.albania.title')}
-            description={t('destinationsPage.albania.description')}
-          />
-          <DestinationCard
-            image="/destinations/philippines.webp"
-            title={t('destinationsPage.philippines.title')}
-            description={t('destinationsPage.philippines.description')}
-          />
-          <DestinationCard
-            image="/destinations/montenegro.jpg"
-            title={t('destinationsPage.montenegro.title')}
-            description={t('destinationsPage.montenegro.description')}
-          />
-        </div>
-      </section>
+          {/* Hidden Gems */}
+          {groupedDestinations['hidden-gems'] && groupedDestinations['hidden-gems'].length > 0 && (
+            <div className="mb-12">
+              <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3 mb-4 text-[#8b7866]">
+                {t('destinationsPage.hiddenGemsTitle')}
+              </h3>
+              <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
+                {t('destinationsPage.hiddenGemsDescription')}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {groupedDestinations['hidden-gems'].map((destination) => (
+                  <DestinationCard
+                    key={destination.id}
+                    image={destination.image}
+                    title={destination.title[language]}
+                    description={destination.description[language]}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
 
-      {/* Luxury Escapes */}
-      <section className="mt-16">
-        <h2 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3  mb-4 text-[#8b7866]">
-          {t('destinationsPage.luxuryEscapesTitle')}
-        </h2>
-        <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
-          {t('destinationsPage.luxuryEscapesDescription')}
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <DestinationCard
-            image="/destinations/maldives.jpg"
-            title={t('destinationsPage.maldives.title')}
-            description={t('destinationsPage.maldives.description')}
-          />
-          <DestinationCard
-            image="/destinations/seychelles.jpg"
-            title={t('destinationsPage.seychelles.title')}
-            description={t('destinationsPage.seychelles.description')}
-          />
-          <DestinationCard
-            image="/destinations/switzerland-1.jpg"
-            title={t('destinationsPage.switzerlandLuxury.title')}
-            description={t('destinationsPage.switzerlandLuxury.description')}
-          />
-          <DestinationCard
-            image="/destinations/dubai.jpg"
-            title={t('destinationsPage.dubaiStaycations.title')}
-            description={t('destinationsPage.dubaiStaycations.description')}
-          />
-        </div>
-      </section>
+          {/* Luxury Escapes */}
+          {groupedDestinations['luxury'] && groupedDestinations['luxury'].length > 0 && (
+            <div className="mb-12">
+              <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3 mb-4 text-[#8b7866]">
+                {t('destinationsPage.luxuryEscapesTitle')}
+              </h3>
+              <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
+                {t('destinationsPage.luxuryEscapesDescription')}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {groupedDestinations['luxury'].map((destination) => (
+                  <DestinationCard
+                    key={destination.id}
+                    image={destination.image}
+                    title={destination.title[language]}
+                    description={destination.description[language]}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
 
       {/* Seasonal Picks */}
       <section className="mt-16">

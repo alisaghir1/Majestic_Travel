@@ -1,197 +1,247 @@
-'use client';
+﻿'use client';
 
+import { useState, useEffect } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar, User, Clock, Tag } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '../contexts/LanguageContext';
 
-export default function BlogCarousel() {
-const [sliderRef, slider] = useKeenSlider({
-  loop: true,
-  slides: {
-    perView: 3, // Default for large screens
-    spacing: 20,
-  },
-  breakpoints: {
-    '(max-width: 1340px)': {
-      slides: {
-        perView: 2, // 2 slides per view on tablets
-        spacing: 15, // Adjust spacing for tablets
+export default function BlogPage() {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
+
+  const [sliderRef, slider] = useKeenSlider({
+    loop: true,
+    slides: {
+      perView: 3,
+      spacing: 20,
+    },
+    breakpoints: {
+      '(max-width: 1340px)': {
+        slides: {
+          perView: 2,
+          spacing: 15,
+        },
+      },
+      '(max-width: 800px)': {
+        slides: {
+          perView: 1,
+          spacing: 10,
+        },
       },
     },
-    '(max-width: 800px)': {
-      slides: {
-        perView: 1, // 1 slide per view on mobile devices
-        spacing: 10, // Adjust spacing for mobile devices
-      },
-    },
-  },
-});
+  });
 
-  const { language, t, isRTL } = useLanguage();
+  const getLocalizedContent = (content) => {
+    if (typeof content === 'object' && content !== null) {
+      return content[language] || content.en || content.ar || '';
+    }
+    return content || '';
+  };
 
-  const blogPosts = [
-    {
-      titleKey: "baliVsMaldivesTitle",
-      subtitleKey: "baliVsMaldivesSubtitle", 
-      contentKey: "baliVsMaldivesContent",
-      image: "/destinations/bali.jpg",
-      date: "April 15, 2025",
-      slug: "bali-vs-maldives-which-is-better",
-    },
-    {
-      titleKey: "hiddenGemsTitle",
-      subtitleKey: "hiddenGemsSubtitle",
-      contentKey: "hiddenGemsContent",
-      image: "/blogs/hidden-gems.jpeg",
-      date: "March 25, 2025",
-      slug: "hidden-gems-near-dubai",
-    },
-    {
-      titleKey: "visaFreeTitle",
-      subtitleKey: "visaFreeSubtitle",
-      contentKey: "visaFreeContent",
-      image: "/destinations/dubai.jpg",
-      date: "January 9, 2025",
-      slug: "top-10-visa-free-travel-destinations",
-    },
-    {
-      titleKey: "summerTravelTitle",
-      subtitleKey: "summerTravelSubtitle",
-      contentKey: "summerTravelContent",
-      image: "/blogs/summer.jpg",
-      date: "February 12, 2025",
-      slug: "where-to-travel-in-summer",
-    },
-    {
-      titleKey: "georgiaTitle",
-      subtitleKey: "georgiaSubtitle", 
-      contentKey: "georgiaContent",
-      image: "/destinations/georgia.jpg",
-      date: "February 12, 2025",
-      slug: "why-georgia-remains-a-favorite-for-uae-travelers",
-    },
-    {
-      titleKey: "mistakesTitle",
-      subtitleKey: "mistakesSubtitle",
-      contentKey: "mistakesContent",
-      image: "/blogs/mistakes.jpg",
-      date: "February 25, 2025",
-      slug: "common-mistakes-travelers-from-the-uae-make",
-    },
-    {
-      titleKey: "groupTourTitle",
-      subtitleKey: "groupTourSubtitle",
-      contentKey: "groupTourContent",
-      image: "/blogs/group-tour.jpeg",
-      date: "April 2, 2025",
-      slug: "how-to-choose-between-a-group-tour-and-a-private-itinerary",
-    },
-    {
-      titleKey: "perfectTripTitle",
-      subtitleKey: "perfectTripSubtitle",
-      contentKey: "perfectTripContent",
-      image: "/blogs/the-perfect-plan.jpg",
-      date: "February 15, 2025",
-      slug: "how-to-plan-a-perfect-trip-abroad-without-stress",
-    },
-    {
-      titleKey: "checklistTitle",
-      subtitleKey: "checklistSubtitle",
-      contentKey: "checklistContent",
-      image: "/blogs/travel-checklist.jpg",
-      date: "June 3, 2025",
-      slug: "what-to-prepare-before-flying-out-from-dubai",
-    },
-    {
-      titleKey: "insuranceTitle",
-      subtitleKey: "insuranceSubtitle",
-      contentKey: "insuranceContent",
-      image: "/blogs/insurance.jpg",
-      date: "january 24, 2025",
-      slug: "travel-insurance-101-why-it-matters-for-every-trip",
-    },
-  ];
+  const generateSlug = (title) => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .trim();
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString(language === 'ar' ? 'ar-AE' : 'en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    } catch {
+      return dateString;
+    }
+  };
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/blogs');
+        if (response.ok) {
+          const data = await response.json();
+          const activeBlogs = data
+            .filter(blog => blog.active !== false)
+            .sort((a, b) => new Date(b.createdAt || b.publishedAt || 0) - new Date(a.createdAt || a.publishedAt || 0));
+          setBlogs(activeBlogs || []);
+        }
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
 
   return (
-    <section className="w-full pb-12 pt-60 bg-[#f2f2f7] text-white">
-      <div className="xl:px-20 mx-auto px-5">
-        <h2 className={`text-4xl md:text-5xl text-[#1c355e] font-bold mb-4 font-serif ${
-          isRTL ? 'text-right' : 'text-left'
-        }`}>
-          {t('blogPage.blogTitle')}
+    <section className="bg-gradient-to-br from-[#1c355e] via-[#2a4a7a] to-[#8b7866] py-20 px-4 min-h-screen mt-30">
+      <div className="container mx-auto text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          {language === 'ar' ? 'مدونة السفر' : 'Travel Blog'}
         </h2>
-        <p className={`text-lg md:text-xl text-[#8b7866] mx-auto mb-12 ${
-          isRTL ? 'text-right' : 'text-left'
-        }`}>
-          {t('blogPage.blogSubtitle')}
+        <p className="text-xl text-white/90 mb-16 max-w-3xl mx-auto">
+          {language === 'ar' 
+            ? 'اكتشف نصائح السفر والوجهات المدهشة من خلال مقالاتنا المختارة بعناية'
+            : 'Discover travel tips and amazing destinations through our carefully curated articles'
+          }
         </p>
 
-        {/* Carousel always LTR */}
-        <div className="relative">
-          <div ref={sliderRef} className="keen-slider ">
-              {blogPosts.map((post, index) => (
-                <div
-                  key={index}
-                  className={`keen-slider__slide bg-white text-[#1c355e] p-6 flex flex-col items-center justify-center gap-6 rounded-xl ${
-                    isRTL ? 'text-right' : 'text-left'
-                  }`}
-                >
-                  <div className="w-full xl:h-[45rem] h-[30rem] object-cover relative rounded-lg overflow-hidden">
-                    <Image
-                      src={post.image}
-                      alt={t(`blogPage.${post.titleKey}`)}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+            <span className="ml-4 text-white text-lg">
+              {language === 'ar' ? 'جاري تحميل المقالات...' : 'Loading articles...'}
+            </span>
+          </div>
+        ) : blogs.length > 0 ? (
+          <div className="relative max-w-7xl mx-auto">
+            <div ref={sliderRef} className="keen-slider">
+              {blogs.map((blog, index) => {
+                const blogTitle = getLocalizedContent(blog.title);
+                const blogExcerpt = getLocalizedContent(blog.excerpt);
+                const blogAuthor = getLocalizedContent(blog.author);
+                const blogReadTime = getLocalizedContent(blog.readTime);
+                const blogSlug = blog.slug || generateSlug(blogTitle);
+                const formattedDate = formatDate(blog.createdAt || blog.publishedAt);
+                
+                return (
+                  <div key={blog.id || index} className="keen-slider__slide">
+                    <div className="bg-white border border-gray-200 rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition duration-500 mx-2 h-full">
+                      <div className="relative h-64 overflow-hidden">
+                        {blog.image ? (
+                          <Image
+                            src={blog.image}
+                            alt={blogTitle}
+                            width={400}
+                            height={256}
+                            className="w-full h-full object-cover hover:scale-110 transition duration-500"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-[#1c355e] to-[#8b7866] flex items-center justify-center">
+                            <span className="text-white text-4xl font-bold">
+                              {blogTitle?.charAt(0) || 'B'}
+                            </span>
+                          </div>
+                        )}
+                        
+                        {blog.showOnHomepage && (
+                          <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            <Tag size={12} className="inline mr-1" />
+                            {language === 'ar' ? 'مميز' : 'Featured'}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="p-6">
+                        <div className="flex items-center justify-between text-sm text-[#8b7866] mb-3">
+                          {blog.category && (
+                            <span className="bg-[#8b7866]/10 text-[#8b7866] px-2 py-1 rounded-full text-xs font-medium">
+                              {blog.category}
+                            </span>
+                          )}
+                          {formattedDate && (
+                            <div className="flex items-center">
+                              <Calendar size={12} className="mr-1" />
+                              {formattedDate}
+                            </div>
+                          )}
+                        </div>
+
+                        <h3 className="text-2xl font-semibold text-[#1c355e] mb-3 line-clamp-2">
+                          {blogTitle}
+                        </h3>
+
+                        <p className="text-gray-600 text-base mb-4 line-clamp-3">
+                          {blogExcerpt || blogTitle}
+                        </p>
+
+                        <div className="flex items-center justify-between text-sm text-[#8b7866] mb-4">
+                          {blogAuthor && (
+                            <div className="flex items-center">
+                              <User size={12} className="mr-1" />
+                              {blogAuthor}
+                            </div>
+                          )}
+                          {blogReadTime && (
+                            <div className="flex items-center">
+                              <Clock size={12} className="mr-1" />
+                              {blogReadTime}
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="text-right">
+                          <Link
+                            href={`/blog/${blogSlug}`}
+                            className="inline-flex items-center text-[#1c355e] hover:text-[#8b7866] font-medium transition duration-300 group"
+                          >
+                            {language === 'ar' ? 'اقرأ المزيد' : 'Read More'}
+                            <svg 
+                              className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className={`text-2xl font-semibold text-[#1c355e] mt-4 ${
-                    isRTL ? 'text-right' : 'text-center'
-                  }`}>
-                    {t(`blogPage.${post.titleKey}`)}
-                  </h3>
-                  <p className={`text-sm text-[#8b7866] mb-5 ${
-                    isRTL ? 'text-right' : 'text-center'
-                  }`}>
-                    {t(`blogPage.${post.subtitleKey}`)}
-                  </p>
-                  <p className={`text-[#8b7866] text-base mb-4 ${
-                    isRTL ? 'text-right' : 'text-center'
-                  }`}>
-                    {t(`blogPage.${post.contentKey}`).slice(0, 100)}...
-                  </p>
-                  <div className={`flex justify-between items-center text-[#8b7866] w-full ${
-                    isRTL ? 'flex-row-reverse' : ''
-                  }`}>
-                    <span className="text-sm">{post.date}</span>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="text-[#1c355e] hover:text-[#8b7866] transition duration-300"
-                    >
-                      {t('blogPage.readMore')}
-                    </Link>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={() => slider.current?.prev()}
-              className="absolute top-1/2 -left-6 transform -translate-y-1/2 bg-white text-[#1c355e] cursor-pointer p-2 rounded-full hover:bg-[#1c355e] hover:text-[#8b7866] hover:scale-110 border border-white transition z-10"
-            >
-              <ChevronLeft />
-            </button>
-            <button
-              onClick={() => slider.current?.next()}
-              className="absolute top-1/2 -right-6 transform -translate-y-1/2 bg-white text-[#1c355e] cursor-pointer p-2 rounded-full hover:bg-[#1c355e] hover:text-[#8b7866] hover:scale-110 border border-white transition z-10"
-            >
-              <ChevronRight />
-            </button>
+            {blogs.length > 3 && (
+              <>
+                <button
+                  onClick={() => slider.current?.prev()}
+                  className="absolute top-1/2 -left-6 transform -translate-y-1/2 bg-white text-[#1c355e] cursor-pointer p-3 rounded-full hover:bg-[#1c355e] hover:text-white hover:scale-110 border border-white transition z-10 shadow-lg"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  onClick={() => slider.current?.next()}
+                  className="absolute top-1/2 -right-6 transform -translate-y-1/2 bg-white text-[#1c355e] cursor-pointer p-3 rounded-full hover:bg-[#1c355e] hover:text-white hover:scale-110 border border-white transition z-10 shadow-lg"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </>
+            )}
           </div>
-        </div>
-      </section>
+        ) : (
+          <div className="text-center py-20">
+            <div className="mb-4">
+              <svg className="w-16 h-16 text-white/50 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-semibold text-white mb-2">
+              {language === 'ar' ? 'لا توجد مقالات متاحة حالياً' : 'No Articles Available'}
+            </h3>
+            <p className="text-white/70 mb-6">
+              {language === 'ar' 
+                ? 'سيتم عرض المقالات هنا عند إضافتها'
+                : 'Articles will appear here when published'
+              }
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

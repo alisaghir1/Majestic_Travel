@@ -10,10 +10,10 @@ export const footerTranslations = {
     // Social Media Section
     followUs: "Follow Us",
     
-    // Contact Section
-    contactTitle: "Contact Us",
-    emailLabel: "Email:",
-    whatsappLabel: "WhatsApp:",
+  // Contact Section
+  contactTitle: "Contact Us",
+  emailLabel: "Email:",
+  whatsappLabel: "Chat on WhatsApp:",
     callLabel: "Call:",
     email: "info@mstravel.ae",
   phone: "+971 056 417 1111",
@@ -34,10 +34,10 @@ export const footerTranslations = {
     // Social Media Section
     followUs: "تابعنا",
     
-    // Contact Section
-    contactTitle: "اتصل بنا",
-    emailLabel: "البريد الإلكتروني:",
-    whatsappLabel: "واتساب:",
+  // Contact Section
+  contactTitle: "اتصل بنا",
+  emailLabel: "البريد الإلكتروني:",
+  whatsappLabel: "الدردشة على واتساب:",
     callLabel: "اتصل:",
     email: "info@mstravel.ae",
   phone: "+971 056 417 1111",

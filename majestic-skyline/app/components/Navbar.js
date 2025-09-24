@@ -11,7 +11,9 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { t, isRTL } = useLanguage();
+  const [services, setServices] = useState([]);
+  const [servicesLoading, setServicesLoading] = useState(false);
+  const { t, isRTL, language } = useLanguage();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -23,20 +25,50 @@ export default function Navbar() {
     }
   };
 
-  const serviceLinks = [
-    { labelKey: "navbar.customTravel", href: "/services/custom-travel" },
-    { labelKey: "navbar.flightsAccommodations", href: "/services/flights-and-accommodations" },
-    { labelKey: "navbar.guidedTours", href: "/services/guided-tours" },
-    { labelKey: "navbar.businessTravel", href: "/services/business-travel" },
-    { labelKey: "navbar.romanticEscapes", href: "/services/romantic-escapes" },
-    { labelKey: "navbar.visaInsurance", href: "/services/visa-insurance" },
-    { labelKey: "navbar.sustainableWellness", href: "/services/sustainable-wellness" },
-    { labelKey: "navbar.carRental", href: "/services/car-rental" },
-    { labelKey: "navbar.cargoServices", href: "/services/cargo" },
-    { labelKey: "navbar.hotelReservations", href: "/services/hotel-reservation" },
-    { labelKey: "navbar.privateJet", href: "/services/private-jet" },
-    { labelKey: "navbar.transportation", href: "/services/transportation" },
-  ];
+  // Fetch services dynamically
+  const fetchServices = async () => {
+    if (services.length > 0) return; // Don't fetch if already loaded
+    
+    setServicesLoading(true);
+    try {
+      const response = await fetch('/api/services');
+      if (response.ok) {
+        const data = await response.json();
+        setServices(data || []);
+      }
+    } catch (error) {
+      console.error('Error fetching services:', error);
+    } finally {
+      setServicesLoading(false);
+    }
+  };
+
+  // Helper function to get localized content
+  const getLocalizedContent = (content) => {
+    if (typeof content === 'object' && content !== null) {
+      return content[language] || content.en || content.ar || '';
+    }
+    return content || '';
+  };
+
+  // Generate service slug from title
+  const generateSlug = (title) => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .trim();
+  };
+
+  // Handle services dropdown with dynamic loading
+  const handleServicesMouseEnter = () => {
+    setServicesDropdownOpen(true);
+    fetchServices();
+  };
+
+  const handleServicesMouseLeave = () => {
+    setServicesDropdownOpen(false);
+  };
 
   // Handle scroll effect
   useEffect(() => {
@@ -109,33 +141,124 @@ export default function Navbar() {
           {/* Services Dropdown */}
           <div
             className="relative"
-            onMouseEnter={() => setServicesDropdownOpen(true)}
-            onMouseLeave={() => setServicesDropdownOpen(false)}
+            onMouseEnter={handleServicesMouseEnter}
+            onMouseLeave={handleServicesMouseLeave}
           >
-            <span className="hover:text-[#1c355e] cursor-pointer flex items-center gap-1 transition-all duration-300 relative group">
+            <Link
+              href="/services"
+              className="hover:text-[#1c355e] cursor-pointer flex items-center gap-1 transition-all duration-300 relative group"
+            >
               {t('navbar.services')}
               <ChevronDown 
                 size={16} 
                 className={`transition-transform duration-300 ${servicesDropdownOpen ? 'rotate-180' : ''}`}
               />
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1c355e] transition-all duration-300 group-hover:w-full"></span>
-            </span>
-            <div className={`absolute top-full left-0 bg-white/95 backdrop-blur-lg shadow-2xl mt-2 rounded-2xl p-6 w-80 transition-all duration-300 ease-in-out transform ${
+            </Link>
+            <div className={`absolute top-full left-0 bg-white/95 backdrop-blur-lg shadow-2xl mt-2 rounded-2xl p-6 w-96 transition-all duration-300 ease-in-out transform ${
               servicesDropdownOpen 
                 ? 'opacity-100 translate-y-0 visible' 
                 : 'opacity-0 translate-y-2 invisible'
             }`}>
-              <div className="grid grid-cols-1 gap-3">
-                {serviceLinks.map(({ labelKey, href }, index) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="block text-[#8b7866] hover:text-[#1c355e] hover:bg-blue-50 px-3 py-2 rounded-lg transition-all duration-300 transform hover:translate-x-1"
-                    style={{ animationDelay: `${index * 50}ms` }}
-                  >
-                    {t(labelKey)}
-                  </Link>
-                ))}
+              {/* Header */}
+              <div className="border-b border-gray-100 pb-3 mb-4">
+                <h3 className="text-lg font-semibold text-[#1c355e]">
+                  {t('navbar.services')}
+                </h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  {language === 'ar' ? 'اكتشف خدماتنا المتميزة' : 'Discover our premium services'}
+                </p>
+              </div>
+
+              {/* Dynamic Services List */}
+              <div className="space-y-2 max-h-80 overflow-y-auto">
+                {servicesLoading ? (
+                  <div className="flex items-center justify-center py-8">
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#1c355e]"></div>
+                    <span className="ml-2 text-sm text-gray-500">
+                      {language === 'ar' ? 'جاري تحميل الخدمات...' : 'Loading services...'}
+                    </span>
+                  </div>
+                ) : services.length > 0 ? (
+                  <>
+                    {services.slice(0, 8).map((service, index) => {
+                      const serviceName = getLocalizedContent(service.title || service.name);
+                      const serviceDesc = getLocalizedContent(service.description);
+                      const servicePrice = getLocalizedContent(service.price);
+                      const serviceSlug = service.slug || generateSlug(serviceName);
+                      
+                      return (
+                        <Link
+                          key={service.id || index}
+                          href={`/services/${serviceSlug}`}
+                          className="group block p-3 rounded-lg hover:bg-blue-50 transition-all duration-300 transform hover:translate-x-1"
+                          style={{ animationDelay: `${index * 50}ms` }}
+                        >
+                          <div className="flex items-start space-x-3">
+                            {service.image && (
+                              <div className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden">
+                                <Image
+                                  src={service.image}
+                                  alt={serviceName}
+                                  width={48}
+                                  height={48}
+                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-200"
+                                />
+                              </div>
+                            )}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-start justify-between">
+                                <h4 className="text-sm font-medium text-gray-900 group-hover:text-[#1c355e] transition-colors duration-200 line-clamp-1">
+                                  {serviceName}
+                                </h4>
+                                {servicePrice && (
+                                  <span className="text-xs font-semibold text-[#8b7866] ml-2 flex-shrink-0">
+                                    {servicePrice}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                                {serviceDesc}
+                              </p>
+                              {service.category && (
+                                <span className="inline-block mt-2 px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-full">
+                                  {language === 'ar' 
+                                    ? service.category === 'business' ? 'تجاري' : 
+                                      service.category === 'leisure' ? 'ترفيهي' : 
+                                      service.category === 'specialized' ? 'متخصص' : 
+                                      service.category === 'transportation' ? 'نقل' :
+                                      service.category === 'accommodation' ? 'إقامة' : service.category
+                                    : service.category.charAt(0).toUpperCase() + service.category.slice(1)
+                                  }
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                    
+                    {/* View All Services Link */}
+                    <div className="border-t border-gray-100 pt-3 mt-4">
+                      <Link
+                        href="/services"
+                        className="block text-center text-[#1c355e] hover:text-[#8b7866] font-medium py-2 px-4 rounded-lg hover:bg-blue-50 transition-all duration-300"
+                      >
+                        {language === 'ar' ? 'عرض جميع الخدمات' : 'View All Services'}
+                        <span className="ml-1">→</span>
+                      </Link>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center py-8">
+                    <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v2a2 2 0 00-2 2v2z" />
+                    </svg>
+                    <p className="text-sm text-gray-500 mt-2">
+                      {language === 'ar' ? 'لا توجد خدمات متاحة حالياً' : 'No services available'}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -213,33 +336,75 @@ export default function Navbar() {
 
               {/* Mobile Services Dropdown */}
               <div className="flex flex-col">
-                <button
-                  onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                  className="flex items-center justify-between text-xl text-[#8b7866] hover:text-[#1c355e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-blue-50"
-                >
-                  <span>{t('navbar.services')}</span>
-                  <ChevronDown
-                    size={20}
-                    className={`transition-transform duration-300 ${
-                      servicesDropdownOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
+                <div className="flex items-center">
+                  <Link
+                    href="/services"
+                    onClick={handleMobileMenuClose}
+                    className="flex-1 text-xl text-[#8b7866] hover:text-[#1c355e] transition-all duration-300 py-3 px-4 rounded-lg hover:bg-blue-50"
+                  >
+                    {t('navbar.services')}
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setServicesDropdownOpen(!servicesDropdownOpen);
+                      if (!servicesDropdownOpen) {
+                        fetchServices();
+                      }
+                    }}
+                    className="text-xl text-[#8b7866] hover:text-[#1c355e] transition-all duration-300 py-3 px-2 rounded-lg hover:bg-blue-50"
+                  >
+                    <ChevronDown
+                      size={20}
+                      className={`transition-transform duration-300 ${
+                        servicesDropdownOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                </div>
 
                 <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
                   servicesDropdownOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
                 }`}>
                   <div className="ml-4 mt-2 space-y-2 bg-gradient-to-r from-blue-50 to-amber-50 rounded-xl p-3">
-                    {serviceLinks.map(({ labelKey, href }) => (
-                      <Link
-                        key={href}
-                        href={href}
-                        onClick={handleMobileMenuClose}
-                        className="block text-base text-[#8b7866] hover:text-[#1c355e] transition-all duration-300 py-2 px-3 rounded-lg hover:bg-white/70"
-                      >
-                        {t(labelKey)}
-                      </Link>
-                    ))}
+                    {servicesLoading ? (
+                      <div className="flex items-center justify-center py-4">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-[#1c355e]"></div>
+                        <span className="ml-2 text-sm text-gray-500">
+                          {language === 'ar' ? 'جاري تحميل الخدمات...' : 'Loading services...'}
+                        </span>
+                      </div>
+                    ) : services.length > 0 ? (
+                      <>
+                        {services.map((service, index) => {
+                          const serviceName = getLocalizedContent(service.title || service.name);
+                          const serviceSlug = service.slug || generateSlug(serviceName);
+                          
+                          return (
+                            <Link
+                              key={service.id || index}
+                              href={`/services/${serviceSlug}`}
+                              onClick={handleMobileMenuClose}
+                              className="block text-base text-[#8b7866] hover:text-[#1c355e] transition-all duration-300 py-2 px-3 rounded-lg hover:bg-white/70"
+                            >
+                              {serviceName}
+                            </Link>
+                          );
+                        })}
+                        <Link
+                          href="/services"
+                          onClick={handleMobileMenuClose}
+                          className="block text-base text-[#1c355e] font-medium transition-all duration-300 py-2 px-3 rounded-lg hover:bg-white/70 border-t border-gray-200 mt-2 pt-3"
+                        >
+                          {language === 'ar' ? 'عرض جميع الخدمات' : 'View All Services'} →
+                        </Link>
+                      </>
+                    ) : (
+                      <div className="text-center py-4">
+                        <p className="text-sm text-gray-500">
+                          {language === 'ar' ? 'لا توجد خدمات متاحة حالياً' : 'No services available'}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

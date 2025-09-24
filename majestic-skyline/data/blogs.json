@@ -1,0 +1,128 @@
+[
+  {
+    "id": 2,
+    "title": {
+      "en": "How to Plan the Perfect Trip Abroad Without Stress",
+      "ar": "كيفية التخطيط للرحلة المثالية في الخارج دون ضغط"
+    },
+    "slug": "how-to-plan-a-perfect-trip-abroad-without-stress",
+    "excerpt": {
+      "en": "Master the art of stress-free travel planning with our comprehensive guide to organizing unforgettable international trips.",
+      "ar": "اتقن فن التخطيط للسفر بدون ضغط مع دليلنا الشامل لتنظيم رحلات دولية لا تُنسى."
+    },
+    "sections": [
+      {
+        "id": 1,
+        "title": {
+          "en": "Start with Research",
+          "ar": "ابدأ بالبحث"
+        },
+        "content": {
+          "en": "The foundation of any great trip begins with thorough research. Start planning at least 2-3 months in advance to secure the best deals and avoid last-minute stress. Research your destination's weather patterns, local customs, visa requirements, and peak tourist seasons to make informed decisions about your travel dates.",
+          "ar": "أساس أي رحلة رائعة يبدأ بالبحث الشامل. ابدأ في التخطيط قبل 2-3 أشهر على الأقل لضمان أفضل العروض وتجنب ضغط اللحظة الأخيرة. ابحث عن أنماط الطقس في وجهتك والعادات المحلية ومتطلبات التأشيرة ومواسم الذروة السياحية لاتخاذ قرارات مدروسة حول تواريخ سفرك."
+        },
+        "image": "/blogs/travel-planning.jpg"
+      },
+      {
+        "id": 2,
+        "title": {
+          "en": "Budget Planning",
+          "ar": "تخطيط الميزانية"
+        },
+        "content": {
+          "en": "Create a realistic budget that covers flights, accommodation, food, activities, and emergency funds. Use the 50-30-20 rule: 50% for essential expenses (flights, hotels), 30% for activities and dining, and 20% as buffer for unexpected costs. Track prices for flights and hotels using comparison websites and booking platforms.",
+          "ar": "أنشئ ميزانية واقعية تغطي الطيران والإقامة والطعام والأنشطة وصناديق الطوارئ. استخدم قاعدة 50-30-20: 50% للنفقات الأساسية (الطيران، الفنادق)، 30% للأنشطة وتناول الطعام، و20% كمخزن احتياطي للتكاليف غير المتوقعة. تتبع أسعار الطيران والفنادق باستخدام مواقع المقارنة ومنصات الحجز."
+        }
+      }
+    ],
+    "category": "travel-planning",
+    "author": {
+      "en": "Travel Planning Expert",
+      "ar": "خبير تخطيط السفر"
+    },
+    "readTime": {
+      "en": "7 min read",
+      "ar": "7 دقائق للقراءة"
+    },
+    "image": "/blogs/the-perfect-plan.jpg",
+    "tags": {
+      "en": [
+        "travel planning",
+        "stress-free travel",
+        "travel tips",
+        "international travel",
+        "vacation planning"
+      ],
+      "ar": [
+        "تخطيط السفر",
+        "السفر بدون ضغط",
+        "نصائح السفر",
+        "السفر الدولي",
+        "تخطيط الإجازة"
+      ]
+    },
+    "active": true,
+    "createdAt": "2025-09-19T14:30:00.000Z",
+    "updatedAt": "2025-09-19T14:30:00.000Z"
+  },
+  {
+    "id": 1758708623963,
+    "slug": "aa",
+    "createdAt": "2025-09-24T10:10:23.963Z",
+    "status": "draft",
+    "title": {
+      "en": "ss",
+      "ar": "aa"
+    },
+    "excerpt": {
+      "en": "ss",
+      "ar": "aa"
+    },
+    "sections": [
+      {
+        "id": 1758708593883,
+        "title": {
+          "en": "ss",
+          "ar": "aa"
+        },
+        "content": {
+          "en": "ss",
+          "ar": "aa"
+        },
+        "image": "/blogs/shutterstock-2487614483-1758708599457.jpg"
+      },
+      {
+        "id": 1758708596024,
+        "title": {
+          "en": "ss",
+          "ar": "aa"
+        },
+        "content": {
+          "en": "ss",
+          "ar": "aa"
+        },
+        "image": "/blogs/shutterstock-2487614483-1758708600865.jpg"
+      }
+    ],
+    "category": "travel-tips",
+    "author": {
+      "en": "ss",
+      "ar": "aa"
+    },
+    "readTime": {
+      "en": "ss",
+      "ar": "aa"
+    },
+    "image": "/blogs/shutterstock-2361055103-1758708605290.jpg",
+    "tags": {
+      "en": [
+        "ss"
+      ],
+      "ar": [
+        "aa"
+      ]
+    },
+    "active": true,
+    "showOnHomepage": true
+  }
+]
