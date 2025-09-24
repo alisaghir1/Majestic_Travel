@@ -4,6 +4,27 @@ import { supabase } from '../../../lib/supabase';
 import fs from 'fs';
 import path from 'path';
 
+export async function generateStaticParams() {
+  try {
+    const { data: blogs, error } = await supabase
+      .from('blogs')
+      .select('slug')
+      .eq('active', true);
+    
+    if (error) {
+      console.error('Error fetching blogs for static params:', error);
+      return [];
+    }
+    
+    return blogs.map((blog) => ({
+      slug: blog.slug,
+    }));
+  } catch (error) {
+    console.error('Error in generateStaticParams:', error);
+    return [];
+  }
+}
+
 export async function generateMetadata({ params, searchParams }) {
   const locale = (await searchParams)?.lang || 'en';
   return await generateBlogMetadata((await params).slug, locale);

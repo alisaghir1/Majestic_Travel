@@ -10,6 +10,12 @@ const nextConfig = {
       },
     ],
   },
+  // Enable static generation for dynamic routes
+  output: 'standalone',
+  // Optimize for production deployment
+  experimental: {
+    optimizePackageImports: ['lucide-react']
+  }
 };
 
 export default nextConfig;
