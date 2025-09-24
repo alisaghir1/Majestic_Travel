@@ -145,6 +145,10 @@ export default function DestinationsAdmin() {
     setEditingDestination(destination);
     setFormData({
       ...destination,
+      // Ensure boolean fields are always boolean values
+      featured: Boolean(destination.featured),
+      showOnHomepage: Boolean(destination.showOnHomepage || destination.show_on_homepage),
+      active: Boolean(destination.active !== false), // Default to true if undefined/null
       includes: {
         en: Array.isArray(destination.includes?.en) 
           ? destination.includes.en.join(', ') 

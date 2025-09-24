@@ -1,31 +1,24 @@
-import { promises as fs } from 'fs';
-import path from 'path';
-
-const dataFile = path.join(process.cwd(), 'data', 'blogs.json');
+import { NextResponse } from 'next/server';
+import { supabase } from '../../../../lib/supabase';
 
 export async function GET() {
   try {
-    // Read all blogs
-    const data = await fs.readFile(dataFile, 'utf-8');
-    const blogs = JSON.parse(data);
-    
-    // Filter only blogs marked as featured (showOnHomepage) and are active
-    const featuredBlogs = blogs.filter(blog => 
-      blog.showOnHomepage === true && blog.active !== false
-    );
-    
-    // Sort by creation date (newest first) and limit to 6 for homepage
-    const sortedBlogs = featuredBlogs
-      .sort((a, b) => new Date(b.createdAt || b.publishedAt || 0) - new Date(a.createdAt || a.publishedAt || 0))
-      .slice(0, 6);
-    
-    return new Response(JSON.stringify(sortedBlogs), {
-      headers: { 'Content-Type': 'application/json' },
-    });
+    const { data: blogs, error } = await supabase
+      .from('blogs')
+      .select('*')
+      .eq('active', true)
+      .eq('show_on_homepage', true)
+      .order('created_at', { ascending: false })
+      .limit(6);
+
+    if (error) {
+      console.error('Error fetching homepage blogs:', error);
+      return NextResponse.json([]);
+    }
+
+    return NextResponse.json(blogs || []);
   } catch (error) {
-    console.error('Error reading featured blogs:', error);
-    return new Response(JSON.stringify([]), {
-      headers: { 'Content-Type': 'application/json' },
-    });
+    console.error('Error reading homepage blogs:', error);
+    return NextResponse.json([]);
   }
 }

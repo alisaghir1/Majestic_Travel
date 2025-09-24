@@ -160,8 +160,9 @@ export default function BlogsAdmin() {
         en: Array.isArray(blog.tags?.en) ? blog.tags.en.join(', ') : (blog.tags?.en || ''),
         ar: Array.isArray(blog.tags?.ar) ? blog.tags.ar.join(', ') : (blog.tags?.ar || '')
       },
-      active: blog.active !== undefined ? blog.active : true,
-      showOnHomepage: blog.showOnHomepage || false
+      // Ensure boolean fields are always boolean values
+      active: Boolean(blog.active !== false), // Default to true if undefined/null
+      showOnHomepage: Boolean(blog.showOnHomepage || blog.show_on_homepage)
     });
     setShowForm(true);
   };

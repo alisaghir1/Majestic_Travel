@@ -11,6 +11,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     inquiryType: '',
     destination: '',
     persons: '',
@@ -43,6 +44,7 @@ const ContactSection = () => {
         setFormData({
           name: '',
           email: '',
+          phone: '',
           inquiryType: '',
           destination: '',
           persons: '',
@@ -145,6 +147,19 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder={t('contactPage.emailPlaceholder')}
+                  autoComplete="off"
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md outline-none text-[#1c355e] placeholder:text-gray-500 bg-white focus:ring-2 focus:ring-[#1c355e] focus:border-[#1c355e]"
+                />
+              </div>
+
+              <div className="mb-5">
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder={t('contactPage.phonePlaceholder')}
                   autoComplete="off"
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-md outline-none text-[#1c355e] placeholder:text-gray-500 bg-white focus:ring-2 focus:ring-[#1c355e] focus:border-[#1c355e]"

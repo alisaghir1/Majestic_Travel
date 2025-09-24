@@ -168,8 +168,9 @@ export default function ServicesAdmin() {
         en: Array.isArray(service.features?.en) ? service.features.en.join(', ') : (service.features?.en || ''),
         ar: Array.isArray(service.features?.ar) ? service.features.ar.join(', ') : (service.features?.ar || '')
       },
-      active: service.active,
-      showOnHomepage: service.showOnHomepage || false
+      // Ensure boolean fields are always boolean values
+      active: Boolean(service.active !== false), // Default to true if undefined/null
+      showOnHomepage: Boolean(service.showOnHomepage || service.show_on_homepage)
     });
     setShowForm(true);
   };

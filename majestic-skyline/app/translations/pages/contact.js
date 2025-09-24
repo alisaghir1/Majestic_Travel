@@ -21,6 +21,7 @@ export const contactPageTranslations = {
     // Form Fields
     fullNamePlaceholder: "Full Name",
     emailPlaceholder: "Email Address",
+    phonePlaceholder: "Phone Number",
     selectInquiryType: "Select Inquiry Type",
     bookingInquiry: "Booking Inquiry",
     generalQuestion: "General Question",
@@ -50,6 +51,7 @@ export const contactPageTranslations = {
     // Form Fields
     fullNamePlaceholder: "الاسم الكامل",
     emailPlaceholder: "عنوان البريد الإلكتروني",
+    phonePlaceholder: "رقم الهاتف",
     selectInquiryType: "اختر نوع الاستفسار",
     bookingInquiry: "استفسار حجز",
     generalQuestion: "سؤال عام",

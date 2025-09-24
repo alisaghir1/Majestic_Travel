@@ -1,6 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import path from 'path';
+import { NextResponse } from 'next/server';
+import { supabaseAdmin } from '../../../../lib/supabase';
 
 export async function POST(request) {
   try {
@@ -29,34 +28,40 @@ export async function POST(request) {
 
     // Generate unique filename
     const timestamp = Date.now();
-    const extension = path.extname(file.name);
-    const baseName = path.basename(file.name, extension);
+    const extension = file.name.split('.').pop();
+    const baseName = file.name.replace(/\.[^/.]+$/, '');
     const sanitizedBaseName = baseName
       .toLowerCase()
       .replace(/[^a-z0-9]/g, '-')
       .replace(/-+/g, '-')
       .replace(/^-|-$/g, '');
     
-    const fileName = `${sanitizedBaseName}-${timestamp}${extension}`;
+    const fileName = `${sanitizedBaseName}-${timestamp}.${extension}`;
 
-    // Ensure the services directory exists
-    const servicesDir = path.join(process.cwd(), 'public', 'services');
-    try {
-      await mkdir(servicesDir, { recursive: true });
-    } catch (error) {
-      // Directory might already exist, which is fine
+    // Convert file to buffer
+    const bytes = await file.arrayBuffer();
+    const buffer = new Uint8Array(bytes);
+
+    // Upload to Supabase Storage
+    const { data, error } = await supabaseAdmin.storage
+      .from('service-images')
+      .upload(fileName, buffer, {
+        contentType: file.type,
+        upsert: false
+      });
+
+    if (error) {
+      console.error('Upload error:', error);
+      return NextResponse.json({ 
+        error: 'Upload failed: ' + error.message 
+      }, { status: 500 });
     }
 
-    // Save the file
-    const filePath = path.join(servicesDir, fileName);
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    
-    await writeFile(filePath, buffer);
+    // Get public URL
+    const { data: { publicUrl } } = supabaseAdmin.storage
+      .from('service-images')
+      .getPublicUrl(fileName);
 
-    // Return the public URL
-    const publicUrl = `/services/${fileName}`;
-    
     return NextResponse.json({ 
       success: true, 
       url: publicUrl,
@@ -66,35 +71,7 @@ export async function POST(request) {
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json({ 
-      error: 'Internal server error during upload' 
-    }, { status: 500 });
-  }
-}
-
-// API to get list of existing service images
-export async function GET() {
-  try {
-    const { readdir } = await import('fs/promises');
-    const servicesDir = path.join(process.cwd(), 'public', 'services');
-    
-    try {
-      const files = await readdir(servicesDir);
-      const imageFiles = files
-        .filter(file => /\.(jpg|jpeg|png|webp|avif)$/i.test(file))
-        .map(file => ({
-          name: file,
-          url: `/services/${file}`
-        }));
-      
-      return NextResponse.json({ images: imageFiles });
-    } catch (error) {
-      // Directory doesn't exist or is empty
-      return NextResponse.json({ images: [] });
-    }
-  } catch (error) {
-    console.error('Error reading services directory:', error);
-    return NextResponse.json({ 
-      error: 'Error reading images directory' 
+      error: 'Internal server error during upload: ' + error.message 
     }, { status: 500 });
   }
 }

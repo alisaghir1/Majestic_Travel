@@ -25,6 +25,13 @@ export default function InquiriesAdmin() {
   const handleStatusChange = async (id, newStatus) => {
     try {
       const inquiry = inquiries.find(i => i.id === id);
+      if (!inquiry) {
+        alert('Inquiry not found');
+        return;
+      }
+
+      console.log('Updating inquiry status:', { id, newStatus, inquiry });
+
       const response = await fetch('/api/inquiries', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -32,10 +39,16 @@ export default function InquiriesAdmin() {
       });
 
       if (response.ok) {
+        // Show success message
+        alert(`Inquiry status updated to: ${newStatus}`);
         fetchInquiries();
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        alert(`Failed to update status: ${errorData.error || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Error updating inquiry status:', error);
+      alert('Failed to update inquiry status. Please try again.');
     }
   };
 

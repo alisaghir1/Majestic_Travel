@@ -62,9 +62,7 @@ export default function TestimonialsAdmin() {
       errors.push('Profession/title is required in both English and Arabic');
     }
 
-    if (!formData.location.en.trim() || !formData.location.ar.trim()) {
-      errors.push('Location is required in both English and Arabic');
-    }
+    // Note: Location is optional - no validation required since there are no location input fields
 
     // Required non-bilingual fields
     if (!formData.rating || formData.rating < 1 || formData.rating > 5) {
@@ -138,7 +136,9 @@ export default function TestimonialsAdmin() {
       name: testimonial.name || { en: '', ar: '' },
       message: testimonial.message || { en: '', ar: '' },
       profession: testimonial.profession || { en: '', ar: '' },
-      location: testimonial.location || { en: '', ar: '' }
+      location: testimonial.location || { en: '', ar: '' },
+      // Ensure boolean fields are always boolean values
+      featured: Boolean(testimonial.featured)
     });
     setShowForm(true);
   };
