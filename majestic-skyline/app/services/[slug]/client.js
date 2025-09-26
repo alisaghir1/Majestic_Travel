@@ -149,16 +149,74 @@ export default function ServicePageClient({ serviceData, locale }) {
                   
                   <div className="p-8">
                     <h2 className="text-3xl font-bold text-[#1c355e] mb-6 group-hover:text-[#8b7866] transition-colors duration-300">
-                      {getLocalizedContent(section.title)}
+                      {getLocalizedContent(section.content)}
                     </h2>
                     <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                      {getLocalizedContent(section.content).split('\n').map((paragraph, pIndex) => (
-                        paragraph.trim() && (
-                          <p key={pIndex} className="mb-4">
-                            {paragraph}
-                          </p>
-                        )
-                      ))}
+                      {section.type === 'list' && (
+                        <ul className="space-y-3">
+                          {getLocalizedArray(section.content).map((item, itemIndex) => (
+                            <li key={itemIndex} className="flex items-start">
+                              <div className="w-2 h-2 bg-[#8b7866] rounded-full mr-3 mt-3 flex-shrink-0"></div>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      
+                      {section.type === 'steps' && (
+                        <div className="space-y-6">
+                          {getLocalizedArray(section.content).map((step, stepIndex) => (
+                            <div key={stepIndex} className="flex items-start">
+                              <div className="w-8 h-8 bg-gradient-to-r from-[#1c355e] to-[#8b7866] text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold text-sm">
+                                {stepIndex + 1}
+                              </div>
+                              <span className="pt-1">{step}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      
+                      {section.type === 'categories' && (
+                        <div className="grid gap-4">
+                          {getLocalizedArray(section.content).map((category, catIndex) => (
+                            <div key={catIndex} className="bg-gray-50 rounded-lg p-4 border-l-4 border-[#8b7866]">
+                              <span>{category}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      
+                      {section.type === 'benefits' && (
+                        <div className="space-y-3">
+                          {getLocalizedArray(section.content).map((benefit, benefitIndex) => (
+                            <div key={benefitIndex} className="flex items-start">
+                              <svg className="w-5 h-5 text-green-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                              <span>{benefit}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      
+                      {(section.type === 'paragraph' || section.type === 'text' || !section.type) && (
+                        <div>
+                          {typeof getLocalizedContent(section.content) === 'string' && 
+                           getLocalizedContent(section.content).split('\n').map((paragraph, pIndex) => (
+                            paragraph.trim() && (
+                              <p key={pIndex} className="mb-4">
+                                {paragraph}
+                              </p>
+                            )
+                          ))}
+                        </div>
+                      )}
+                      
+                      {section.type === 'heading' && (
+                        <h3 className="text-2xl font-bold text-[#1c355e] mb-4">
+                          {getLocalizedContent(section.content)}
+                        </h3>
+                      )}
                     </div>
                   </div>
                 </div>
