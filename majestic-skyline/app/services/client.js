@@ -155,7 +155,7 @@ export default function ServicesPageClient({ services, locale }) {
                       </div>
 
                       {/* Service Content */}
-                      <div className="p-8 mt-20">
+                      <div className="p-8">
                         <h3 className="text-2xl font-bold text-[#1c355e] mb-4 group-hover:text-[#8b7866] transition-colors duration-300">
                           {title}
                         </h3>
@@ -166,7 +166,7 @@ export default function ServicesPageClient({ services, locale }) {
                         {/* Features with Icons */}
                         {features && features.length > 0 && (
                           <div className="mb-6">
-                            <h4 className="text-sm font-semibold text-[#1c355e] mb-3 uppercase tracking-wider">
+                            <h4 className="text-sm font-semibold text-[#1c355e] mb-3 uppercase">
                               {currentLang === 'ar' ? 'المميزات' : 'Features'}
                             </h4>
                             <div className="space-y-2">

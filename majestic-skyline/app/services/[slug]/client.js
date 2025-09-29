@@ -170,7 +170,7 @@ export default function ServicePageClient({ serviceData, locale }) {
               
               {/* Features Card */}
               {features && features.length > 0 && (
-                <div className="bg-white rounded-3xl shadow-lg p-8 sticky top-8">
+                <div className="bg-white rounded-3xl shadow-lg p-8 top-8">
                   <h3 className="text-2xl font-bold text-[#1c355e] mb-6 flex items-center">
                     <div className="w-3 h-3 bg-gradient-to-r from-[#1c355e] to-[#8b7866] rounded-full mr-3"></div>
                     {currentLang === 'ar' ? 'المميزات المتضمنة' : 'Included Features'}
