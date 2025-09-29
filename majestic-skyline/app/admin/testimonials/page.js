@@ -146,7 +146,13 @@ export default function TestimonialsAdmin() {
   const handleDelete = async (id) => {
     if (confirm('Are you sure you want to delete this testimonial?')) {
       try {
-        const response = await fetch(`/api/testimonials?id=${id}`, { method: 'DELETE' });
+        const response = await fetch('/api/testimonials', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id }),
+        });
         
         if (!response.ok) {
           const errorText = await response.text();

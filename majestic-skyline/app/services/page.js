@@ -1,7 +1,27 @@
 import ServicesPageClient from './client';
 import { generatePageMetadata } from "../lib/metadata";
-import fs from 'fs';
-import path from 'path';
+import { supabaseAdmin, TABLES } from '../../lib/supabase';
+
+export async function generateStaticParams() {
+  try {
+    const { data: services, error } = await supabaseAdmin
+      .from(TABLES.SERVICES)
+      .select('slug')
+      .eq('active', true);
+    
+    if (error) {
+      console.error('Error fetching services for static params:', error);
+      return [];
+    }
+    
+    return services.map((service) => ({
+      slug: service.slug,
+    }));
+  } catch (error) {
+    console.error('Error in generateStaticParams:', error);
+    return [];
+  }
+}
 
 export async function generateMetadata({ searchParams }) {
   const locale = (await searchParams)?.lang || 'en';
@@ -10,33 +30,21 @@ export async function generateMetadata({ searchParams }) {
 
 async function getServices() {
   try {
-    // For server-side rendering, read directly from file system
-    if (typeof window === 'undefined') {
-      const filePath = path.join(process.cwd(), 'data', 'services.json');
-      if (fs.existsSync(filePath)) {
-        const fileContents = fs.readFileSync(filePath, 'utf8');
-        const services = JSON.parse(fileContents);
-        return Array.isArray(services) ? services.filter(service => service.active !== false) : [];
-      }
+    // Use Supabase for both server and client side
+    const { data, error } = await supabaseAdmin
+      .from(TABLES.SERVICES)
+      .select('*')
+      .eq('active', true)
+      .order('created_at', { ascending: false });
+    
+    if (error) {
+      console.error('Supabase error:', error);
       return [];
     }
     
-    // For client-side, use fetch as fallback
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
-    const response = await fetch(`${baseUrl}/api/services`, {
-      cache: 'no-store'
-    });
-    
-    if (!response.ok) {
-      console.error('Failed to fetch services:', response.statusText);
-      return [];
-    }
-    
-    const services = await response.json();
-    return Array.isArray(services) ? services.filter(service => service.active !== false) : [];
+    return data || [];
   } catch (error) {
     console.error('Error fetching services:', error);
-    // Return empty array instead of throwing error
     return [];
   }
 }

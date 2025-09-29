@@ -22,6 +22,10 @@ export const destinationsPageTranslations = {
     africaTitle: "Africa",
     africaDescription: "Untouched landscapes and strong cultural identity make Africa a rising destination for explorers from Dubai.",
 
+    // Featured - Short Flights from Dubai
+    featuredTitle: "Featured Destinations",
+    featuredDescription: "Quick escapes from Dubai! These destinations offer easy short flights, perfect for weekend getaways and extended weekends.",
+
     // Destinations by Region
     // Middle East & North Africa
     jordan: {
@@ -236,6 +240,10 @@ export const destinationsPageTranslations = {
     // Africa
     africaTitle: "أفريقيا",
     africaDescription: "المناظر الطبيعية البكر والهوية الثقافية القوية تجعل أفريقيا وجهة متنامية للمستكشفين من دبي.",
+
+    // Featured - Short Flights from Dubai
+    featuredTitle: "الوجهات المميزة",
+    featuredDescription: "هروب سريع من دبي! هذه الوجهات تقدم رحلات طيران قصيرة وسهلة، مثالية لعطلات نهاية الأسبوع والعطل الممتدة.",
 
     // Destinations by Region
     // Middle East & North Africa

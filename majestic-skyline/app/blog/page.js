@@ -87,17 +87,70 @@ export default function BlogPage() {
   }, []);
 
   return (
-    <section className="bg-gradient-to-br from-[#1c355e] via-[#2a4a7a] to-[#8b7866] py-20 px-4 min-h-screen mt-30">
-      <div className="container mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-          {language === 'ar' ? 'مدونة السفر' : 'Travel Blog'}
-        </h2>
-        <p className="text-xl text-white/90 mb-16 max-w-3xl mx-auto">
-          {language === 'ar' 
-            ? 'اكتشف نصائح السفر والوجهات المدهشة من خلال مقالاتنا المختارة بعناية'
-            : 'Discover travel tips and amazing destinations through our carefully curated articles'
-          }
-        </p>
+    <div className="pt-32 pb-24 bg-gray-50 min-h-screen">
+      {/* Enhanced Hero Section */}
+      <section className="bg-gradient-to-br from-[#1c355e] via-[#2a4a7a] to-[#8b7866] py-32 px-4 mb-20 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="w-full h-full" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='white' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}></div>
+        </div>
+        
+        <div className="container mx-auto text-center relative z-10">
+          <div className="mb-8">
+            <span className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-lg font-semibold">
+              {language === 'ar' ? 'مدونة السفر' : 'Travel Blog'}
+            </span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+            {language === 'ar' ? 'رحلات استثنائية' : 'Exceptional Journeys'}
+          </h1>
+          
+          <p className="text-2xl md:text-3xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed">
+            {language === 'ar' 
+              ? 'اكتشف نصائح السفر والوجهات المدهشة من خلال مقالاتنا المختارة بعناية. رحلات استثنائية وتجارب لا تُنسى تنتظرك'
+              : 'Discover travel tips and amazing destinations through our carefully curated articles. Exceptional journeys and unforgettable experiences await you'
+            }
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white">
+              <div className="text-4xl font-bold">{blogs.length}</div>
+              <div className="text-lg opacity-90">
+                {language === 'ar' ? 'مقالة مفيدة' : 'Helpful Articles'}
+              </div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white">
+              <div className="text-4xl font-bold">50+</div>
+              <div className="text-lg opacity-90">
+                {language === 'ar' ? 'وجهة مميزة' : 'Amazing Destinations'}
+              </div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white">
+              <div className="text-4xl font-bold">1000+</div>
+              <div className="text-lg opacity-90">
+                {language === 'ar' ? 'نصيحة قيمة' : 'Valuable Tips'}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Articles Section */}
+      <section className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1c355e] mb-6">
+            {language === 'ar' ? 'أحدث المقالات' : 'Latest Articles'}
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            {language === 'ar' 
+              ? 'استكشف مقالاتنا الحديثة المليئة بالنصائح والإرشادات لجعل رحلتك القادمة استثنائية'
+              : 'Explore our latest articles filled with tips and guidance to make your next journey exceptional'
+            }
+          </p>
+        </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
@@ -119,88 +172,94 @@ export default function BlogPage() {
                 
                 return (
                   <div key={blog.id || index} className="keen-slider__slide">
-                    <div className="bg-white border border-gray-200 rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition duration-500 mx-2 h-full">
-                      <div className="relative h-64 overflow-hidden">
+                    <article className="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-500 hover:shadow-2xl mx-3 h-full group border border-gray-100">
+                      <div className="relative h-80 overflow-hidden">
                         {blog.image ? (
                           <Image
                             src={blog.image}
                             alt={blogTitle}
-                            width={400}
-                            height={256}
-                            className="w-full h-full object-cover hover:scale-110 transition duration-500"
+                            width={500}
+                            height={320}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                           />
                         ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-[#1c355e] to-[#8b7866] flex items-center justify-center">
-                            <span className="text-white text-4xl font-bold">
+                          <div className="w-full h-full bg-gradient-to-br from-[#1c355e] via-[#2a4a7a] to-[#8b7866] flex items-center justify-center">
+                            <span className="text-white text-6xl font-bold">
                               {blogTitle?.charAt(0) || 'B'}
                             </span>
                           </div>
                         )}
                         
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
+                        
                         {blog.showOnHomepage && (
-                          <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                            <Tag size={12} className="inline mr-1" />
+                          <div className="absolute top-6 right-6 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                            <Tag size={14} className="inline mr-2" />
                             {language === 'ar' ? 'مميز' : 'Featured'}
+                          </div>
+                        )}
+                        
+                        {blog.category && (
+                          <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm text-[#1c355e] px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            {blog.category}
                           </div>
                         )}
                       </div>
 
-                      <div className="p-6">
-                        <div className="flex items-center justify-between text-sm text-[#8b7866] mb-3">
-                          {blog.category && (
-                            <span className="bg-[#8b7866]/10 text-[#8b7866] px-2 py-1 rounded-full text-xs font-medium">
-                              {blog.category}
-                            </span>
-                          )}
+                      <div className="p-8">
+                        <div className="flex items-center justify-between text-sm text-[#8b7866] mb-4">
+                          <div className="flex items-center space-x-4">
+                            {blogAuthor && (
+                              <div className="flex items-center space-x-2">
+                                <User size={16} />
+                                <span className="font-medium">{blogAuthor}</span>
+                              </div>
+                            )}
+                            {blogReadTime && (
+                              <div className="flex items-center space-x-2">
+                                <Clock size={16} />
+                                <span>{blogReadTime}</span>
+                              </div>
+                            )}
+                          </div>
                           {formattedDate && (
-                            <div className="flex items-center">
-                              <Calendar size={12} className="mr-1" />
-                              {formattedDate}
+                            <div className="flex items-center space-x-2">
+                              <Calendar size={16} />
+                              <span>{formattedDate}</span>
                             </div>
                           )}
                         </div>
 
-                        <h3 className="text-2xl font-semibold text-[#1c355e] mb-3 line-clamp-2">
+                        <h3 className="text-2xl md:text-3xl font-bold text-[#1c355e] mb-4 line-clamp-2 group-hover:text-[#8b7866] transition-colors duration-300">
                           {blogTitle}
                         </h3>
 
-                        <p className="text-gray-600 text-base mb-4 line-clamp-3">
-                          {blogExcerpt || blogTitle}
+                        <p className="text-gray-600 text-lg mb-6 line-clamp-3 leading-relaxed">
+                          {blogExcerpt || `${blogTitle}... ${language === 'ar' ? 'اقرأ المزيد لاكتشاف التفاصيل المثيرة' : 'Read more to discover exciting details'}`}
                         </p>
 
-                        <div className="flex items-center justify-between text-sm text-[#8b7866] mb-4">
-                          {blogAuthor && (
-                            <div className="flex items-center">
-                              <User size={12} className="mr-1" />
-                              {blogAuthor}
-                            </div>
-                          )}
-                          {blogReadTime && (
-                            <div className="flex items-center">
-                              <Clock size={12} className="mr-1" />
-                              {blogReadTime}
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="text-right">
+                        <div className="flex justify-between items-center">
                           <Link
                             href={`/blog/${blogSlug}`}
-                            className="inline-flex items-center text-[#1c355e] hover:text-[#8b7866] font-medium transition duration-300 group"
+                            className="inline-flex items-center bg-gradient-to-r from-[#1c355e] to-[#8b7866] text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 group/btn"
                           >
-                            {language === 'ar' ? 'اقرأ المزيد' : 'Read More'}
+                            {language === 'ar' ? 'اقرأ المقال' : 'Read Article'}
                             <svg 
-                              className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" 
+                              className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" 
                               fill="none" 
                               stroke="currentColor" 
                               viewBox="0 0 24 24"
                             >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
                           </Link>
+                          
+                          <div className="text-[#8b7866] text-sm font-medium">
+                            {language === 'ar' ? '3 دقائق' : '3 min read'}
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </article>
                   </div>
                 );
               })}
@@ -224,24 +283,55 @@ export default function BlogPage() {
             )}
           </div>
         ) : (
-          <div className="text-center py-20">
-            <div className="mb-4">
-              <svg className="w-16 h-16 text-white/50 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="text-center py-20 bg-white rounded-3xl shadow-lg max-w-2xl mx-auto">
+            <div className="mb-6">
+              <svg className="w-20 h-20 text-[#1c355e]/50 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
               </svg>
             </div>
-            <h3 className="text-2xl font-semibold text-white mb-2">
-              {language === 'ar' ? 'لا توجد مقالات متاحة حالياً' : 'No Articles Available'}
+            <h3 className="text-3xl font-bold text-[#1c355e] mb-4">
+              {language === 'ar' ? 'لا توجد مقالات متاحة حالياً' : 'No Articles Available Yet'}
             </h3>
-            <p className="text-white/70 mb-6">
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
               {language === 'ar' 
-                ? 'سيتم عرض المقالات هنا عند إضافتها'
-                : 'Articles will appear here when published'
+                ? 'سيتم عرض مقالاتنا المميزة هنا قريباً. ترقبوا محتوى رائع عن السفر والاستكشاف'
+                : 'Our amazing travel articles will appear here soon. Stay tuned for great content about travel and exploration'
               }
             </p>
+            <Link 
+              href="/contact" 
+              className="inline-block bg-gradient-to-r from-[#1c355e] to-[#8b7866] text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+            >
+              {language === 'ar' ? 'تواصل معنا' : 'Contact Us'}
+            </Link>
           </div>
         )}
-      </div>
-    </section>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="bg-gradient-to-br from-[#1c355e] via-[#2a4a7a] to-[#8b7866] py-20 px-4 mt-20">
+        <div className="container mx-auto text-center max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            {language === 'ar' ? 'ابق على اطلاع' : 'Stay Updated'}
+          </h2>
+          <p className="text-xl text-white/90 mb-12 leading-relaxed">
+            {language === 'ar' 
+              ? 'احصل على أحدث مقالات السفر والنصائح والعروض الحصرية مباشرة في بريدك الإلكتروني'
+              : 'Get the latest travel articles, tips, and exclusive offers delivered straight to your inbox'
+            }
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto">
+            <input 
+              type="email" 
+              placeholder={language === 'ar' ? 'أدخل بريدك الإلكتروني' : 'Enter your email'}
+              className="flex-1 px-6 py-4 rounded-full text-gray-800 text-lg focus:outline-none focus:ring-4 focus:ring-white/30"
+            />
+            <button className="bg-white text-[#1c355e] px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap">
+              {language === 'ar' ? 'اشترك الآن' : 'Subscribe Now'}
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

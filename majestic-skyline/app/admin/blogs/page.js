@@ -530,18 +530,41 @@ export default function BlogsAdmin() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Category
                   </label>
-                  <select
+                  <input
+                    type="text"
                     className="w-full border border-gray-300 rounded-lg p-2"
+                    placeholder="Enter category (e.g., travel tips, destinations, travel guides, news)"
                     value={formData.category}
                     onChange={(e) => updateFormField('category', e.target.value)}
-                  >
-                    <option value="">Select category</option>
-                    <option value="travel-tips">Travel Tips</option>
-                    <option value="travel-planning">Travel Planning</option>
-                    <option value="destinations">Destinations</option>
-                    <option value="travel-guides">Travel Guides</option>
-                    <option value="news">News & Updates</option>
-                  </select>
+                    list="blog-category-suggestions"
+                  />
+                  <datalist id="blog-category-suggestions">
+                    <option value="travel tips" />
+                    <option value="travel planning" />
+                    <option value="destinations" />
+                    <option value="travel guides" />
+                    <option value="news & updates" />
+                    <option value="cultural insights" />
+                    <option value="adventure travel" />
+                    <option value="luxury travel" />
+                    <option value="budget travel" />
+                    <option value="family travel" />
+                    <option value="solo travel" />
+                    <option value="food & cuisine" />
+                    <option value="photography" />
+                    <option value="local experiences" />
+                    <option value="seasonal travel" />
+                    <option value="travel safety" />
+                    <option value="packing tips" />
+                    <option value="visa & documentation" />
+                    <option value="transportation" />
+                    <option value="accommodation" />
+                    <option value="hidden gems" />
+                    <option value="festivals & events" />
+                    <option value="business travel" />
+                    <option value="eco-tourism" />
+                    <option value="wellness travel" />
+                  </datalist>
                 </div>
 
                 <div>

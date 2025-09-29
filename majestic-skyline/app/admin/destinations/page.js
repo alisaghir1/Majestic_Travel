@@ -289,14 +289,9 @@ export default function DestinationsAdmin() {
                     }`}>
                       {destination.active ? 'Active' : 'Inactive'}
                     </span>
-                    {destination.featured && (
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                        Featured
-                      </span>
-                    )}
                     {destination.showOnHomepage && (
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                        Homepage
+                        Show on Homepage
                       </span>
                     )}
                   </div>
@@ -435,24 +430,44 @@ export default function DestinationsAdmin() {
                     <option value="africa">Africa</option>
                     <option value="americas">Americas</option>
                     <option value="oceania">Oceania</option>
+                    <option value="hidden-gems">Hidden Gems</option>
+                    <option value="featured">Featured (Short Flights from Dubai)</option>
                   </select>
+                  {formData.region === 'featured' && (
+                    <p className="text-xs text-blue-600 mt-1">
+                      💡 Featured destinations are short flights from Dubai, perfect for weekend getaways
+                    </p>
+                  )}
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                  <select
+                  <input
+                    type="text"
                     className="w-full border border-gray-300 rounded-lg p-2"
+                    placeholder="Enter category (e.g., cultural, adventure, luxury, tropical, urban, nature, hidden gems)"
                     value={formData.category}
                     onChange={(e) => updateFormField('category', e.target.value)}
-                  >
-                    <option value="">Select Category</option>
-                    <option value="cultural">Cultural</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="luxury">Luxury</option>
-                    <option value="tropical">Tropical</option>
-                    <option value="urban">Urban</option>
-                    <option value="nature">Nature</option>
-                  </select>
+                    list="category-suggestions"
+                  />
+                  <datalist id="category-suggestions">
+                    <option value="cultural" />
+                    <option value="adventure" />
+                    <option value="luxury" />
+                    <option value="tropical" />
+                    <option value="urban" />
+                    <option value="nature" />
+                    <option value="hidden gems" />
+                    <option value="beach" />
+                    <option value="mountain" />
+                    <option value="desert" />
+                    <option value="historical" />
+                    <option value="romantic" />
+                    <option value="family-friendly" />
+                    <option value="eco-tourism" />
+                    <option value="religious" />
+                    <option value="wellness" />
+                  </datalist>
                 </div>
 
                 <div>
@@ -478,19 +493,6 @@ export default function DestinationsAdmin() {
                   />
                   <label htmlFor="active" className="text-sm font-medium text-gray-700">
                     Active
-                  </label>
-                </div>
-
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="featured"
-                    className="mr-2"
-                    checked={formData.featured}
-                    onChange={(e) => updateFormField('featured', e.target.checked)}
-                  />
-                  <label htmlFor="featured" className="text-sm font-medium text-gray-700">
-                    Featured
                   </label>
                 </div>
 

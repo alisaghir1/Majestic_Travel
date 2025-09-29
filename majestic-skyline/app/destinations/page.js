@@ -157,6 +157,28 @@ const DestinationsPage = () => {
             </div>
           )}
 
+          {/* Featured - Short Flights from Dubai */}
+          {groupedDestinations['featured'] && groupedDestinations['featured'].length > 0 && (
+            <div className="mb-12">
+              <h3 className="xl:text-4xl text-3xl font-bold [#1c355e] text-center mx-auto w-fit border-b-3 mb-4 text-[#8b7866]">
+                {t('destinationsPage.featuredTitle')}
+              </h3>
+              <p className="text-[#1c355e] xl:text-2xl text-xl mb-10 text-center">
+                {t('destinationsPage.featuredDescription')}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {groupedDestinations['featured'].map((destination) => (
+                  <DestinationCard
+                    key={destination.id}
+                    image={destination.image}
+                    title={destination.title[language]}
+                    description={destination.description[language]}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Hidden Gems */}
           {groupedDestinations['hidden-gems'] && groupedDestinations['hidden-gems'].length > 0 && (
             <div className="mb-12">

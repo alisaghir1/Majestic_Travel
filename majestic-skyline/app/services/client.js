@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "../contexts/LanguageContext";
 import { RTLWrapper } from "../components/RTLWrapper";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function ServicesPageClient({ services, locale }) {
@@ -13,6 +13,25 @@ export default function ServicesPageClient({ services, locale }) {
   
   // Prioritize context language over URL parameter
   const currentLang = language;
+  
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const servicesPerPage = 6;
+  
+  // Calculate pagination
+  const totalPages = Math.ceil(services.length / servicesPerPage);
+  const startIndex = (currentPage - 1) * servicesPerPage;
+  const endIndex = startIndex + servicesPerPage;
+  const currentServices = services.slice(startIndex, endIndex);
+  
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    // Scroll to services section
+    const servicesSection = document.querySelector('#services-grid');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Update URL when language changes
   useEffect(() => {
@@ -41,7 +60,7 @@ export default function ServicesPageClient({ services, locale }) {
 
   return (
     <RTLWrapper>
-      <div className="pt-60 pb-24 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 mx-auto text-gray-800 min-h-screen">
+      <div className="pt-60 pb-24 bg-gradient-to-br mt from-gray-50 via-blue-50 to-indigo-50 mx-auto text-gray-800 min-h-screen">
         {/* Hero Section with Enhanced Design */}
         <div className="relative text-center mb-20 px-4">
           <div className="absolute inset-0 bg-gradient-to-r from-[#1c355e]/5 to-[#8b7866]/5 rounded-3xl transform -rotate-1"></div>
@@ -69,8 +88,9 @@ export default function ServicesPageClient({ services, locale }) {
         {/* Services Grid with Enhanced Cards */}
         <div className="container mx-auto px-5">
           {services.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-              {services.map((service, index) => {
+            <>
+              <div id="services-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {currentServices.map((service, index) => {
                 const title = getLocalizedContent(service.title);
                 const description = getLocalizedContent(service.description);
                 const price = getLocalizedContent(service.price);
@@ -135,7 +155,7 @@ export default function ServicesPageClient({ services, locale }) {
                       </div>
 
                       {/* Service Content */}
-                      <div className="p-8">
+                      <div className="p-8 mt-20">
                         <h3 className="text-2xl font-bold text-[#1c355e] mb-4 group-hover:text-[#8b7866] transition-colors duration-300">
                           {title}
                         </h3>
@@ -183,8 +203,61 @@ export default function ServicesPageClient({ services, locale }) {
                     </div>
                   </div>
                 );
-              })}
-            </div>
+                })}
+              </div>
+              
+              {/* Pagination Controls */}
+              {totalPages > 1 && (
+                <div className="flex justify-center items-center mt-12 mb-8">
+                  <div className="flex items-center space-x-2 bg-white rounded-2xl shadow-lg p-2">
+                    {/* Previous Button */}
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className={`p-3 rounded-xl transition-all duration-300 ${
+                        currentPage === 1
+                          ? 'text-gray-400 cursor-not-allowed'
+                          : 'text-[#1c355e] hover:bg-gray-100 hover:scale-105'
+                      }`}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+
+                    {/* Page Numbers */}
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                      <button
+                        key={page}
+                        onClick={() => handlePageChange(page)}
+                        className={`px-4 py-2 rounded-xl font-semibold transition-all duration-300 ${
+                          currentPage === page
+                            ? 'bg-gradient-to-r from-[#1c355e] to-[#8b7866] text-white shadow-lg transform scale-105'
+                            : 'text-[#1c355e] hover:bg-gray-100 hover:scale-105'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+
+                    {/* Next Button */}
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className={`p-3 rounded-xl transition-all duration-300 ${
+                        currentPage === totalPages
+                          ? 'text-gray-400 cursor-not-allowed'
+                          : 'text-[#1c355e] hover:bg-gray-100 hover:scale-105'
+                      }`}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
           ) : (
             <div className="text-center py-20">
               <div className="bg-white rounded-3xl p-12 shadow-lg max-w-2xl mx-auto">

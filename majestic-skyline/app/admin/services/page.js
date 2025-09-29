@@ -608,18 +608,36 @@ export default function ServicesAdmin() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                      <select
+                      <input
+                        type="text"
                         className="w-full border border-gray-300 rounded-lg p-2"
+                        placeholder="Enter category (e.g., business travel, leisure travel, transportation, accommodation)"
                         value={formData.category}
                         onChange={(e) => updateFormField('category', e.target.value)}
-                      >
-                        <option value="">Select Category</option>
-                        <option value="business">Business Travel</option>
-                        <option value="leisure">Leisure Travel</option>
-                        <option value="transportation">Transportation</option>
-                        <option value="accommodation">Accommodation</option>
-                        <option value="specialized">Specialized Services</option>
-                      </select>
+                        list="service-category-suggestions"
+                      />
+                      <datalist id="service-category-suggestions">
+                        <option value="business travel" />
+                        <option value="leisure travel" />
+                        <option value="transportation" />
+                        <option value="accommodation" />
+                        <option value="specialized services" />
+                        <option value="travel planning" />
+                        <option value="visa services" />
+                        <option value="flight booking" />
+                        <option value="hotel reservation" />
+                        <option value="tour packages" />
+                        <option value="car rental" />
+                        <option value="travel insurance" />
+                        <option value="airport transfers" />
+                        <option value="group travel" />
+                        <option value="luxury travel" />
+                        <option value="adventure travel" />
+                        <option value="honeymoon packages" />
+                        <option value="family travel" />
+                        <option value="corporate travel" />
+                        <option value="pilgrimage tours" />
+                      </datalist>
                     </div>
                     
                     <div>
