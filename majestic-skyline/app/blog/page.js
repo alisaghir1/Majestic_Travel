@@ -160,7 +160,7 @@ export default function BlogPage() {
             </span>
           </div>
         ) : blogs.length > 0 ? (
-          <div className="relative max-w-7xl mx-auto">
+          <div className="relative max-w-fit mx-auto">
             <div ref={sliderRef} className="keen-slider">
               {blogs.map((blog, index) => {
                 const blogTitle = getLocalizedContent(blog.title);
@@ -172,7 +172,7 @@ export default function BlogPage() {
                 
                 return (
                   <div key={blog.id || index} className="keen-slider__slide">
-                    <article className="bg-white rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-500 hover:shadow-2xl mx-3 h-full group border border-gray-100">
+                    <article className="bg-white  shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-500 hover:shadow-2xl mx-3 h-full group border border-gray-100">
                       <div className="relative h-80 overflow-hidden">
                         {blog.image ? (
                           <Image
@@ -254,9 +254,6 @@ export default function BlogPage() {
                             </svg>
                           </Link>
                           
-                          <div className="text-[#8b7866] text-sm font-medium">
-                            {language === 'ar' ? '3 دقائق' : '3 min read'}
-                          </div>
                         </div>
                       </div>
                     </article>
@@ -308,30 +305,6 @@ export default function BlogPage() {
         )}
       </section>
 
-      {/* Newsletter Section */}
-      <section className="bg-gradient-to-br from-[#1c355e] via-[#2a4a7a] to-[#8b7866] py-20 px-4 mt-20">
-        <div className="container mx-auto text-center max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            {language === 'ar' ? 'ابق على اطلاع' : 'Stay Updated'}
-          </h2>
-          <p className="text-xl text-white/90 mb-12 leading-relaxed">
-            {language === 'ar' 
-              ? 'احصل على أحدث مقالات السفر والنصائح والعروض الحصرية مباشرة في بريدك الإلكتروني'
-              : 'Get the latest travel articles, tips, and exclusive offers delivered straight to your inbox'
-            }
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto">
-            <input 
-              type="email" 
-              placeholder={language === 'ar' ? 'أدخل بريدك الإلكتروني' : 'Enter your email'}
-              className="flex-1 px-6 py-4 rounded-full text-gray-800 text-lg focus:outline-none focus:ring-4 focus:ring-white/30"
-            />
-            <button className="bg-white text-[#1c355e] px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap">
-              {language === 'ar' ? 'اشترك الآن' : 'Subscribe Now'}
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
